@@ -203,14 +203,145 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="flex">
-            <Link href="/shop" className="hover:text-gray-900 font-semibold">
-              SHOP
-            </Link>
-            <div className="mt-2 text-xs pl-1">
-              <GoChevronDown />
+          
+    <div className="relative group">
+      {/* SHOP link */}
+      <div className="flex relative z-50">
+        <Link
+          href="/shop"
+          className="hover:text-[#cea384] text-black font-semibold"
+        >
+          SHOP
+        </Link>
+        <div className="mt-2 text-xs pl-1">
+          <GoChevronDown />
+        </div>
+      </div>
+
+      {/* Fullscreen Dropdown on hover */}
+      <div className="fixed top-34 left-0 w-full h-full hidden group-hover:flex bg-white z-10 pt-4">
+        <div className="w-full h-full flex items-start justify-center">
+          <div className="grid grid-cols-6 gap-8 max-w-screen-lg mx-auto mt-4">
+            {/* SHOP LAYOUTS */}
+            <div>
+              <h3 className="text-lg font-semibold mb-2 mt-1 inline-block w-[200px] hover:text-[#cea384]  bg-opacity-50 bg-white py-1    after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                SHOP LAYOUTS
+              </h3>
+              <ul className="space-y-2 text-gray-500 mt-4">
+                <li className="relative hover:text-[#cea384] ">Fullwidth</li>
+                <li className="relative hover:text-[#cea384] mt-2">Sidebar Layouts</li>
+                <li className="relative hover:text-[#cea384] mt-2">Infinity Scroll</li>
+                <li className="relative hover:text-[#cea384] mt-2">Background Modern</li>
+                <Link href="/listview"><li className="relative hover:text-[#cea384] mt-2">List View</li></Link>
+                <li className="relative hover:text-[#cea384] mt-2">Banner Modern</li>
+              </ul>
+            </div>
+
+            {/* SHOP HEADING */}
+            <div>
+              <h3 className="text-lg font-semibold mb-2 inline-block pl-10 w-[300px] mt-2 after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                SHOP HEADING
+              </h3>
+              <ul className="space-y-2 text-gray-500 pl-10 w-[300px] mt-4">
+                <li className="hover:text-[#cea384]">Heading Style 1</li>
+                <li className="hover:text-[#cea384]">Heading Style 2</li>
+                <li className="hover:text-[#cea384]">Heading Style 3</li>
+                <li className="hover:text-[#cea384]">Heading Style 4</li>
+                <li className="hover:text-[#cea384]">Heading Style 5</li>
+                <li className="hover:text-[#cea384]">Heading Style 6</li>
+              </ul>
+            </div>
+
+            {/* FILTER LAYOUT */}
+            <div>
+              <h3 className="text-lg font-semibold mb-2 inline-block  w-[300px] mt-2 pl-16 after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                FILTER LAYOUT
+              </h3>
+              <ul className="space-y-2 text-gray-500 w-[300px] pl-16 mt-4">
+                <Link href = "/drowerfilter">
+                <li className="relative hover:text-[#cea384]">
+                  Drawer Filter
+                  <span className="absolute -top-5 left-16 bg-green-500 text-white text-xs px-1 py-1 rounded">
+                    NEW
+                  </span>
+                </li>
+                </Link>
+                <li className="relative hover:text-[#cea384]">Off Canvas</li>
+                <li className="relative hover:text-[#cea384]">Filter Dropdown</li>
+                <li className="relative hover:text-[#cea384]">Filter Dropdown 2</li>
+                <li className="relative hover:text-[#cea384]">Filter Accordion</li>
+                <li className="relative hover:text-[#cea384]">
+                  Filter Sticky
+                  <span className="absolute -top-5 left-16 bg-red-500 text-white text-xs px-2 py-1 rounded">
+                    HOT
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            {/* PRODUCT LAYOUTS */}
+            <div>
+              <h3 className="text-lg font-semibold mb-2 inline-block  w-[300px] pl-16 mt-2 after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                PRODUCT LAYOUTS
+              </h3>
+              <ul className="space-y-2 text-gray-500 w-[300px] pl-16 mt-4">
+                <li className="relative hover:text-[#cea384]">Product Extended</li>
+                <li className="relative hover:text-[#cea384]">Product Scroll</li>
+                <li className="relative hover:text-[#cea384]">Product Sticky</li>
+                <li className="relative hover:text-[#cea384]">Product Sticky 2</li>
+                <li className="relative hover:text-[#cea384]">Sticky Center</li>
+                <li className="relative hover:text-[#cea384]">Product Slider Gallery</li>
+                <li className="relative hover:text-[#cea384]">Product Slider Center</li>
+                <li className="relative hover:text-[#cea384]">Product Large Grid</li>
+                <li className="relative hover:text-[#cea384]">Product Small Grid</li>
+                <li className="relative hover:text-[#cea384]">Product Extended-Background</li>
+                <li className="relative hover:text-[#cea384]">Product Sidebar</li>
+                <li className="relative hover:text-[#cea384]">Product Sidebar 2</li>
+              </ul>
+            </div>
+
+            {/* PRODUCT TYPES */}
+            <div>
+              <h3 className="text-lg font-semibold mb-2 inline-block  w-[300px] mt-2 pl-24  after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                PRODUCT TYPES
+              </h3>
+              <ul className="space-y-2 text-gray-500 w-[300px] pl-24 mt-4">
+                <li className="relative hover:text-[#cea384]">
+                  Simple
+                  <span className="absolute -top-4 left-10 bg-green-500 text-white text-xs px-2 py-1 rounded">
+                    NEW
+                  </span>
+                </li>
+                <li className="relative hover:text-[#cea384]">Variable Select</li>
+                <li className="relative hover:text-[#cea384]">
+                  External / Affiliate
+                  <span className="absolute -top-4 left-28 bg-red-500 text-white text-xs px-1 py-1 rounded">
+                    HOT
+                  </span>
+                </li>
+                <li className="relative hover:text-[#cea384]">Boosted Sale</li>
+              </ul>
+            </div>
+
+            {/* PRODUCT EXTENDS (Positioned Next to PRODUCT TYPES) */}
+            <div>
+              <h3 className="text-lg font-semibold mb-2 inline-block pl-24 w-[300px] mt-2  after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                PRODUCT EXTENDS
+              </h3>
+              <ul className="space-y-2 text-gray-500 pl-24 w-[300px] mt-4">
+                <li className="relative hover:text-[#cea384]">Promo Text</li>
+                <li className="relative hover:text-[#cea384]">Trust Sale</li>
+                <li className="relative hover:text-[#cea384]">Countdown</li>
+                <li className="relative hover:text-[#cea384]">Featured Video</li>
+              </ul>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+
+ 
           <div className="flex">
             <Link
               href="/featured"
