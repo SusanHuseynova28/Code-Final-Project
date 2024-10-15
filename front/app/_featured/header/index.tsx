@@ -1,14 +1,24 @@
 import Link from 'next/link';
 import { FaFacebookF, FaYoutube, FaInstagram, FaTwitter } from 'react-icons/fa';
-import { GoChevronDown } from "react-icons/go";
+import { GoChevronDown } from "react-icons/go";  // Düzəliş olunmuş sətir
+import { AiOutlineClose } from 'react-icons/ai';
 import { useState } from 'react';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
 
-  // Mobil menyunun açılıb-bağlanma funksiyası
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const toggleCurrencyMenu = () => {
+    setIsCurrencyOpen(!isCurrencyOpen);
+  };
+
+  const toggleLanguageMenu = () => {
+    setIsLanguageOpen(!isLanguageOpen);
   };
 
   return (
@@ -22,22 +32,42 @@ export default function Header() {
           <Link href="#" className="hover:text-[#cea384]"><FaTwitter /></Link>
         </div>
         <div className="flex space-x-4">
-          <div className="flex items-center space-x-1">
-            <span className='text-xs'>Currency:</span>
-            <select className="bg-transparent border-none text-xs font-semibold text-gray-700 focus:outline-none">
-              <option value="USD">USD</option>
-              <option value="EUR">EUR</option>
-              
-            </select>
+          {/* Currency dropdown */}
+          <div className="relative">
+            <div className="flex items-center space-x-1 cursor-pointer" onClick={toggleCurrencyMenu}>
+              <span className='text-xs text-gray-600 font-semibold'>Currency:</span>
+              <span className='text-xs text-black font-bold'>USD</span>
+              <GoChevronDown />
+            </div>
+            {isCurrencyOpen && (
+              <div className="absolute left-0 mt-2 w-24 bg-white border rounded-lg p-2 shadow-lg transition-all duration-500 ease-in-out origin-top">
+                <ul className="space-y-1">
+                  <li>USD</li>
+                  <li>EUR</li>
+                  <li>GBP</li>
+                  <li>INR</li>
+                </ul>
+              </div>
+            )}
           </div>
           <div className='border-l-2 border-gray'></div>
-          <div className="flex items-center space-x-1">
-            <span className='text-xs'>Language:</span>
-            <select className="bg-transparent border-none text-gray-700 focus:outline-none text-xs font-semibold">
-              <option value="EN">EN</option>
-              <option value="RU">RU</option>
-              <option value="AZ">AZ</option>
-            </select>
+
+          {/* Language dropdown */}
+          <div className="relative">
+            <div className="flex items-center space-x-1 cursor-pointer" onClick={toggleLanguageMenu}>
+              <span className='text-xs text-gray-600 font-semibold'>Language:</span>
+              <span className='text-xs text-black font-bold'>EN</span>
+              <GoChevronDown />
+            </div>
+            {isLanguageOpen && (
+              <div className="absolute left-0 mt-2 w-24 bg-white border rounded-lg p-2 shadow-lg transition-all duration-500 ease-in-out origin-top">
+                <ul className="space-y-1">
+                  <li><button className="text-xs font-semibold">EN</button></li>
+                  <li><button className="text-xs font-semibold">RU</button></li>
+                  <li><button className="text-xs font-semibold">AZ</button></li>
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -47,11 +77,15 @@ export default function Header() {
       <header className="flex justify-between items-center px-10 py-4 mt-4 bg-white w-full">
         {/* Hamburger düyməsi (mobil üçün) */}
         <button className="lg:hidden text-2xl" onClick={toggleMobileMenu}>
-          <div className="space-y-2">
-            <span className="block w-8 h-0.5 bg-black"></span>
-            <span className="block w-8 h-0.5 bg-black"></span>
-            <span className="block w-8 h-0.5 bg-black"></span>
-          </div>
+          {!isMobileMenuOpen ? (
+            <div className="space-y-2">
+              <span className="block w-8 h-0.5 bg-black"></span>
+              <span className="block w-8 h-0.5 bg-black"></span>
+              <span className="block w-8 h-0.5 bg-black"></span>
+            </div>
+          ) : (
+            <AiOutlineClose className="text-3xl" />
+          )}
         </button>
 
         {/* Logo */}
@@ -67,25 +101,25 @@ export default function Header() {
 
         {/* Naviqasiya linkləri */}
         <nav className="hidden lg:flex space-x-8 pl-[32rem]">
-            <div className='flex'>
-          <Link href="/" className="hover:text-gray-900 font-semibold">HOME</Link>
-          <div className='mt-2 text-xs pl-1'><GoChevronDown /></div>
+          <div className='flex'>
+            <Link href="/" className="hover:text-gray-900 font-semibold">HOME</Link>
+            <div className='mt-2 text-xs pl-1'><GoChevronDown /></div>
           </div>
           <div className='flex'>
-          <Link href="/shop" className="hover:text-gray-900 font-semibold">SHOP</Link>
-          <div className='mt-2 text-xs pl-1'><GoChevronDown /></div>
+            <Link href="/shop" className="hover:text-gray-900 font-semibold">SHOP</Link>
+            <div className='mt-2 text-xs pl-1'><GoChevronDown /></div>
           </div>
           <div className='flex'>
-          <Link href="/featured" className="hover:text-gray-900 font-semibold">FEATURED</Link>
-          <div className='mt-2 text-xs pl-1'><GoChevronDown /></div>
+            <Link href="/featured" className="hover:text-gray-900 font-semibold">FEATURED</Link>
+            <div className='mt-2 text-xs pl-1'><GoChevronDown /></div>
           </div>
           <div className='flex'>
-          <Link href="/blog" className="hover:text-gray-900 font-semibold">BLOG</Link>
-          <div className='mt-2 text-xs pl-1'><GoChevronDown /></div>
+            <Link href="/blog" className="hover:text-gray-900 font-semibold">BLOG</Link>
+            <div className='mt-2 text-xs pl-1'><GoChevronDown /></div>
           </div>
           <div className='flex'>
-          <Link href="/pages" className="hover:text-gray-900 font-semibold">PAGES</Link>
-          <div className='mt-2 text-xs pl-1'><GoChevronDown /></div>
+            <Link href="/pages" className="hover:text-gray-900 font-semibold">PAGES</Link>
+            <div className='mt-2 text-xs pl-1'><GoChevronDown /></div>
           </div>
         </nav>
 
@@ -115,36 +149,28 @@ export default function Header() {
               <path d="M15.4955 12H15.5045" stroke="#30343A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M8.49451 12H8.50349" stroke="#30343A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="absolute -top-2 -right-2 bg-brown-500 text-white text-xs px-2 py-1 rounded-full">0</span>
+            <span className="absolute -bottom-2 -right-2 bg-[#cea384] text-white text-xs px-2 py-1 rounded-full">0</span>
           </Link>
         </div>
       </header>
 
-      {/* Mobil Menyu (açıq/bağlı) */}
-      {isMobileMenuOpen && (
-        <nav className="lg:hidden fixed inset-0 bg-white z-50">
-          <ul className="flex flex-col items-center justify-center space-y-6 h-full text-gray-700">
-            <li>
-              <Link href="/" className="text-lg">HOME</Link>
-            </li>
-            <li>
-              <Link href="/shop" className="text-lg">SHOP</Link>
-            </li>
-            <li>
-              <Link href="/featured" className="text-lg">FEATURED</Link>
-            </li>
-            <li>
-              <Link href="/blog" className="text-lg">BLOG</Link>
-            </li>
-            <li>
-              <Link href="/pages" className="text-lg">PAGES</Link>
-            </li>
-            <li>
-              <button onClick={toggleMobileMenu} className="text-lg text-gray-700">CLOSE</button>
-            </li>
-          </ul>
+      {/* Mobil Menyu (sol tərəfdən açıq/bağlı) */}
+      <div
+        className={`lg:hidden fixed inset-0 z-50 transform ${
+          isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out bg-white`}
+      >
+        <nav className="flex flex-col items-start p-6 space-y-6 h-full text-gray-700 w-64">
+          <Link href="/" className="text-lg">HOME</Link>
+          <Link href="/shop" className="text-lg">SHOP</Link>
+          <Link href="/featured" className="text-lg">FEATURED</Link>
+          <Link href="/blog" className="text-lg">BLOG</Link>
+          <Link href="/pages" className="text-lg">PAGES</Link>
         </nav>
-      )}
+        <div className="absolute bottom-0 w-full bg-[#cea384] py-4 text-center text-white">
+          <button onClick={toggleMobileMenu}>CLOSE</button>
+        </div>
+      </div>
     </>
   );
 }

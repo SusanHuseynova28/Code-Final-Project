@@ -8,13 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        colors: {
+        background: "#FFFAF2",
+      
       },
-      fontFamily: {
-        'victor-serif': ['"Victor Serif"', 'serif'],
-      },
+     
     },
   },
   plugins: [],
