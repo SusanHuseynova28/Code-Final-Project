@@ -492,75 +492,156 @@ export default function Header() {
 
 
 
-    <div className="relative group">
-      {/* BLOG link with chevron */}
-      <div className="flex items-center">
-        <Link href="/blog" className="hover:text-gray-900 font-semibold">
-          BLOG
-        </Link>
-        <div className="mt-1 text-xs pl-1">
-          <GoChevronDown />
+<div className="relative group z-20">
+  {/* BLOG link with chevron */}
+  <div className="flex items-center z-30 relative">
+    <Link href="/blog" className="font-semibold hover:text-[#cea384]">
+      BLOG
+    </Link>
+    <div className="mt-1 text-xs pl-1">
+      <GoChevronDown />
+    </div>
+  </div>
+
+  {/* Full-Screen Dropdown Menu */}
+  <div className="fixed top-26 left-0 w-full bg-white z-10 hidden group-hover:flex shadow-lg pt-4 pl-32">
+    <div className="grid grid-cols-3 gap-x-16 px-16 py-8 w-full">
+      {/* Text Sections */}
+      <div className="grid grid-cols-2 gap-x-16">
+        {/* BLOG LAYOUT */}
+        <div className="w-[300px]">
+          <h2 className="text-lg font-semibold mt-4 hover:text-[#cea384]">BLOG LAYOUT</h2>
+          <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
+          <ul className="space-y-2">
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Blog Left Sidebar
+            </li>
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Blog Right Sidebar
+            </li>
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Blog Without Sidebar
+              {/* "NEW" Button directly on top of the text */}
+              <span className="absolute bottom-4 left-32 px-2 py-1 text-xs text-white bg-green-600 rounded">
+                NEW
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        {/* BLOG STYLE */}
+        <div className="pl-16 w-[300px]">
+          <h2 className="text-lg font-semibold mt-4 hover:text-[#cea384]">BLOG STYLE</h2>
+          <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
+          <ul className="space-y-2">
+            <Link href="/blog">
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Blog List
+            </li>
+            </Link>
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Blog Grid
+            </li>
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Blog Masonry
+            </li>
+          </ul>
+        </div>
+
+        {/* POST LAYOUT */}
+        <div className="mt-4">
+          <h2 className="text-lg font-semibold mb-2 hover:text-[#cea384]">POST LAYOUT</h2>
+          <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
+          <ul className="space-y-2">
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Left Sidebar
+            </li>
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Right Sidebar
+            </li>
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Without Sidebar
+              {/* "NEW" Button directly on top of the text */}
+              <span className="absolute bottom-4 right-5 px-2 py-1 text-xs text-white bg-green-600 rounded">
+                NEW
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        {/* POST FORMAT */}
+        <div className="pl-16 w-[300px] mt-4">
+          <h2 className="text-lg font-semibold mb-2 hover:text-[#cea384]">POST FORMAT</h2>
+          <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
+          <ul className="space-y-2">
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Post format gallery
+            </li>
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Post format video
+            </li>
+            <li className="relative text-[#92959a] hover:text-[#cea384]">
+              Post format audio
+            </li>
+          </ul>
         </div>
       </div>
 
-      {/* Full-Screen Dropdown Menu */}
-      <div className="absolute top-0 left-0 w-full h-screen bg-white group-hover:opacity-100 opacity-0 group-hover:visible invisible transition-all duration-200 ease-in-out z-50 overflow-hidden">
-        <div className="container mx-auto h-full px-16 py-16">
-          <div className="grid grid-cols-4 gap-8 h-full">
-            {/* BLOG LAYOUT */}
+      {/* Recent Posts Section */}
+      <div className="pl-32 w-[400px] mt-4">
+        <h2 className="text-lg font-semibold mb-2">RECENT POST</h2>
+        <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
+        <ul className="space-y-4">
+          {/* Post Item 1 */}
+          <li className="flex space-x-4">
+            <img
+              className="w-28 h-16 object-cover"
+              src="https://mikadu-store-demo.myshopify.com/cdn/shop/articles/blog6_1024x1024_9d699dfa-4024-4e22-b43d-f8a6c755621e_1024x1024.png?v=1653550925"
+              alt="Post Image 1"
+            />
             <div>
-              <h2 className="text-lg font-semibold mb-2">BLOG LAYOUT</h2>
-              <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
-              <ul className="space-y-2">
-                <li className="text-gray-600">Blog Left Sidebar</li>
-                <li className="text-gray-600">Blog Right Sidebar</li>
-                <li className="text-gray-600 flex items-center">
-                  Blog Without Sidebar
-                  <span className="ml-2 px-2 py-1 text-xs text-white bg-green-600 rounded">NEW</span>
-                </li>
-              </ul>
+              <h3 className="text-black text-lg w-[400px] hover:text-[#cea384]">
+                What First Trio Bag Elaodnau?
+              </h3>
+              <p className="text-gray-500 text-sm w-[300px] hover:text-[#cea384]">May 14, 2022 | 0 Comments</p>
             </div>
+          </li>
 
-            {/* BLOG STYLE */}
+          {/* Post Item 2 */}
+          <li className="flex space-x-4">
+            <img
+              className="w-28 h-16 object-cover"
+              src="https://mikadu-store-demo.myshopify.com/cdn/shop/articles/blog3_1024x1024_104fe49f-f5c9-4912-96ff-43a392355842_1024x1024.png?v=1653550940"
+              alt="Post Image 2"
+            />
             <div>
-              <h2 className="text-lg font-semibold mb-2">BLOG STYLE</h2>
-              <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
-              <ul className="space-y-2">
-                <li className="text-gray-600">Blog List</li>
-                <li className="text-gray-600">Blog Grid</li>
-                <li className="text-gray-600">Blog Masonry</li>
-              </ul>
+              <h3 className="text-black text-lg w-[400px] hover:text-[#cea384]">
+                17 Beach Bags To Tote
+              </h3>
+              <p className="text-gray-500 text-sm w-[300px] hover:text-[#cea384]">May 14, 2022 | 0 Comments</p>
             </div>
+          </li>
 
-            {/* POST LAYOUT */}
+          {/* Post Item 3 */}
+          <li className="flex space-x-4">
+            <img
+              className="w-28 h-16 object-cover"
+              src="https://mikadu-store-demo.myshopify.com/cdn/shop/articles/blog5_1024x1024_3375a735-6eb9-4d28-ac6d-ba5a1f529599_1024x1024.png?v=1653550963"
+              alt="Post Image 3"
+            />
             <div>
-              <h2 className="text-lg font-semibold mb-2">POST LAYOUT</h2>
-              <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
-              <ul className="space-y-2">
-                <li className="text-gray-600">Left Sidebar</li>
-                <li className="text-gray-600">Right Sidebar</li>
-                <li className="text-gray-600 flex items-center">
-                  Without Sidebar
-                  <span className="ml-2 px-2 py-1 text-xs text-white bg-green-600 rounded">NEW</span>
-                </li>
-              </ul>
+              <h3 className="text-black text-lg w-[400px] hover:text-[#cea384]">
+                Post Format Video Blogs
+              </h3>
+              <p className="text-gray-500 text-sm w-[300px] hover:text-[#cea384]">May 14, 2022 | 0 Comments</p>
             </div>
-
-            {/* POST FORMAT */}
-            <div>
-              <h2 className="text-lg font-semibold mb-2">POST FORMAT</h2>
-              <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
-              <ul className="space-y-2">
-                <li className="text-gray-600">Post format gallery</li>
-                <li className="text-gray-600">Post format video</li>
-                <li className="text-gray-600">Post format audio</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
- 
+  </div>
+</div>
+
 
           <div className="flex">
             <Link href="/pages" className="hover:text-gray-900 font-semibold">
