@@ -12,7 +12,10 @@ const config: Config = {
         background: "#FFFAF2",
       
       },
-     
+      fontFamily: {
+        sans: ['Graphik', 'sans-serif'],
+        serif: ['Merriweather', 'serif'],
+      },
     },
   },
   plugins: [],
