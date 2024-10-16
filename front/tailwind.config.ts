@@ -8,9 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
-        colors: {
-        background: "#FFFAF2",
-      
+      colors: {
+        customBackground: "#cea384",  
+        customText: "#92959a",     
       },
       fontFamily: {
         sans: ['Graphik', 'sans-serif'],
@@ -20,4 +20,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;

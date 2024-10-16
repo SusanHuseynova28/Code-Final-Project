@@ -4,11 +4,13 @@ import { GoChevronDown } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
 import { GoChevronRight } from "react-icons/go";
 import { useState } from "react";
+import CartSidebar from "@/app/components/cartsidebar";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -21,6 +23,10 @@ export default function Header() {
   const toggleLanguageMenu = () => {
     setIsLanguageOpen(!isLanguageOpen);
   };
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen); // Toggle cart open/close
+  };
+
 
   return (
     <>
@@ -691,15 +697,15 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Main Dropdown (opens on hover of PAGES) */}
+         
             <div className="absolute left-0 hidden group-hover:block w-44 bg-white z-10 pt-1">
               <ul>
-                {/* About Link */}
+              
                 <li className="relative group group-hover-about">
                   <div className="flex justify-between items-center py-2 px-4 hover:text-[#cea384] cursor-pointer">
                     About
                     <GoChevronRight className="text-gray-500 cursor-pointer" />
-                    {/* Nested dropdown for About Us */}
+                   
                     <ul className="absolute top-0 left-full hidden group-hover-about:hover:block bg-white border border-gray-300 p-2 shadow-md">
                       <li className="py-1 px-2 hover:bg-gray-100 cursor-pointer">
                         About Us #1
@@ -717,7 +723,7 @@ export default function Header() {
                   </div>
                 </li>
 
-                {/* Contact Link */}
+             
                 <li className="relative group group-hover-contact">
                   <div className="flex justify-between items-center py-2 px-4 hover:text-[#cea384] cursor-pointer">
                     Contact
@@ -804,52 +810,55 @@ export default function Header() {
               />
             </svg>
           </Link>
-          <Link href="/cart" className="relative hover:text-gray-900">
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001"
-                stroke="#30343A"
-                strokeWidth="1.5"
-                strokeMiterlimit="10"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M9.00007 22H15.0001C19.0201 22 19.7401 20.39 19.9501 18.43L20.7001 12.43C20.9701 9.99 20.2701 8 16.0001 8H8.00007C3.73007 8 3.03007 9.99 3.30007 12.43L4.05007 18.43C4.26007 20.39 4.98007 22 9.00007 22Z"
-                stroke="#30343A"
-                strokeWidth="1.5"
-                strokeMiterlimit="10"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M15.4955 12H15.5045"
-                stroke="#30343A"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M8.49451 12H8.50349"
-                stroke="#30343A"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="absolute -bottom-2 -right-2 bg-[#cea384] text-white text-xs px-2 py-1 rounded-full">
-              0
-            </span>
-          </Link>
+          <Link href="#" onClick={toggleCart} className="relative hover:text-gray-900">
+        <svg
+          width="24"
+          height="24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001"
+            stroke="#30343A"
+            strokeWidth="1.5"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9.00007 22H15.0001C19.0201 22 19.7401 20.39 19.9501 18.43L20.7001 12.43C20.9701 9.99 20.2701 8 16.0001 8H8.00007C3.73007 8 3.03007 9.99 3.30007 12.43L4.05007 18.43C4.26007 20.39 4.98007 22 9.00007 22Z"
+            stroke="#30343A"
+            strokeWidth="1.5"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M15.4955 12H15.5045"
+            stroke="#30343A"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M8.49451 12H8.50349"
+            stroke="#30343A"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <span className="absolute -bottom-2 -right-2 bg-[#cea384] text-white text-xs px-2 py-1 rounded-full">
+          0
+        </span>
+      </Link>
+
+      {/* Cart Sidebar */}
+      <CartSidebar isOpen={isCartOpen} toggleCart={toggleCart} />
         </div>
       </header>
 
-      {/* Mobil Menyu (sol tərəfdən açıq/bağlı) */}
+
       <div
         className={`lg:hidden fixed inset-0 z-50 transform ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
