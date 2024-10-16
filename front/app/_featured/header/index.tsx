@@ -24,68 +24,66 @@ export default function Header() {
     setIsLanguageOpen(!isLanguageOpen);
   };
   const toggleCart = () => {
-    setIsCartOpen(!isCartOpen); // Toggle cart open/close
+    setIsCartOpen(!isCartOpen);
   };
-
 
   return (
     <>
-      {/* Üst bar (Sosial ikonlar, Valyuta və Dil seçimləri) */}
       <div className="flex justify-between items-center px-10 py-2 mt-1 text-gray-500 text-sm">
         <div className="flex space-x-4">
-          <Link href="#" className="hover:text-[#cea384]">
+          <Link href="#" className="hover:text-customBackground">
             <FaFacebookF />
           </Link>
-          <Link href="#" className="hover:text-[#cea384]">
+          <Link href="#" className="hover:text-customBackground">
             <FaYoutube />
           </Link>
-          <Link href="#" className="hover:text-[#cea384]">
+          <Link href="#" className="hover:text-customBackground">
             <FaInstagram />
           </Link>
-          <Link href="#" className="hover:text-[#cea384]">
+          <Link href="#" className="hover:text-customBackground">
             <FaTwitter />
           </Link>
         </div>
         <div className="flex space-x-4">
-          {/* Currency dropdown */}
+         
           <div className="relative">
             <div
               className="flex items-center space-x-1 cursor-pointer"
               onClick={toggleCurrencyMenu}
             >
-              <span className="text-xs text-gray-600 font-semibold">
-                Currency:
-              </span>
+              <span className="text-xs text-gray-400 ">Currency:</span>
               <span className="text-xs text-black font-bold">USD</span>
               <GoChevronDown />
             </div>
             {isCurrencyOpen && (
-              <div className="absolute left-0 mt-2 w-24 bg-white border rounded-lg p-2 shadow-lg transition-all duration-500 ease-in-out origin-top">
+              <div className="absolute left-10 mt-2 w-16 text-center bg-white border  p-2 shadow-lg transition-all duration-500 ease-in-out origin-top">
                 <ul className="space-y-1">
                   <li>USD</li>
-                  <li>EUR</li>
+                  <li>INR</li>
                   <li>GBP</li>
                   <li>INR</li>
+                  <li>JPY</li>
+                  <li>BND</li>
+                  <li>AUD</li>
+                  <li>EUR</li>
+                  <li>GBP</li>
                 </ul>
               </div>
             )}
           </div>
           <div className="border-l-2 border-gray"></div>
 
-          
           <div className="relative">
             <div
               className="flex items-center space-x-1 cursor-pointer"
               onClick={toggleLanguageMenu}
             >
-              <span className="text-xs text-gray-600 font-semibold">
-                Language:
-              </span>
+              <span className="text-xs text-gray-400 ">Language:</span>
               <span className="text-xs text-black font-bold">EN</span>
               <GoChevronDown />
             </div>
             {isLanguageOpen && (
-              <div className="absolute left-0 mt-2 w-24 bg-white border rounded-lg p-2 shadow-lg transition-all duration-500 ease-in-out origin-top">
+              <div className="absolute left-14 mt-2 w-10 z-50 bg-white border text-center p-2 shadow-lg transition-all duration-500 ease-in-out origin-top">
                 <ul className="space-y-1">
                   <li>
                     <button className="text-xs font-semibold">EN</button>
@@ -134,7 +132,10 @@ export default function Header() {
         <nav className="hidden lg:flex space-x-8 pl-[27rem]">
           <div className="relative group">
             <div className="flex">
-              <Link href="/" className=" font-semibold hover:text-[#cea384]">
+              <Link
+                href="/"
+                className=" font-semibold hover:text-customBackground"
+              >
                 HOME
               </Link>
               <div className="mt-2 text-xs pl-1">
@@ -152,7 +153,7 @@ export default function Header() {
                     className="w-full h-[200px] object-cover hover:shadow-xl"
                     alt="Spring Collection"
                   />
-                  <p className="absolute bottom-0 left-2 text-left w-auto bg-opacity-50 bg-white py-2 font-semibold  inline-block after:content-[''] after:block after:w-1/2 after:border-b-[2px] after:border-[#cea384] hover:text-[#cea384] after:mt-1">
+                  <p className="absolute bottom-0 left-2 text-left w-auto bg-opacity-50 bg-white py-2 font-semibold  inline-block after:content-[''] after:block after:w-1/2 after:border-b-[2px] after:border-[#cea384] hover:text-customBackground after:mt-1">
                     HOME 1
                   </p>
                 </Link>
@@ -163,7 +164,7 @@ export default function Header() {
                   className="w-full h-[200px] object-cover hover:shadow-xl"
                   alt="Welcome to Mikadu Handbag Store"
                 />
-                <p className="absolute bottom-0 left-2 text-left w-auto hover:text-[#cea384] bg-opacity-50 bg-white py-2 font-semibold  inline-block after:content-[''] after:block after:w-1/2 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                <p className="absolute bottom-0 left-2 text-left w-auto hover:text-customBackground bg-opacity-50 bg-white py-2 font-semibold  inline-block after:content-[''] after:block after:w-1/2 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                   HOME 2
                 </p>
               </div>
@@ -173,7 +174,7 @@ export default function Header() {
                   className="w-full h-[200px] object-cover hover:shadow-xl"
                   alt="Spiral Tote Bag"
                 />
-                <p className="absolute bottom-0 left-2 text-left  hover:text-[#cea384] w-auto bg-opacity-50 bg-white py-2 font-semibold  inline-block after:content-[''] after:block after:w-1/2 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                <p className="absolute bottom-0 left-2 text-left  hover:text-customBackground w-auto bg-opacity-50 bg-white py-2 font-semibold  inline-block after:content-[''] after:block after:w-1/2 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                   HOME 3
                 </p>
               </div>
@@ -185,7 +186,7 @@ export default function Header() {
                   className="w-full h-[200px] object-cover hover:shadow-xl"
                   alt="Modern Fashion For You"
                 />
-                <p className="absolute bottom-0 left-2 text-left hover:text-[#cea384] w-auto bg-opacity-50 bg-white py-2 font-semibold  inline-block after:content-[''] after:block after:w-1/2 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                <p className="absolute bottom-0 left-2 text-left hover:text-customBackground w-auto bg-opacity-50 bg-white py-2 font-semibold  inline-block after:content-[''] after:block after:w-1/2 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                   HOME 4
                 </p>
               </div>
@@ -195,7 +196,7 @@ export default function Header() {
                   className="w-full h-[200px] object-cover hover:shadow-xl"
                   alt="Women's Handbags"
                 />
-                <p className="absolute bottom-0 left-2 text-left hover:text-[#cea384] w-auto bg-opacity-50 bg-white py-2 font-semibold  inline-block after:content-[''] after:block after:w-1/2 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                <p className="absolute bottom-0 left-2 text-left hover:text-customBackground w-auto bg-opacity-50 bg-white py-2 font-semibold  inline-block after:content-[''] after:block after:w-1/2 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                   HOME 5
                 </p>
               </div>
@@ -206,7 +207,7 @@ export default function Header() {
             <div className="flex relative z-50">
               <Link
                 href="/shop"
-                className="hover:text-[#cea384] text-black font-semibold"
+                className="hover:text-customBackground text-black font-semibold"
               >
                 SHOP
               </Link>
@@ -221,28 +222,28 @@ export default function Header() {
                 <div className="grid grid-cols-6 gap-8 max-w-screen-lg mx-auto mt-4">
                   {/* SHOP LAYOUTS */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-2 mt-1 inline-block w-[200px] hover:text-[#cea384]  bg-opacity-50 bg-white py-1    after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                    <h3 className="text-lg font-semibold mb-2 mt-1 inline-block w-[200px] hover:text-customBackground  bg-opacity-50 bg-white py-1    after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       SHOP LAYOUTS
                     </h3>
-                    <ul className="space-y-2 text-[#92959a] mt-4">
-                      <li className="relative hover:text-[#cea384] ">
+                    <ul className="space-y-2 text-customText mt-4">
+                      <li className="relative hover:text-customBackground ">
                         Fullwidth
                       </li>
-                      <li className="relative hover:text-[#cea384] mt-2">
+                      <li className="relative hover:text-customBackground mt-2">
                         Sidebar Layouts
                       </li>
-                      <li className="relative hover:text-[#cea384] mt-2">
+                      <li className="relative hover:text-customBackground mt-2">
                         Infinity Scroll
                       </li>
-                      <li className="relative hover:text-[#cea384] mt-2">
+                      <li className="relative hover:text-customBackground mt-2">
                         Background Modern
                       </li>
                       <Link href="/listview">
-                        <li className="relative hover:text-[#cea384] mt-2">
+                        <li className="relative hover:text-customBackground mt-2">
                           List View
                         </li>
                       </Link>
-                      <li className="relative hover:text-[#cea384] mt-2">
+                      <li className="relative hover:text-customBackground mt-2">
                         Banner Modern
                       </li>
                     </ul>
@@ -250,46 +251,58 @@ export default function Header() {
 
                   {/* SHOP HEADING */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-2 inline-block pl-10 hover:text-[#cea384] w-[300px] mt-2 after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                    <h3 className="text-lg font-semibold mb-2 inline-block pl-10 hover:text-customBackground w-[300px] mt-2 after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       SHOP HEADING
                     </h3>
-                    <ul className="space-y-2 text-[#92959a] pl-10 w-[300px] mt-4">
-                      <li className="hover:text-[#cea384]">Heading Style 1</li>
-                      <li className="hover:text-[#cea384]">Heading Style 2</li>
-                      <li className="hover:text-[#cea384]">Heading Style 3</li>
-                      <li className="hover:text-[#cea384]">Heading Style 4</li>
-                      <li className="hover:text-[#cea384]">Heading Style 5</li>
-                      <li className="hover:text-[#cea384]">Heading Style 6</li>
+                    <ul className="space-y-2 text-customText pl-10 w-[300px] mt-4">
+                      <li className="hover:text-customBackground">
+                        Heading Style 1
+                      </li>
+                      <li className="hover:text-customBackground">
+                        Heading Style 2
+                      </li>
+                      <li className="hover:text-customBackground">
+                        Heading Style 3
+                      </li>
+                      <li className="hover:text-customBackground">
+                        Heading Style 4
+                      </li>
+                      <li className="hover:text-customBackground">
+                        Heading Style 5
+                      </li>
+                      <li className="hover:text-customBackground">
+                        Heading Style 6
+                      </li>
                     </ul>
                   </div>
 
                   {/* FILTER LAYOUT */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-2 inline-block hover:text-[#cea384] w-[300px] mt-2 pl-16 after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                    <h3 className="text-lg font-semibold mb-2 inline-block hover:text-customBackground w-[300px] mt-2 pl-16 after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       FILTER LAYOUT
                     </h3>
-                    <ul className="space-y-2 text-[#92959a] w-[300px] pl-16 mt-4">
+                    <ul className="space-y-2 text-customText w-[300px] pl-16 mt-4">
                       <Link href="/drowerfilter">
-                        <li className="relative hover:text-[#cea384]">
+                        <li className="relative hover:text-customBackground">
                           Drawer Filter
                           <span className="absolute -top-5 left-16 bg-green-500 text-white text-xs px-1 py-1 rounded">
                             NEW
                           </span>
                         </li>
                       </Link>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Off Canvas
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Filter Dropdown
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Filter Dropdown 2
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Filter Accordion
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Filter Sticky
                         <span className="absolute -top-5 left-16 bg-red-500 text-white text-xs px-2 py-1 rounded">
                           HOT
@@ -298,94 +311,91 @@ export default function Header() {
                     </ul>
                   </div>
 
-                  {/* PRODUCT LAYOUTS */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-2 inline-block hover:text-[#cea384] w-[300px] pl-16 mt-2 after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                    <h3 className="text-lg font-semibold mb-2 inline-block hover:text-customBackground w-[300px] pl-16 mt-2 after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       PRODUCT LAYOUTS
                     </h3>
-                    <ul className="space-y-2 text-[#92959a] w-[300px] pl-16 mt-4">
-                      <li className="relative hover:text-[#cea384]">
+                    <ul className="space-y-2 text-customText w-[300px] pl-16 mt-4">
+                      <li className="relative hover:text-customBackground">
                         Product Extended
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Product Scroll
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Product Sticky
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Product Sticky 2
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Sticky Center
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Product Slider Gallery
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Product Slider Center
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Product Large Grid
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Product Small Grid
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Product Extended-Background
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Product Sidebar
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Product Sidebar 2
                       </li>
                     </ul>
                   </div>
 
-                  {/* PRODUCT TYPES */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-2 inline-block hover:text-[#cea384] w-[300px] mt-2 pl-24  after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                    <h3 className="text-lg font-semibold mb-2 inline-block hover:text-customBackground w-[300px] mt-2 pl-24  after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       PRODUCT TYPES
                     </h3>
-                    <ul className="space-y-2 text-[#92959a] w-[300px] pl-24 mt-4">
-                      <li className="relative hover:text-[#cea384]">
+                    <ul className="space-y-2 text-customText w-[300px] pl-24 mt-4">
+                      <li className="relative hover:text-customBackground">
                         Simple
                         <span className="absolute -top-4 left-10 bg-green-500 text-white text-xs px-2 py-1 rounded">
                           NEW
                         </span>
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Variable Select
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         External / Affiliate
                         <span className="absolute -top-4 left-28 bg-red-500 text-white text-xs px-1 py-1 rounded">
                           HOT
                         </span>
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Boosted Sale
                       </li>
                     </ul>
                   </div>
 
-                  {/* PRODUCT EXTENDS (Positioned Next to PRODUCT TYPES) */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-2 inline-block pl-24 hover:text-[#cea384] w-[300px] mt-2  after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                    <h3 className="text-lg font-semibold mb-2 inline-block pl-24 hover:text-customBackground w-[300px] mt-2  after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       PRODUCT EXTENDS
                     </h3>
-                    <ul className="space-y-2 text-[#92959a] pl-24 w-[300px] mt-4">
-                      <li className="relative hover:text-[#cea384]">
+                    <ul className="space-y-2 text-customText pl-24 w-[300px] mt-4">
+                      <li className="relative hover:text-customBackground">
                         Promo Text
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Trust Sale
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Countdown
                       </li>
-                      <li className="relative hover:text-[#cea384]">
+                      <li className="relative hover:text-customBackground">
                         Featured Video
                       </li>
                     </ul>
@@ -400,7 +410,7 @@ export default function Header() {
             <div className="flex items-center cursor-pointer group">
               <Link
                 href="/featured"
-                className="hover:text-[#cea384] font-semibold"
+                className="hover:text-customBackground font-semibold"
               >
                 FEATURED
               </Link>
@@ -413,11 +423,11 @@ export default function Header() {
                 <div className="flex justify-between space-x-10 py-6 mt-4">
                   {/* Animate Demos Section */}
                   <div className="w-1/3 space-y-4 text-left relative">
-                    <h2 className="font-semibold hover:text-[#cea384] uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                    <h2 className="font-semibold hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       Animate Demos
                     </h2>
                     <div className="relative">
-                      <span className="text-[#92959a] hover:text-[#cea384]">
+                      <span className="text-customText hover:text-customBackground">
                         Quickview-Popup
                       </span>
                       <span className="absolute text-white bg-green-500 text-xs px-2 py-1  left-[120px] -top-[15px]">
@@ -425,12 +435,12 @@ export default function Header() {
                       </span>
                     </div>
                     <div className="relative">
-                      <span className="text-[#92959a] hover:text-[#cea384]">
+                      <span className="text-customText hover:text-customBackground">
                         Minicart Draws
                       </span>
                     </div>
                     <div className="relative">
-                      <span className="text-[#92959a] hover:text-[#cea384]">
+                      <span className="text-customText hover:text-customBackground">
                         Quick Add to cart
                       </span>
                       <span className="absolute text-white bg-green-500 text-xs px-2 py-1  left-[120px] -top-[15px]">
@@ -442,7 +452,7 @@ export default function Header() {
                   {/* 9 Product Hover Section */}
                   <div className="w-1/3 space-y-4 text-left relative">
                     <div className="relative">
-                      <h2 className="font-semibold text-gray-800 hover:text-[#cea384] uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                      <h2 className="font-semibold text-gray-800 hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                         9 Product Hover
                       </h2>
                       <span className="absolute text-white bg-red-500 text-xs px-2 py-1  left-[145px] -top-[18px]">
@@ -450,27 +460,27 @@ export default function Header() {
                       </span>
                     </div>
                     <div className="relative">
-                      <span className="text-[#92959a] hover:text-[#cea384]">
+                      <span className="text-customText hover:text-customBackground">
                         Product Hover Style 1
                       </span>
                     </div>
                     <div className="relative">
-                      <span className=" text-[#92959a] hover:text-[#cea384]">
+                      <span className=" text-customText hover:text-customBackground">
                         Product Hover Style 2
                       </span>
                     </div>
                     <div className="relative">
-                      <span className="text-[#92959a] hover:text-[#cea384]">
+                      <span className="text-customText hover:text-customBackground">
                         Product Hover Style 3
                       </span>
                     </div>
                     <div className="relative">
-                      <span className="text-[#92959a] hover:text-[#cea384]">
+                      <span className="text-customText hover:text-customBackground">
                         Product Hover Style 4
                       </span>
                     </div>
                     <div className="relative">
-                      <span className="text-[#92959a] hover:text-[#cea384]">
+                      <span className="text-customText hover:text-customBackground">
                         All Style
                       </span>
                       <span className="absolute text-white bg-red-500 text-xs px-2 py-1  left-[55px] -top-[16px]">
@@ -481,16 +491,16 @@ export default function Header() {
 
                   {/* Theme Element Section */}
                   <div className="w-1/3 space-y-4 text-left relative">
-                    <h2 className="font-semibold text-gray-800 hover:text-[#cea384] uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+                    <h2 className="font-semibold text-gray-800 hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       Theme Element
                     </h2>
                     <div className="relative">
-                      <span className="text-[#92959a] hover:text-[#cea384]">
+                      <span className="text-customText hover:text-customBackground">
                         Ajax Search Ajax
                       </span>
                     </div>
                     <div className="relative">
-                      <span className="text-[#92959a] hover:text-[#cea384]">
+                      <span className="text-customText hover:text-customBackground">
                         Minicart
                       </span>
                       <span className="absolute text-white bg-green-500 text-xs px-1 py-1  left-[50px] -top-[15px]">
@@ -498,12 +508,12 @@ export default function Header() {
                       </span>
                     </div>
                     <div className="relative">
-                      <span className="text-[#92959a] hover:text-[#cea384]">
+                      <span className="text-customText hover:text-customBackground">
                         Recently Products
                       </span>
                     </div>
                     <div className="relative">
-                      <span className="text-[#92959a] hover:text-[#cea384]">
+                      <span className="text-customText hover:text-customBackground">
                         Social Share
                       </span>
                     </div>
@@ -525,7 +535,10 @@ export default function Header() {
           <div className="relative group z-20">
             {/* BLOG link with chevron */}
             <div className="flex items-center z-30 relative">
-              <Link href="/blog" className="font-semibold hover:text-[#cea384]">
+              <Link
+                href="/blog"
+                className="font-semibold hover:text-customBackground"
+              >
                 BLOG
               </Link>
               <div className="mt-1 text-xs pl-1">
@@ -540,18 +553,18 @@ export default function Header() {
                 <div className="grid grid-cols-2 gap-x-16">
                   {/* BLOG LAYOUT */}
                   <div className="w-[300px]">
-                    <h2 className="text-lg font-semibold mt-4 hover:text-[#cea384]">
+                    <h2 className="text-lg font-semibold mt-4 hover:text-customBackground">
                       BLOG LAYOUT
                     </h2>
                     <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
                     <ul className="space-y-2">
-                      <li className="relative text-[#92959a] hover:text-[#cea384]">
+                      <li className="relative text-customText hover:text-customBackground">
                         Blog Left Sidebar
                       </li>
-                      <li className="relative text-[#92959a] hover:text-[#cea384]">
+                      <li className="relative text-customText hover:text-customBackground">
                         Blog Right Sidebar
                       </li>
-                      <li className="relative text-[#92959a] hover:text-[#cea384]">
+                      <li className="relative text-customText hover:text-customBackground">
                         Blog Without Sidebar
                         {/* "NEW" Button directly on top of the text */}
                         <span className="absolute bottom-4 left-32 px-2 py-1 text-xs text-white bg-green-600 rounded">
@@ -563,20 +576,20 @@ export default function Header() {
 
                   {/* BLOG STYLE */}
                   <div className="pl-16 w-[300px]">
-                    <h2 className="text-lg font-semibold mt-4 hover:text-[#cea384]">
+                    <h2 className="text-lg font-semibold mt-4 hover:text-customBackground">
                       BLOG STYLE
                     </h2>
                     <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
                     <ul className="space-y-2">
                       <Link href="/blog">
-                        <li className="relative text-[#92959a] hover:text-[#cea384]">
+                        <li className="relative text-customText hover:text-customBackground">
                           Blog List
                         </li>
                       </Link>
-                      <li className="relative text-[#92959a] hover:text-[#cea384]">
+                      <li className="relative text-customText hover:text-customBackground">
                         Blog Grid
                       </li>
-                      <li className="relative text-[#92959a] hover:text-[#cea384]">
+                      <li className="relative text-customText hover:text-customBackground">
                         Blog Masonry
                       </li>
                     </ul>
@@ -584,18 +597,18 @@ export default function Header() {
 
                   {/* POST LAYOUT */}
                   <div className="mt-4">
-                    <h2 className="text-lg font-semibold mb-2 hover:text-[#cea384]">
+                    <h2 className="text-lg font-semibold mb-2 hover:text-customBackground">
                       POST LAYOUT
                     </h2>
                     <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
                     <ul className="space-y-2">
-                      <li className="relative text-[#92959a] hover:text-[#cea384]">
+                      <li className="relative text-customText hover:text-customBackground">
                         Left Sidebar
                       </li>
-                      <li className="relative text-[#92959a] hover:text-[#cea384]">
+                      <li className="relative text-customText hover:text-customBackground">
                         Right Sidebar
                       </li>
-                      <li className="relative text-[#92959a] hover:text-[#cea384]">
+                      <li className="relative text-customText hover:text-customBackground">
                         Without Sidebar
                         {/* "NEW" Button directly on top of the text */}
                         <span className="absolute bottom-4 right-5 px-2 py-1 text-xs text-white bg-green-600 rounded">
@@ -607,18 +620,18 @@ export default function Header() {
 
                   {/* POST FORMAT */}
                   <div className="pl-16 w-[300px] mt-4">
-                    <h2 className="text-lg font-semibold mb-2 hover:text-[#cea384]">
+                    <h2 className="text-lg font-semibold mb-2 hover:text-customBackground">
                       POST FORMAT
                     </h2>
                     <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
                     <ul className="space-y-2">
-                      <li className="relative text-[#92959a] hover:text-[#cea384]">
+                      <li className="relative text-customText hover:text-customBackground">
                         Post format gallery
                       </li>
-                      <li className="relative text-[#92959a] hover:text-[#cea384]">
+                      <li className="relative text-customText hover:text-customBackground">
                         Post format video
                       </li>
-                      <li className="relative text-[#92959a] hover:text-[#cea384]">
+                      <li className="relative text-customText hover:text-customBackground">
                         Post format audio
                       </li>
                     </ul>
@@ -638,7 +651,7 @@ export default function Header() {
                         alt="Post Image 1"
                       />
                       <div>
-                        <h3 className="text-black text-lg w-[400px] hover:text-[#cea384]">
+                        <h3 className="text-black text-lg w-[400px] hover:text-customBackground">
                           What First Trio Bag Elaodnau?
                         </h3>
                         <p className="text-gray-500 text-sm w-[300px] ">
@@ -655,7 +668,7 @@ export default function Header() {
                         alt="Post Image 2"
                       />
                       <div>
-                        <h3 className="text-black text-lg w-[400px] hover:text-[#cea384]">
+                        <h3 className="text-black text-lg w-[400px] hover:text-customBackground">
                           17 Beach Bags To Tote
                         </h3>
                         <p className="text-gray-500 text-sm w-[300px] ">
@@ -672,7 +685,7 @@ export default function Header() {
                         alt="Post Image 3"
                       />
                       <div>
-                        <h3 className="text-black text-lg w-[400px] hover:text-[#cea384]">
+                        <h3 className="text-black text-lg w-[400px] hover:text-customBackground">
                           Post Format Video Blogs
                         </h3>
                         <p className="text-gray-500 text-sm w-[300px] ">
@@ -697,15 +710,12 @@ export default function Header() {
               </div>
             </div>
 
-         
             <div className="absolute left-0 hidden group-hover:block w-44 bg-white z-10 pt-1">
               <ul>
-              
                 <li className="relative group group-hover-about">
-                  <div className="flex justify-between items-center py-2 px-4 hover:text-[#cea384] cursor-pointer">
+                  <div className="flex justify-between items-center py-2 px-4 hover:text-customBackground cursor-pointer">
                     About
                     <GoChevronRight className="text-gray-500 cursor-pointer" />
-                   
                     <ul className="absolute top-0 left-full hidden group-hover-about:hover:block bg-white border border-gray-300 p-2 shadow-md">
                       <li className="py-1 px-2 hover:bg-gray-100 cursor-pointer">
                         About Us #1
@@ -723,9 +733,8 @@ export default function Header() {
                   </div>
                 </li>
 
-             
                 <li className="relative group group-hover-contact">
-                  <div className="flex justify-between items-center py-2 px-4 hover:text-[#cea384] cursor-pointer">
+                  <div className="flex justify-between items-center py-2 px-4 hover:text-customBackground cursor-pointer">
                     Contact
                     <GoChevronRight className="text-gray-500 cursor-pointer" />
                     {/* Nested dropdown for Contact Us */}
@@ -744,7 +753,7 @@ export default function Header() {
                 </li>
 
                 {/* FAQ Link */}
-                <li className="block py-2 px-4 cursor-pointer hover:text-[#cea384]">
+                <li className="block py-2 px-4 cursor-pointer hover:text-customBackground">
                   FAQ
                 </li>
               </ul>
@@ -810,54 +819,56 @@ export default function Header() {
               />
             </svg>
           </Link>
-          <Link href="#" onClick={toggleCart} className="relative hover:text-gray-900">
-        <svg
-          width="24"
-          height="24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001"
-            stroke="#30343A"
-            strokeWidth="1.5"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M9.00007 22H15.0001C19.0201 22 19.7401 20.39 19.9501 18.43L20.7001 12.43C20.9701 9.99 20.2701 8 16.0001 8H8.00007C3.73007 8 3.03007 9.99 3.30007 12.43L4.05007 18.43C4.26007 20.39 4.98007 22 9.00007 22Z"
-            stroke="#30343A"
-            strokeWidth="1.5"
-            strokeMiterlimit="10"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M15.4955 12H15.5045"
-            stroke="#30343A"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M8.49451 12H8.50349"
-            stroke="#30343A"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-        <span className="absolute -bottom-2 -right-2 bg-[#cea384] text-white text-xs px-2 py-1 rounded-full">
-          0
-        </span>
-      </Link>
+          <Link
+            href="#"
+            onClick={toggleCart}
+            className="relative hover:text-gray-900"
+          >
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001"
+                stroke="#30343A"
+                strokeWidth="1.5"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9.00007 22H15.0001C19.0201 22 19.7401 20.39 19.9501 18.43L20.7001 12.43C20.9701 9.99 20.2701 8 16.0001 8H8.00007C3.73007 8 3.03007 9.99 3.30007 12.43L4.05007 18.43C4.26007 20.39 4.98007 22 9.00007 22Z"
+                stroke="#30343A"
+                strokeWidth="1.5"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M15.4955 12H15.5045"
+                stroke="#30343A"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M8.49451 12H8.50349"
+                stroke="#30343A"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="absolute -bottom-2 -right-2 bg-[#cea384] text-white text-xs px-2 py-1 rounded-full">
+              0
+            </span>
+          </Link>
 
-      {/* Cart Sidebar */}
-      <CartSidebar isOpen={isCartOpen} toggleCart={toggleCart} />
+          <CartSidebar isOpen={isCartOpen} toggleCart={toggleCart} />
         </div>
       </header>
-
 
       <div
         className={`lg:hidden fixed inset-0 z-50 transform ${

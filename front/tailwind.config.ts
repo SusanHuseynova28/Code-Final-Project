@@ -10,7 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         customBackground: "#cea384",  
-        customText: "#92959a",     
+        customText: "#92959a",
+        custombutton:"#d4553a",   
       },
       fontFamily: {
         sans: ['Graphik', 'sans-serif'],
