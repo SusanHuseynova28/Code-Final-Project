@@ -7,20 +7,20 @@ export default function NotFound() {
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center h-screen bg-white">
-        {/* 404 Error Text */}
+    
         <h1 className="text-8xl font-bold text-gray-800">404</h1>
 
-        {/* Oops Message */}
+       
         <h2 className="mt-4 text-4xl font-semibold text-gray-800">
           Oops! That Page Can’t Be Found.
         </h2>
 
-        {/* Small Explanation */}
+    
         <p className="mt-2 text-lg text-gray-500">
           THE PAGE YOU ARE LOOKING FOR DOES NOT EXIST.
         </p>
 
-        {/* Return to Home Link */}
+ 
         <p className="mt-2 text-sm text-gray-500">
           Please return to{" "}
           <Link href="/" className="text-[#cea384] hover:underline">
@@ -28,7 +28,7 @@ export default function NotFound() {
           </Link>
         </p>
 
-        {/* Search Box */}
+   
         <div className="mt-6 relative">
           <input
             type="text"

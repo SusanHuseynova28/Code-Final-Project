@@ -66,7 +66,7 @@ export default function Header() {
           </div>
           <div className="border-l-2 border-gray"></div>
 
-          {/* Language dropdown */}
+          
           <div className="relative">
             <div
               className="flex items-center space-x-1 cursor-pointer"
@@ -99,7 +99,7 @@ export default function Header() {
       <div className="border"></div>
 
       {/* Başlıq və naviqasiya */}
-      <header className="flex justify-between items-center px-10 py-4 mt-4 bg-white w-full">
+      <header className="flex justify-between items-center px-10 py-6 mt-4 bg-white w-full">
         {/* Hamburger düyməsi (mobil üçün) */}
         <button className="lg:hidden text-2xl" onClick={toggleMobileMenu}>
           {!isMobileMenuOpen ? (
@@ -125,7 +125,7 @@ export default function Header() {
         </div>
 
         {/* Naviqasiya linkləri */}
-        <nav className="hidden lg:flex space-x-8 pl-[32rem]">
+        <nav className="hidden lg:flex space-x-8 pl-[27rem]">
           <div className="relative group">
             <div className="flex">
               <Link href="/" className=" font-semibold hover:text-[#cea384]">

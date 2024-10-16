@@ -1,7 +1,13 @@
 "use client"
+import Footer from "../_featured/footer"
 import Header from "../_featured/header"
+import Swipper from "../components/swippercollection"
 export default function Home() {
     return(
-        <div><Header/></div>
+        <>
+        <Header/>
+        <Swipper/>
+        <Footer/>
+        </>
     )
 }
