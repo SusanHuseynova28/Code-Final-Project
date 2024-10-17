@@ -2,27 +2,37 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
+// Helper function to verify the JWT token from cookies
+const verifyToken = (req) => {
+  const token = req.cookies.access_token;
+  if (!token) return null;
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    return decoded.id;
+  } catch (error) {
+    console.error("Token verification error:", error);
+    return null;
+  }
+};
+
 // Signup Controller
 async function signup(req, res) {
   try {
     const { email, password } = req.body;
 
-    // Check if email and password are provided
     if (!email || !password) {
       return res.status(400).json({ message: "Email and password are required." });
     }
 
-    // Check if the user already exists
     const existingUser = await User.findOne({ email }).exec();
     if (existingUser) {
       return res.status(400).json({ message: "This email is already registered." });
     }
 
-    // Hash the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Save the new user
     const newUser = new User({ email, password: hashedPassword });
     await newUser.save();
 
@@ -38,39 +48,68 @@ async function login(req, res) {
   try {
     const { email, password } = req.body;
 
-    // Check if email and password are provided
     if (!email || !password) {
       return res.status(400).json({ message: "Email and password are required." });
     }
 
-    // Find the user by email
     const user = await User.findOne({ email }).exec();
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 
-    // Compare the provided password with the hashed password
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 
-    // Generate a JWT token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-    // Set the token as a cookie
     res
       .cookie("access_token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // Secure cookie in production
-        sameSite: "strict", // Prevent CSRF attacks
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
       })
       .status(200)
-      .json({ message: "Login successful", token });
+      .json({ message: "Login successful", user, token });
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ message: "Server error during login." });
   }
 }
 
-module.exports = { signup, login };
+// Logout Controller
+async function logout(req, res) {
+  try {
+    res
+      .clearCookie("access_token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+      })
+      .status(200)
+      .json({ message: "Logout successful." });
+  } catch (error) {
+    console.error("Logout error:", error);
+    res.status(500).json({ message: "Server error during logout." });
+  }
+}
+
+// Get Logged-in User Data (GET /me)
+async function getMe(req, res) {
+  try {
+    const userId = verifyToken(req);
+    if (!userId) return res.status(401).json({ message: "Unauthorized" });
+
+    const user = await User.findById(userId).select("-password").exec();
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("Fetch user error:", error);
+    res.status(500).json({ message: "Server error during fetching user data." });
+  }
+}
+
+// Export all controllers
+module.exports = { signup, login, logout, getMe };

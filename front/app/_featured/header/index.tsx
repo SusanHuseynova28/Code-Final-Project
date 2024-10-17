@@ -4,6 +4,10 @@ import { GoChevronDown } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
 import { GoChevronRight } from "react-icons/go";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
+
 import CartSidebar from "@/app/components/cartsidebar";
 
 export default function Header() {
@@ -11,6 +15,12 @@ export default function Header() {
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+  const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter(); // Initialize router
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -25,6 +35,81 @@ export default function Header() {
   };
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
+  };
+  const openLoginModal = () => {
+    setLoginModalOpen(true);
+    setRegisterModalOpen(false);
+  };
+
+  const openRegisterModal = () => {
+    setRegisterModalOpen(true);
+    setLoginModalOpen(false);
+  };
+
+  const closeModal = () => {
+    setLoginModalOpen(false);
+    setRegisterModalOpen(false);
+    setEmail("");
+    setPassword("");
+    setError("");
+  };
+
+  const validateFields = () => {
+    if (!email || !password) {
+      setError("Both email and password are required.");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
+  const handleLogin = async () => {
+    if (!validateFields()) return;
+
+    try {
+      const response = await fetch("http://localhost:3001/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        toast.error(errorData.message);
+        return;
+      }
+
+      toast.success("Login successful!");
+      closeModal();
+      router.push("/login");
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("An error occurred. Please try again.");
+    }
+  };
+
+  const handleRegister = async () => {
+    if (!validateFields()) return;
+
+    try {
+      const response = await fetch("http://localhost:3001/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        toast.error(errorData.message);
+        return;
+      }
+
+      toast.success("Registration successful! Please log in.");
+      openLoginModal(); 
+    } catch (error) {
+      console.error("Registration error:", error);
+      toast.error("An error occurred. Please try again.");
+    }
   };
 
   return (
@@ -45,7 +130,6 @@ export default function Header() {
           </Link>
         </div>
         <div className="flex space-x-4">
-         
           <div className="relative">
             <div
               className="flex items-center space-x-1 cursor-pointer"
@@ -737,7 +821,7 @@ export default function Header() {
                   <div className="flex justify-between items-center py-2 px-4 hover:text-customBackground cursor-pointer">
                     Contact
                     <GoChevronRight className="text-gray-500 cursor-pointer" />
-                    {/* Nested dropdown for Contact Us */}
+                   
                     <ul className="absolute top-0 left-full hidden group-hover-contact:hover:block bg-white border border-gray-300 p-2 shadow-md">
                       <li className="py-1 px-2 hover:bg-gray-100 cursor-pointer">
                         Contact Us #1
@@ -752,7 +836,7 @@ export default function Header() {
                   </div>
                 </li>
 
-                {/* FAQ Link */}
+            
                 <li className="block py-2 px-4 cursor-pointer hover:text-customBackground">
                   FAQ
                 </li>
@@ -761,14 +845,15 @@ export default function Header() {
           </div>
         </nav>
 
-        {/* İkonlar */}
-        <div className="flex space-x-4 text-gray-500">
+     
+        <div className="flex space-x-4 text-gray-500 p-4">
           <Link href="/search" className="hover:text-gray-900">
             <svg
               width="24"
               height="24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+            
             >
               <path
                 d="M11.5 21.75C5.85 21.75 1.25 17.15 1.25 11.5C1.25 5.85 5.85 1.25 11.5 1.25C17.15 1.25 21.75 5.85 21.75 11.5C21.75 17.15 17.15 21.75 11.5 21.75ZM11.5 2.75C6.67 2.75 2.75 6.68 2.75 11.5C2.75 16.32 6.67 20.25 11.5 20.25C16.33 20.25 20.25 16.32 20.25 11.5C20.25 6.68 16.33 2.75 11.5 2.75Z"
@@ -780,29 +865,118 @@ export default function Header() {
               />
             </svg>
           </Link>
-          <Link href="/account" className="hover:text-gray-900">
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
-                stroke="#30343A"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M20.5899 22C20.5899 18.13 16.7399 15 11.9999 15C7.25991 15 3.40991 18.13 3.40991 22"
-                stroke="#30343A"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </Link>
+          <ToastContainer /> 
+          <svg
+            onClick={openLoginModal}
+            width="24"
+            height="24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="cursor-pointer"
+          >
+            <path
+              d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
+              stroke="#30343A"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M20.5899 22C20.5899 18.13 16.7399 15 11.9999 15C7.25991 15 3.40991 18.13 3.40991 22"
+              stroke="#30343A"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          {/* Login Modal */}
+          {isLoginModalOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+              <div className="bg-white p-6 rounded-md shadow-lg w-96 relative">
+                <AiOutlineClose
+                  className="absolute top-2 right-2 cursor-pointer"
+                  onClick={closeModal}
+                />
+                <h2 className="text-center text-xl font-semibold mb-4">
+                  Login
+                </h2>
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full border border-gray-300 rounded p-2 mb-2"
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full border border-gray-300 rounded p-2 mb-2"
+                />
+                {error && <p className="text-red-500 text-sm">{error}</p>}
+                <button
+                  onClick={handleLogin}
+                  className="w-full bg-black text-white p-2 rounded mt-4"
+                >
+                  LOG IN
+                </button>
+                <p className="text-center text-sm mt-4">
+                  Don't have an account?{" "}
+                  <span
+                    onClick={openRegisterModal}
+                    className="text-blue-500 cursor-pointer"
+                  >
+                    Register now
+                  </span>
+                </p>
+              </div>
+            </div>
+          )}
+          {/* Register Modal */}
+          {isRegisterModalOpen && (
+            <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+              <div className="bg-white p-6 rounded-md shadow-lg w-96 relative">
+                <AiOutlineClose
+                  className="absolute top-2 right-2 cursor-pointer"
+                  onClick={closeModal}
+                />
+                <h2 className="text-center text-xl font-semibold mb-4">
+                  Register
+                </h2>
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full border border-gray-300 rounded p-2 mb-2"
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full border border-gray-300 rounded p-2 mb-2"
+                />
+                {error && <p className="text-red-500 text-sm">{error}</p>}
+                <button
+                  onClick={handleRegister}
+                  className="w-full bg-black text-white p-2 rounded mt-4"
+                >
+                  REGISTER
+                </button>
+                <p className="text-center text-sm mt-4">
+                  Already have an account?{" "}
+                  <span
+                    onClick={openLoginModal}
+                    className="text-blue-500 cursor-pointer"
+                  >
+                    Log in
+                  </span>
+                </p>
+              </div>
+            </div>
+          )}
           <Link href="/wishlist" className="hover:text-gray-900">
             <svg
               width="24"
@@ -865,7 +1039,6 @@ export default function Header() {
               0
             </span>
           </Link>
-
           <CartSidebar isOpen={isCartOpen} toggleCart={toggleCart} />
         </div>
       </header>
