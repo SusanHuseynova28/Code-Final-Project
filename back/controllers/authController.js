@@ -2,7 +2,6 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-// Helper function to verify the JWT token from cookies
 const verifyToken = (req) => {
   const token = req.cookies.access_token;
   if (!token) return null;
@@ -16,7 +15,7 @@ const verifyToken = (req) => {
   }
 };
 
-// Signup Controller
+
 async function signup(req, res) {
   try {
     const { email, password } = req.body;
@@ -43,7 +42,7 @@ async function signup(req, res) {
   }
 }
 
-// Login Controller
+
 async function login(req, res) {
   try {
     const { email, password } = req.body;
@@ -78,7 +77,7 @@ async function login(req, res) {
   }
 }
 
-// Logout Controller
+
 async function logout(req, res) {
   try {
     res
@@ -95,7 +94,7 @@ async function logout(req, res) {
   }
 }
 
-// Get Logged-in User Data (GET /me)
+
 async function getMe(req, res) {
   try {
     const userId = verifyToken(req);
@@ -111,5 +110,5 @@ async function getMe(req, res) {
   }
 }
 
-// Export all controllers
+
 module.exports = { signup, login, logout, getMe };

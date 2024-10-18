@@ -783,66 +783,72 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="relative group">
-            {/* PAGES Link */}
-            <div className="flex items-center cursor-pointer group">
-              <Link href="/pages" className="hover:text-gray-900 font-semibold">
-                PAGES
-              </Link>
-              <div className="mt-1 text-xs pl-1">
-                <GoChevronDown />
-              </div>
-            </div>
+          <div className="relative pages-hover">
+  {/* PAGES Link */}
+  <div className="flex items-center cursor-pointer">
+    <Link href="/pages" className="hover:text-gray-900 font-semibold">
+      PAGES
+    </Link>
+    <div className="mt-1 text-xs pl-1">
+      <GoChevronDown />
+    </div>
+  </div>
 
-            <div className="absolute left-0 hidden group-hover:block w-44 bg-white z-10 pt-1">
-              <ul>
-                <li className="relative group group-hover-about">
-                  <div className="flex justify-between items-center py-2 px-4 hover:text-customBackground cursor-pointer">
-                    About
-                    <GoChevronRight className="text-gray-500 cursor-pointer" />
-                    <ul className="absolute top-0 left-full hidden group-hover-about:hover:block bg-white border border-gray-300 p-2 shadow-md">
-                      <li className="py-1 px-2 hover:bg-gray-100 cursor-pointer">
-                        About Us #1
-                      </li>
-                      <li className="py-1 px-2 hover:bg-gray-100 cursor-pointer">
-                        About Us #2
-                      </li>
-                      <li className="py-1 px-2 hover:bg-gray-100 cursor-pointer">
-                        About Us #3
-                      </li>
-                      <li className="py-1 px-2 hover:bg-gray-100 cursor-pointer">
-                        About Us #4
-                      </li>
-                    </ul>
-                  </div>
-                </li>
+  {/* Dropdown Menu (opens when hovering on PAGES or the dropdown itself) */}
+  <div className="absolute left-0 dropdown-menu w-52 bg-white z-10 pt-2 shadow-lg">
+    <ul>
+      {/* About Section */}
+      <li className="relative about-item">
+        <div className="flex justify-between text-sm items-center py-2 px-4 cursor-pointer">
+          About
+          <GoChevronRight className="text-gray-500 cursor-pointer" />
 
-                <li className="relative group group-hover-contact">
-                  <div className="flex justify-between items-center py-2 px-4 hover:text-customBackground cursor-pointer">
-                    Contact
-                    <GoChevronRight className="text-gray-500 cursor-pointer" />
-                   
-                    <ul className="absolute top-0 left-full hidden group-hover-contact:hover:block bg-white border border-gray-300 p-2 shadow-md">
-                      <li className="py-1 px-2 hover:bg-gray-100 cursor-pointer">
-                        Contact Us #1
-                      </li>
-                      <li className="py-1 px-2 hover:bg-gray-100 cursor-pointer">
-                        Contact Us #2
-                      </li>
-                      <li className="py-1 px-2 hover:bg-gray-100 cursor-pointer">
-                        Contact Us #3
-                      </li>
-                    </ul>
-                  </div>
-                </li>
+          {/* About Submenu */}
+          <ul className="absolute top-0 left-full mt-3 text-sm about-submenu hidden bg-white border text-black shadow-lg p-2 w-44 z-20">
+            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+              About Us #1
+            </li>
+            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+              About Us #2
+            </li>
+            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+              About Us #3
+            </li>
+            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+              About Us #4
+            </li>
+          </ul>
+        </div>
+      </li>
 
-            
-                <li className="block py-2 px-4 cursor-pointer hover:text-customBackground">
-                  FAQ
-                </li>
-              </ul>
-            </div>
-          </div>
+
+      <li className="relative contact-item">
+        <div className="flex justify-between  text-sm items-center py-2 px-4 cursor-pointer">
+          Contact
+          <GoChevronRight className="text-gray-500 cursor-pointer" />
+
+        
+          <ul className="absolute top-0 left-full text-sm contact-submenu hidden bg-white border text-black p-2 w-44 z-20">
+            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+              Contact Us #1
+            </li>
+            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+              Contact Us #2
+            </li>
+            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+              Contact Us #3
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      {/* FAQ Section */}
+      <li className="block py-2 px-4 text-sm cursor-pointer hover:text-customBackground">
+        FAQ
+      </li>
+    </ul>
+  </div>
+</div>
         </nav>
 
      
@@ -889,7 +895,7 @@ export default function Header() {
               strokeLinejoin="round"
             />
           </svg>
-          {/* Login Modal */}
+     
           {isLoginModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
               <div className="bg-white p-6 rounded-md shadow-lg w-96 relative">

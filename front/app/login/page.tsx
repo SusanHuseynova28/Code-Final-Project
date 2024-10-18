@@ -28,7 +28,7 @@ export default function Login() {
           const data: User = await response.json();
           setUser(data);
         } else {
-          router.push('/'); // Redirect to home page if not authenticated
+          router.push('/'); 
         }
       } catch (error) {
         console.error('Failed to fetch user:', error);
@@ -50,7 +50,7 @@ export default function Login() {
       if (response.ok) {
         toast.success('Logged out successfully!');
         setUser(null);
-        router.push('/'); // Redirect to home page
+        router.push('/'); 
       } else {
         toast.error('Failed to log out.');
       }
@@ -60,9 +60,7 @@ export default function Login() {
     }
   };
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  
 
   return (
     <div>

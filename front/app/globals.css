@@ -3,3 +3,37 @@
 @tailwind utilities;
 
 
+.dropdown-menu {
+    display: none;
+  }
+
+  .pages-hover:hover .dropdown-menu,
+  .dropdown-menu:hover {
+    display: block;
+  }
+
+
+  .about-item:hover .about-submenu {
+    display: block;
+  }
+
+
+  .contact-item:hover .contact-submenu {
+    display: block;
+  }
+
+
+  .pages-hover:hover a {
+    color: #cea384;
+  }
+
+  .about-item:hover {
+    color: #cea384;
+  }
+
+  .contact-item:hover {
+    color: #cea384;
+  }
+
+  
+  
