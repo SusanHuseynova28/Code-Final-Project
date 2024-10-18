@@ -4,6 +4,7 @@ import Link from "next/link";
 export default function CartSidebar({ isOpen, toggleCart }) {
   return (
     <>
+    <div>
       {isOpen && (
         <div
           className="fixed inset-0 w-full h-full bg-black bg-opacity-60 z-50"
@@ -47,6 +48,7 @@ export default function CartSidebar({ isOpen, toggleCart }) {
             </a>
           </Link>
         </div>
+      </div>
       </div>
     </>
   );

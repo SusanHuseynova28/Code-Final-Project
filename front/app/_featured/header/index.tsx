@@ -114,6 +114,7 @@ export default function Header() {
 
   return (
     <>
+    
       <div className="flex justify-between items-center px-10 py-2 mt-1 text-gray-500 text-sm">
         <div className="flex space-x-4">
           <Link href="#" className="hover:text-customBackground">
@@ -805,9 +806,13 @@ export default function Header() {
 
           {/* About Submenu */}
           <ul className="absolute top-0 left-full mt-3 text-sm about-submenu hidden bg-white border text-black shadow-lg p-2 w-44 z-20">
-            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+          
+            <li className="py-2 px-4  cursor-pointer">
+            <Link href="/about" className="text-black hover:text-customBackground">
               About Us #1
+              </Link>
             </li>
+            
             <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
               About Us #2
             </li>
@@ -829,9 +834,11 @@ export default function Header() {
 
         
           <ul className="absolute top-0 left-full text-sm contact-submenu hidden bg-white border text-black p-2 w-44 z-20">
+            <Link href="/contact">
             <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
               Contact Us #1
             </li>
+            </Link>
             <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
               Contact Us #2
             </li>
@@ -843,9 +850,13 @@ export default function Header() {
       </li>
 
       {/* FAQ Section */}
-      <li className="block py-2 px-4 text-sm cursor-pointer hover:text-customBackground">
+    
+      <li className="block py-2 px-4 text-sm cursor-pointer  ">
+      <Link href="/faq" className="text-black">
         FAQ
+        </Link>
       </li>
+      
     </ul>
   </div>
 </div>
@@ -871,6 +882,7 @@ export default function Header() {
               />
             </svg>
           </Link>
+          <div>
           <ToastContainer /> 
           <svg
             onClick={openLoginModal}
@@ -897,8 +909,8 @@ export default function Header() {
           </svg>
      
           {isLoginModalOpen && (
-            <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
-              <div className="bg-white p-6 rounded-md shadow-lg w-96 relative">
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50 ">
+              <div className="bg-white p-6  shadow-lg w-96 relative">
                 <AiOutlineClose
                   className="absolute top-2 right-2 cursor-pointer"
                   onClick={closeModal}
@@ -983,6 +995,7 @@ export default function Header() {
               </div>
             </div>
           )}
+          </div>
           <Link href="/wishlist" className="hover:text-gray-900">
             <svg
               width="24"

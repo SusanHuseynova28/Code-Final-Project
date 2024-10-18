@@ -43,39 +43,51 @@ async function signup(req, res) {
 }
 
 
+
 async function login(req, res) {
   try {
     const { email, password } = req.body;
 
+ 
     if (!email || !password) {
       return res.status(400).json({ message: "Email and password are required." });
     }
 
+  
     const user = await User.findOne({ email }).exec();
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 
+    // Compare passwords
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+   
+    const token = jwt.sign(
+      { id: user._id },
+      process.env.JWT_SECRET || 'your_jwt_secret', // Fallback to ensure JWT_SECRET is set
+      { expiresIn: "1h" }
+    );
 
+  
     res
       .cookie("access_token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        httpOnly: true, // Prevent client-side JS from accessing the cookie
+        secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+        sameSite: "strict", // Prevent CSRF attacks
       })
       .status(200)
-      .json({ message: "Login successful", user, token });
+      .json({ message: "Login successful", user: { id: user._id, email: user.email }, token });
   } catch (error) {
-    console.error("Login error:", error);
+    console.error("Login error:", error.message); // Improved logging
     res.status(500).json({ message: "Server error during login." });
   }
 }
+
+
 
 
 async function logout(req, res) {
