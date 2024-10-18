@@ -7,6 +7,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import CartSidebar from "@/app/components/cartsidebar";
 
@@ -19,6 +20,7 @@ export default function Header() {
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter(); // Initialize router
 
@@ -105,7 +107,7 @@ export default function Header() {
       }
 
       toast.success("Registration successful! Please log in.");
-      openLoginModal(); 
+      openLoginModal();
     } catch (error) {
       console.error("Registration error:", error);
       toast.error("An error occurred. Please try again.");
@@ -114,7 +116,6 @@ export default function Header() {
 
   return (
     <>
-    
       <div className="flex justify-between items-center px-10 py-2 mt-1 text-gray-500 text-sm">
         <div className="flex space-x-4">
           <Link href="#" className="hover:text-customBackground">
@@ -785,84 +786,80 @@ export default function Header() {
           </div>
 
           <div className="relative pages-hover">
-  {/* PAGES Link */}
-  <div className="flex items-center cursor-pointer">
-    <Link href="/pages" className="hover:text-gray-900 font-semibold">
-      PAGES
-    </Link>
-    <div className="mt-1 text-xs pl-1">
-      <GoChevronDown />
-    </div>
-  </div>
-
-  {/* Dropdown Menu (opens when hovering on PAGES or the dropdown itself) */}
-  <div className="absolute left-0 dropdown-menu w-52 bg-white z-10 pt-2 shadow-lg">
-    <ul>
-      {/* About Section */}
-      <li className="relative about-item">
-        <div className="flex justify-between text-sm items-center py-2 px-4 cursor-pointer">
-          About
-          <GoChevronRight className="text-gray-500 cursor-pointer" />
-
-          {/* About Submenu */}
-          <ul className="absolute top-0 left-full mt-3 text-sm about-submenu hidden bg-white border text-black shadow-lg p-2 w-44 z-20">
-          
-            <li className="py-2 px-4  cursor-pointer">
-            <Link href="/about" className="text-black hover:text-customBackground">
-              About Us #1
+            {/* PAGES Link */}
+            <div className="flex items-center cursor-pointer">
+              <Link href="/pages" className="hover:text-gray-900 font-semibold">
+                PAGES
               </Link>
-            </li>
-            
-            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
-              About Us #2
-            </li>
-            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
-              About Us #3
-            </li>
-            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
-              About Us #4
-            </li>
-          </ul>
-        </div>
-      </li>
+              <div className="mt-1 text-xs pl-1">
+                <GoChevronDown />
+              </div>
+            </div>
 
+            {/* Dropdown Menu (opens when hovering on PAGES or the dropdown itself) */}
+            <div className="absolute left-0 dropdown-menu w-52 bg-white z-10 pt-2 shadow-lg">
+              <ul>
+                {/* About Section */}
+                <li className="relative about-item">
+                  <div className="flex justify-between text-sm items-center py-2 px-4 cursor-pointer">
+                    About
+                    <GoChevronRight className="text-gray-500 cursor-pointer" />
+                    {/* About Submenu */}
+                    <ul className="absolute top-0 left-full mt-3 text-sm about-submenu hidden bg-white border text-black shadow-lg p-2 w-44 z-20">
+                      <li className="py-2 px-4  cursor-pointer">
+                        <Link
+                          href="/about"
+                          className="text-black hover:text-customBackground"
+                        >
+                          About Us #1
+                        </Link>
+                      </li>
 
-      <li className="relative contact-item">
-        <div className="flex justify-between  text-sm items-center py-2 px-4 cursor-pointer">
-          Contact
-          <GoChevronRight className="text-gray-500 cursor-pointer" />
+                      <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+                        About Us #2
+                      </li>
+                      <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+                        About Us #3
+                      </li>
+                      <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+                        About Us #4
+                      </li>
+                    </ul>
+                  </div>
+                </li>
 
-        
-          <ul className="absolute top-0 left-full text-sm contact-submenu hidden bg-white border text-black p-2 w-44 z-20">
-            <Link href="/contact">
-            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
-              Contact Us #1
-            </li>
-            </Link>
-            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
-              Contact Us #2
-            </li>
-            <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
-              Contact Us #3
-            </li>
-          </ul>
-        </div>
-      </li>
+                <li className="relative contact-item">
+                  <div className="flex justify-between  text-sm items-center py-2 px-4 cursor-pointer">
+                    Contact
+                    <GoChevronRight className="text-gray-500 cursor-pointer" />
+                    <ul className="absolute top-0 left-full text-sm contact-submenu hidden bg-white border text-black p-2 w-44 z-20">
+                      <Link href="/contact">
+                        <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+                          Contact Us #1
+                        </li>
+                      </Link>
+                      <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+                        Contact Us #2
+                      </li>
+                      <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+                        Contact Us #3
+                      </li>
+                    </ul>
+                  </div>
+                </li>
 
-      {/* FAQ Section */}
-    
-      <li className="block py-2 px-4 text-sm cursor-pointer  ">
-      <Link href="/faq" className="text-black">
-        FAQ
-        </Link>
-      </li>
-      
-    </ul>
-  </div>
-</div>
+                {/* FAQ Section */}
+
+                <li className="block py-2 px-4 text-sm cursor-pointer  ">
+                  <Link href="/faq" className="text-black">
+                    FAQ
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
         </nav>
 
-     
         <div className="flex space-x-4 text-gray-500 p-4">
           <Link href="/search" className="hover:text-gray-900">
             <svg
@@ -870,7 +867,6 @@ export default function Header() {
               height="24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-            
             >
               <path
                 d="M11.5 21.75C5.85 21.75 1.25 17.15 1.25 11.5C1.25 5.85 5.85 1.25 11.5 1.25C17.15 1.25 21.75 5.85 21.75 11.5C21.75 17.15 17.15 21.75 11.5 21.75ZM11.5 2.75C6.67 2.75 2.75 6.68 2.75 11.5C2.75 16.32 6.67 20.25 11.5 20.25C16.33 20.25 20.25 16.32 20.25 11.5C20.25 6.68 16.33 2.75 11.5 2.75Z"
@@ -883,118 +879,168 @@ export default function Header() {
             </svg>
           </Link>
           <div>
-          <ToastContainer /> 
-          <svg
-            onClick={openLoginModal}
-            width="24"
-            height="24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="cursor-pointer"
-          >
-            <path
-              d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
-              stroke="#30343A"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M20.5899 22C20.5899 18.13 16.7399 15 11.9999 15C7.25991 15 3.40991 18.13 3.40991 22"
-              stroke="#30343A"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-     
-          {isLoginModalOpen && (
-            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50 ">
-              <div className="bg-white p-6  shadow-lg w-96 relative">
-                <AiOutlineClose
-                  className="absolute top-2 right-2 cursor-pointer"
-                  onClick={closeModal}
-                />
-                <h2 className="text-center text-xl font-semibold mb-4">
-                  Login
-                </h2>
-                <input
-                  type="email"
-                  placeholder="Email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border border-gray-300 rounded p-2 mb-2"
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full border border-gray-300 rounded p-2 mb-2"
-                />
-                {error && <p className="text-red-500 text-sm">{error}</p>}
-                <button
-                  onClick={handleLogin}
-                  className="w-full bg-black text-white p-2 rounded mt-4"
-                >
-                  LOG IN
-                </button>
-                <p className="text-center text-sm mt-4">
-                  Don't have an account?{" "}
-                  <span
-                    onClick={openRegisterModal}
-                    className="text-blue-500 cursor-pointer"
+            <ToastContainer />
+            <svg
+              onClick={openLoginModal}
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="cursor-pointer"
+            >
+              <path
+                d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
+                stroke="#30343A"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M20.5899 22C20.5899 18.13 16.7399 15 11.9999 15C7.25991 15 3.40991 18.13 3.40991 22"
+                stroke="#30343A"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+
+            {isLoginModalOpen && (
+              <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
+                <div className="bg-white p-8 shadow-lg w-96 relative">
+                  {/* Close Button */}
+                  <AiOutlineClose
+                    className="absolute -top-5 -right-5 text-2xl text-black hover:text-customBackground cursor-pointer transition-transform duration-1000 ease-in-out hover:rotate-[360deg]"
+                    onClick={closeModal}
+                  />
+
+                  <h2 className="text-center text-2xl font-bold mb-2">
+                    MIKADU
+                  </h2>
+                  <p className="text-center text-lg mb-6">
+                    Great to have you back!
+                  </p>
+
+                  {/* Email Input */}
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full border border-gray-300 rounded p-3 mb-4"
+                  />
+
+                  {/* Password Input with Eye Icon */}
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full border border-gray-300 rounded p-3 pr-10"
+                    />
+                    <div
+                      className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                    >
+                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+                    </div>
+                  </div>
+
+                  {/* Error Message */}
+                  {error && (
+                    <p className="text-red-500 text-sm mt-2">{error}</p>
+                  )}
+
+                  {/* Login Button */}
+                  <button
+                    onClick={handleLogin}
+                    className="w-full bg-black text-white p-3 rounded mt-6"
                   >
-                    Register now
-                  </span>
-                </p>
+                    LOG IN
+                  </button>
+
+                  <p className="text-center text-sm mt-4 text-gray-500">
+                    Forgot your password?
+                  </p>
+
+                  <p className="text-center text-sm mt-4">
+                    Don't have an account?{" "}
+                    <span
+                      onClick={openRegisterModal}
+                      className="text-blue-500 cursor-pointer"
+                    >
+                      Register now
+                    </span>
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
-          {/* Register Modal */}
-          {isRegisterModalOpen && (
-            <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
-              <div className="bg-white p-6 rounded-md shadow-lg w-96 relative">
-                <AiOutlineClose
-                  className="absolute top-2 right-2 cursor-pointer"
-                  onClick={closeModal}
-                />
-                <h2 className="text-center text-xl font-semibold mb-4">
-                  Register
-                </h2>
-                <input
-                  type="email"
-                  placeholder="Email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border border-gray-300 rounded p-2 mb-2"
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full border border-gray-300 rounded p-2 mb-2"
-                />
-                {error && <p className="text-red-500 text-sm">{error}</p>}
-                <button
-                  onClick={handleRegister}
-                  className="w-full bg-black text-white p-2 rounded mt-4"
-                >
-                  REGISTER
-                </button>
-                <p className="text-center text-sm mt-4">
-                  Already have an account?{" "}
-                  <span
-                    onClick={openLoginModal}
-                    className="text-blue-500 cursor-pointer"
-                  >
-                    Log in
-                  </span>
-                </p>
-              </div>
-            </div>
-          )}
+            )}
+            {/* Register Modal */}
+            {isRegisterModalOpen && (
+  <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+    <div className="bg-white p-8 rounded-lg shadow-md w-96 relative">
+      {/* Close Button Positioned Top Right Over the Modal */}
+      <AiOutlineClose
+        className="absolute -top-5 -right-5 text-2xl text-gray-800 cursor-pointer 
+                   transition-transform duration-1000 ease-in-out hover:rotate-[360deg]"
+        onClick={closeModal}
+      />
+
+      {/* Modal Header */}
+      <h2 className="text-center text-xl font-semibold tracking-wide mb-6">
+        REGISTER
+      </h2>
+
+      {/* Email Input */}
+      <input
+        type="email"
+        placeholder="Email address"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="w-full border border-gray-300 rounded-md p-3 mb-4 
+                   text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
+      />
+
+      {/* Password Input with Eye Icon */}
+      <div className="relative">
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full border border-gray-300 rounded-md p-3 pr-10 mb-4 
+                     text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
+        />
+        <div
+          className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+          onClick={() => setShowPassword((prev) => !prev)}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </div>
+      </div>
+
+      {/* Register Button */}
+      <button
+        onClick={handleRegister}
+        className="w-full bg-black text-white text-lg font-semibold p-3 
+                   rounded-md hover:bg-gray-900 transition-all duration-300"
+      >
+        REGISTER
+      </button>
+
+      {/* Back to Login Button */}
+      <p className="text-center text-sm mt-6 text-gray-500">
+        <span
+          onClick={openLoginModal}
+          className="cursor-pointer underline hover:text-black"
+        >
+          Back to login
+        </span>
+      </p>
+    </div>
+  </div>
+)}
+
           </div>
           <Link href="/wishlist" className="hover:text-gray-900">
             <svg
