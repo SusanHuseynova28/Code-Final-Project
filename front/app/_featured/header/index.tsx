@@ -919,7 +919,7 @@ export default function Header() {
                       placeholder="Email address"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-[350px] border border-gray-300 p-3  mt-4 "
+                      className="w-[350px] border  p-3  mt-4 focus:outline-none "
                     />
 
                     <div className="relative">
@@ -928,7 +928,7 @@ export default function Header() {
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className=" border border-gray-300 w-[350px] p-3 pr-10"
+                        className=" border  w-[350px] p-3 pr-10 focus:outline-none "
                       />
                       <div
                         className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
@@ -971,59 +971,61 @@ export default function Header() {
 
             {isRegisterModalOpen && (
               <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
-                <div className="bg-white p-8 rounded-lg shadow-md w-96 relative">
+                <div className="bg-white p-8  shadow-md w-[500px] h-[600px] relative">
                   <AiOutlineClose
-                    className="absolute -top-5 -right-5 text-2xl text-gray-800 cursor-pointer 
+                    className="absolute -top-7 -right-1 text-2xl text-white cursor-pointer hover:text-customBackground
                    transition-transform duration-1000 ease-in-out hover:rotate-[360deg]"
                     onClick={closeModal}
                   />
 
-                  <h2 className="text-center text-xl font-semibold tracking-wide mb-6">
+                  <h2 className="text-center text-lg  tracking-wide mt-6 text-black">
                     REGISTER
                   </h2>
-
-                  <input
-                    type="email"
-                    placeholder="Email address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full border border-gray-300 rounded-md p-3 mb-4 
-                   text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
-                  />
-
-                  <div className="relative">
+                  <div className=" mt-6 flex flex-col justify-center items-center">
                     <input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="w-full border border-gray-300 rounded-md p-3 pr-10 mb-4 
-                     text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
+                      type="email"
+                      placeholder="Email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-[350px] border   p-4 mb-4 
+                   text-gray-700 focus:outline-none "
                     />
-                    <div
-                      className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
-                      onClick={() => setShowPassword((prev) => !prev)}
-                    >
-                      {showPassword ? <FaEyeSlash /> : <FaEye />}
+
+                    <div className="relative">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-[350px] border  p-4 pr-10 mb-4 
+                     text-gray-700 focus:outline-none "
+                      />
+                      <div
+                        className="absolute top-7 right-3 transform -translate-y-1/2 cursor-pointer"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </div>
                     </div>
                   </div>
-
+                  <div className="flex flex-col justify-center items-center">
                   <button
                     onClick={handleRegister}
-                    className="w-full bg-black text-white text-lg font-semibold p-3 
-                   rounded-md hover:bg-gray-900 transition-all duration-300"
+                    className="w-[350px] bg-black text-white text-lg  p-4 hover:bg-customBackground
+                     transition-all duration-300 mt-4"
                   >
                     REGISTER
                   </button>
 
-                  <p className="text-center text-sm mt-6 text-gray-500">
+                  <p className="text-center text-sm mt-6 text-black hover:text-customBackground border p-3 w-[350px] bg-buttonhovercolor">
                     <span
                       onClick={openLoginModal}
-                      className="cursor-pointer underline hover:text-black"
+                      className="cursor-pointer  "
                     >
                       Back to login
                     </span>
                   </p>
+                  </div>
                 </div>
               </div>
             )}
