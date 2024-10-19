@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { FaFacebookF, FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
-import { GoChevronDown } from "react-icons/go";
+import { GoChevronDown, GoChevronRight } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
-import { GoChevronRight } from "react-icons/go";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,7 +21,8 @@ export default function Header() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const router = useRouter(); // Initialize router
+
+  const router = useRouter();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -35,9 +35,11 @@ export default function Header() {
   const toggleLanguageMenu = () => {
     setIsLanguageOpen(!isLanguageOpen);
   };
+
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
+
   const openLoginModal = () => {
     setLoginModalOpen(true);
     setRegisterModalOpen(false);
@@ -81,9 +83,11 @@ export default function Header() {
         return;
       }
 
+      // Store the email in localStorage
+      localStorage.setItem("loggedInEmail", email);
+
       toast.success("Login successful!");
-      closeModal();
-      router.push("/login");
+      router.push("/account"); // Redirect to the account page
     } catch (error) {
       console.error("Login error:", error);
       toast.error("An error occurred. Please try again.");
@@ -222,7 +226,7 @@ export default function Header() {
         </div>
 
         {/* Naviqasiya linkləri */}
-        <nav className="hidden lg:flex space-x-8 pl-[28rem]">
+        <nav className="hidden lg:flex space-x-8 pl-[28rem] ">
           <div className="relative group">
             <div className="flex">
               <Link
@@ -237,7 +241,7 @@ export default function Header() {
             </div>
 
             {/* Hover olunduqda göstərilən şəkillər */}
-            <div className="absolute left-[-260px] top-full pt-6 w-[1000px] h-[620px] hidden group-hover:grid grid-cols-3 gap-4 p-4 bg-white shadow-lg z-50 overflow-hidden">
+            <div className="absolute left-[-210px] top-full pt-6 w-[1000px] h-[620px] hidden group-hover:grid grid-cols-3 gap-4 p-4 bg-white shadow-lg z-50 overflow-hidden">
               {/* Yuxarıda 3 şəkil */}
               <div className="relative">
                 <Link href="/">
@@ -840,9 +844,7 @@ export default function Header() {
                   </div>
                 </li>
 
-                {/* FAQ Section */}
-
-                <li className="block py-2 px-4 text-sm cursor-pointer  ">
+                <li className="block hover:block-black py-2 px-4 text-sm cursor-pointer text-black">
                   <Link href="/faq" className="text-black">
                     FAQ
                   </Link>
@@ -871,7 +873,7 @@ export default function Header() {
             </svg>
           </Link>
           <div>
-            <ToastContainer />
+            <ToastContainer/>
             <svg
               onClick={openLoginModal}
               width="24"
@@ -940,7 +942,7 @@ export default function Header() {
                   </div>
 
                   {error && (
-                    <p className="text-red-500 text-sm mt-2 pl-11">{error}</p>
+                    <p className="text-red-500 text-sm mt-2 text-center">{error}</p>
                   )}
                   <p className="pl-11 mt-4 text-customtextopacity text-sm hover:text-customBackground">
                     Forget your password?
@@ -969,36 +971,35 @@ export default function Header() {
               </div>
             )}
 
+            {/* Register Modal */}
             {isRegisterModalOpen && (
               <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
-                <div className="bg-white p-8  shadow-md w-[500px] h-[600px] relative">
+                <div className="bg-white p-8 shadow-md w-[500px] h-[600px] relative">
                   <AiOutlineClose
-                    className="absolute -top-7 -right-1 text-2xl text-white cursor-pointer hover:text-customBackground
-                   transition-transform duration-1000 ease-in-out hover:rotate-[360deg]"
+                    className="absolute -top-7 -right-1 text-2xl text-white cursor-pointer hover:text-customBackground transition-transform duration-1000 ease-in-out hover:rotate-[360deg]"
                     onClick={closeModal}
                   />
 
-                  <h2 className="text-center text-lg  tracking-wide mt-6 text-black">
+                  <h2 className="text-center text-lg tracking-wide mt-6 text-black">
                     REGISTER
                   </h2>
-                  <div className=" mt-6 flex flex-col justify-center items-center">
+
+                  <div className="mt-6 flex flex-col justify-center items-center">
                     <input
                       type="email"
                       placeholder="Email address"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-[350px] border   p-4 mb-4 
-                   text-gray-700 focus:outline-none "
+                      className="w-[350px] border p-4 mb-2 text-gray-700 focus:outline-none"
                     />
 
-                    <div className="relative">
+                    <div className="relative w-[350px]">
                       <input
                         type={showPassword ? "text" : "password"}
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-[350px] border  p-4 pr-10 mb-4 
-                     text-gray-700 focus:outline-none "
+                        className="w-full border p-4 pr-10 mb-2 text-gray-700 focus:outline-none"
                       />
                       <div
                         className="absolute top-7 right-3 transform -translate-y-1/2 cursor-pointer"
@@ -1007,24 +1008,23 @@ export default function Header() {
                         {showPassword ? <FaEyeSlash /> : <FaEye />}
                       </div>
                     </div>
-                  </div>
-                  <div className="flex flex-col justify-center items-center">
-                  <button
-                    onClick={handleRegister}
-                    className="w-[350px] bg-black text-white text-lg  p-4 hover:bg-customBackground
-                     transition-all duration-300 mt-4"
-                  >
-                    REGISTER
-                  </button>
 
-                  <p className="text-center text-sm mt-6 text-black hover:text-customBackground border p-3 w-[350px] bg-buttonhovercolor">
-                    <span
-                      onClick={openLoginModal}
-                      className="cursor-pointer  "
+                    {error && (
+                      <div className="text-red-500 text-sm mb-4">{error}</div>
+                    )}
+
+                    <button
+                      onClick={handleRegister}
+                      className="w-[350px] bg-black text-white text-lg p-4 hover:bg-customBackground transition-all duration-300 mt-4"
                     >
-                      Back to login
-                    </span>
-                  </p>
+                      REGISTER
+                    </button>
+
+                    <p className="text-center text-sm mt-6 text-black hover:text-customBackground border p-3 w-[350px] bg-buttonhovercolor">
+                      <span onClick={openLoginModal} className="cursor-pointer">
+                        Back to login
+                      </span>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -1101,7 +1101,7 @@ export default function Header() {
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out bg-white`}
       >
-        <nav className="flex flex-col items-start p-6 space-y-6 h-full text-gray-700 w-64">
+        <nav className="flex flex-col items-start  space-y-6 h-full text-gray-700 w-64 p-10">
           <Link href="/" className="text-lg">
             HOME
           </Link>

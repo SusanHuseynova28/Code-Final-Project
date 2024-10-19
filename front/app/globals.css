@@ -2,6 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  overflow-x: hidden;
+}
+
+/* Style the Swiper pagination bullets */
+.swiper-pagination-bullet {
+  background-color: #000 !important; /* Black bullets */
+  opacity: 0.6; /* Slight transparency */
+  width: 12px;
+  height: 12px;
+  transition: opacity 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1; /* Full opacity when active */
+}
+
+
+/* styles/global.css */
+
+
+
+/* global.css */
+
+/* global.css */
+
+@keyframes tossUp {
+  0% {
+    opacity: 0;
+    transform: translateY(150px); /* Start below */
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-30px); /* Bounce slightly above */
+  }
+  100% {
+    transform: translateY(0); /* Settle in place */
+  }
+}
+
+.animate-toss-up {
+  animation: tossUp 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  animation-fill-mode: forwards; /* Keep in the final position */
+}
+
 
 .dropdown-menu {
     display: none;

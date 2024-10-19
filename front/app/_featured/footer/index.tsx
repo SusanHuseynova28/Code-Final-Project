@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-gray-700 py-12 border-t">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-lg p-6 md:p-16">
+    <footer className="bg-white text-gray-700 py-2 border-t">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-24 text-lg p-6 md:p-16">
         <div className="col-span-1">
           <img
             src="https://mikadu-store-demo.myshopify.com/cdn/shop/files/logo_black_fe0a005c-0be5-4fa7-92a6-da3bf8b55186.png?v=1652231536"
@@ -94,7 +94,7 @@ export default function Footer() {
       </div>
 
       <div className="container mx-auto text-center border-t flex flex-col md:flex-row justify-between px-6 md:px-14 py-4 mt-6">
-        <p className="text-gray-500">
+        <p className="text-gray-500 text-sm">
           &copy; Copyright 2022 | Mikadu By ShopiLaunch. Powered by Shopify.
         </p>
         <div className="flex justify-center mt-4 md:mt-0">
