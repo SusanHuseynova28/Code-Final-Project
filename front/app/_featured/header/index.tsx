@@ -116,8 +116,9 @@ export default function Header() {
 
   return (
     <>
-      <div className="flex justify-between items-center px-10 py-2 mt-1 text-gray-500 text-sm">
-        <div className="flex space-x-4">
+      <div className="flex flex-col sm:flex-row justify-between items-center px-4 sm:px-10 py-2 mt-1 text-gray-500 text-sm">
+        {/* Social Media Links */}
+        <div className="flex space-x-4 mb-4 sm:mb-0">
           <Link href="#" className="hover:text-customBackground">
             <FaFacebookF />
           </Link>
@@ -131,18 +132,19 @@ export default function Header() {
             <FaTwitter />
           </Link>
         </div>
-        <div className="flex space-x-4">
+
+        <div className="flex items-center space-x-4">
           <div className="relative">
             <div
               className="flex items-center space-x-1 cursor-pointer"
               onClick={toggleCurrencyMenu}
             >
-              <span className="text-xs text-gray-400 ">Currency:</span>
+              <span className="text-xs text-gray-400">Currency:</span>
               <span className="text-xs text-black font-bold">USD</span>
               <GoChevronDown />
             </div>
             {isCurrencyOpen && (
-              <div className="absolute left-10 mt-2 w-16 text-center bg-white border  p-2 shadow-lg transition-all duration-500 ease-in-out origin-top">
+              <div className="absolute left-10 mt-2 w-16 text-center bg-white border p-2 shadow-lg transition-all duration-500 ease-in-out origin-top">
                 <ul className="space-y-1">
                   <li>USD</li>
                   <li>INR</li>
@@ -157,14 +159,17 @@ export default function Header() {
               </div>
             )}
           </div>
-          <div className="border-l-2 border-gray"></div>
 
+          {/* Divider */}
+          <div className="hidden sm:block border-l-2 border-gray h-6"></div>
+
+          {/* Language Menu */}
           <div className="relative">
             <div
               className="flex items-center space-x-1 cursor-pointer"
               onClick={toggleLanguageMenu}
             >
-              <span className="text-xs text-gray-400 ">Language:</span>
+              <span className="text-xs text-gray-400">Language:</span>
               <span className="text-xs text-black font-bold">EN</span>
               <GoChevronDown />
             </div>
@@ -186,10 +191,12 @@ export default function Header() {
           </div>
         </div>
       </div>
+
+      {/* Bottom Border */}
       <div className="border"></div>
 
       {/* Başlıq və naviqasiya */}
-      <header className="flex justify-between items-center px-10 py-6 mt-4 bg-white w-full">
+      <header className="flex justify-between items-center px-10 py-3 mt-1 bg-white w-full">
         {/* Hamburger düyməsi (mobil üçün) */}
         <button className="lg:hidden text-2xl" onClick={toggleMobileMenu}>
           {!isMobileMenuOpen ? (
@@ -215,7 +222,7 @@ export default function Header() {
         </div>
 
         {/* Naviqasiya linkləri */}
-        <nav className="hidden lg:flex space-x-8 pl-[27rem]">
+        <nav className="hidden lg:flex space-x-8 pl-[28rem]">
           <div className="relative group">
             <div className="flex">
               <Link
@@ -289,7 +296,6 @@ export default function Header() {
             </div>
           </div>
           <div className="relative group">
-            {/* SHOP link */}
             <div className="flex relative z-50">
               <Link
                 href="/shop"
@@ -302,11 +308,9 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Fullscreen Dropdown on hover */}
             <div className="fixed top-34 left-0 w-full h-full hidden group-hover:flex bg-white z-10 pt-4">
               <div className="w-full h-full flex items-start justify-center">
                 <div className="grid grid-cols-6 gap-8 max-w-screen-lg mx-auto mt-4">
-                  {/* SHOP LAYOUTS */}
                   <div>
                     <h3 className="text-lg font-semibold mb-2 mt-1 inline-block w-[200px] hover:text-customBackground  bg-opacity-50 bg-white py-1    after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       SHOP LAYOUTS
@@ -335,7 +339,6 @@ export default function Header() {
                     </ul>
                   </div>
 
-                  {/* SHOP HEADING */}
                   <div>
                     <h3 className="text-lg font-semibold mb-2 inline-block pl-10 hover:text-customBackground w-[300px] mt-2 after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       SHOP HEADING
@@ -362,7 +365,6 @@ export default function Header() {
                     </ul>
                   </div>
 
-                  {/* FILTER LAYOUT */}
                   <div>
                     <h3 className="text-lg font-semibold mb-2 inline-block hover:text-customBackground w-[300px] mt-2 pl-16 after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       FILTER LAYOUT
@@ -492,7 +494,6 @@ export default function Header() {
           </div>
 
           <div className="relative">
-            {/* FEATURED Link */}
             <div className="flex items-center cursor-pointer group">
               <Link
                 href="/featured"
@@ -504,10 +505,8 @@ export default function Header() {
                 <GoChevronDown />
               </div>
 
-              {/* Dropdown Content */}
               <div className="absolute top-4 left-0 transform translate-x-[-300px] w-[700px] h-[700px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white shadow-lg mt-2 p-6 pointer-events-none group-hover:pointer-events-auto">
                 <div className="flex justify-between space-x-10 py-6 mt-4">
-                  {/* Animate Demos Section */}
                   <div className="w-1/3 space-y-4 text-left relative">
                     <h2 className="font-semibold hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       Animate Demos
@@ -535,7 +534,6 @@ export default function Header() {
                     </div>
                   </div>
 
-                  {/* 9 Product Hover Section */}
                   <div className="w-1/3 space-y-4 text-left relative">
                     <div className="relative">
                       <h2 className="font-semibold text-gray-800 hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
@@ -575,7 +573,6 @@ export default function Header() {
                     </div>
                   </div>
 
-                  {/* Theme Element Section */}
                   <div className="w-1/3 space-y-4 text-left relative">
                     <h2 className="font-semibold text-gray-800 hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       Theme Element
@@ -606,7 +603,6 @@ export default function Header() {
                   </div>
                 </div>
 
-                {/* Image Section */}
                 <div className="mt-6">
                   <img
                     src="https://mikadu-store-demo.myshopify.com/cdn/shop/t/3/assets/apmenuitem_ihtml_5.jpg?v=182077993597399219061652516028"
@@ -619,7 +615,6 @@ export default function Header() {
           </div>
 
           <div className="relative group z-20">
-            {/* BLOG link with chevron */}
             <div className="flex items-center z-30 relative">
               <Link
                 href="/blog"
@@ -632,12 +627,9 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Full-Screen Dropdown Menu */}
             <div className="fixed top-26 left-0 w-full bg-white z-10 hidden group-hover:flex shadow-lg pt-4 pl-32">
               <div className="grid grid-cols-3 gap-x-16 px-16 py-8 w-full">
-                {/* Text Sections */}
                 <div className="grid grid-cols-2 gap-x-16">
-                  {/* BLOG LAYOUT */}
                   <div className="w-[300px]">
                     <h2 className="text-lg font-semibold mt-4 hover:text-customBackground">
                       BLOG LAYOUT
@@ -906,37 +898,107 @@ export default function Header() {
 
             {isLoginModalOpen && (
               <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
-                <div className="bg-white p-8 shadow-lg w-96 relative">
-                  {/* Close Button */}
+                <div className="bg-white p-8 shadow-lg w-[500px] h-[600px] relative ">
                   <AiOutlineClose
-                    className="absolute -top-5 -right-5 text-2xl text-black hover:text-customBackground cursor-pointer transition-transform duration-1000 ease-in-out hover:rotate-[360deg]"
+                    className="absolute -top-7 -right-1 text-2xl text-white hover:text-customBackground cursor-pointer transition-transform duration-1000 ease-in-out hover:rotate-[360deg]"
                     onClick={closeModal}
                   />
 
-                  <h2 className="text-center text-2xl font-bold mb-2">
-                    MIKADU
-                  </h2>
-                  <p className="text-center text-lg mb-6">
+                  <img
+                    src="https://mikadu-store-demo.myshopify.com/cdn/shop/files/logo_black_fe0a005c-0be5-4fa7-92a6-da3bf8b55186.png?v=1652231536"
+                    alt=""
+                    className="w-[150px] mx-auto mt-4"
+                  />
+                  <div className="border-b-2 mt-4 w-[77%] mx-auto"></div>
+                  <p className="text-center text-lg mt-4 text-black">
                     Great to have you back!
                   </p>
+                  <div className="flex flex-col gap-4 justify-center items-center ">
+                    <input
+                      type="email"
+                      placeholder="Email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-[350px] border border-gray-300 p-3  mt-4 "
+                    />
 
-                  {/* Email Input */}
+                    <div className="relative">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className=" border border-gray-300 w-[350px] p-3 pr-10"
+                      />
+                      <div
+                        className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+                        onClick={() => setShowPassword((prev) => !prev)}
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </div>
+                    </div>
+                  </div>
+
+                  {error && (
+                    <p className="text-red-500 text-sm mt-2 pl-11">{error}</p>
+                  )}
+                  <p className="pl-11 mt-4 text-customtextopacity text-sm hover:text-customBackground">
+                    Forget your password?
+                  </p>
+                  <div className="flex flex-col justify-center items-center">
+                    <button
+                      onClick={handleLogin}
+                      className="w-[350px] mx-auto bg-black text-white p-4 font-semibold hover:bg-customBackground  mt-6"
+                    >
+                      LOG IN
+                    </button>
+
+                    <div className="flex flex-col border w-[350px] p-3 mt-8 bg-buttonhovercolor">
+                      <p className="text-center text-sm ">
+                        Don't have an account?{" "}
+                        <span
+                          onClick={openRegisterModal}
+                          className="text-customText hover:text-customBackground cursor-pointer pl-2"
+                        >
+                          Register now
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {isRegisterModalOpen && (
+              <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+                <div className="bg-white p-8 rounded-lg shadow-md w-96 relative">
+                  <AiOutlineClose
+                    className="absolute -top-5 -right-5 text-2xl text-gray-800 cursor-pointer 
+                   transition-transform duration-1000 ease-in-out hover:rotate-[360deg]"
+                    onClick={closeModal}
+                  />
+
+                  <h2 className="text-center text-xl font-semibold tracking-wide mb-6">
+                    REGISTER
+                  </h2>
+
                   <input
                     type="email"
                     placeholder="Email address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full border border-gray-300 rounded p-3 mb-4"
+                    className="w-full border border-gray-300 rounded-md p-3 mb-4 
+                   text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
                   />
 
-                  {/* Password Input with Eye Icon */}
                   <div className="relative">
                     <input
                       type={showPassword ? "text" : "password"}
                       placeholder="Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full border border-gray-300 rounded p-3 pr-10"
+                      className="w-full border border-gray-300 rounded-md p-3 pr-10 mb-4 
+                     text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
                     />
                     <div
                       className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
@@ -946,101 +1008,25 @@ export default function Header() {
                     </div>
                   </div>
 
-                  {/* Error Message */}
-                  {error && (
-                    <p className="text-red-500 text-sm mt-2">{error}</p>
-                  )}
-
-                  {/* Login Button */}
                   <button
-                    onClick={handleLogin}
-                    className="w-full bg-black text-white p-3 rounded mt-6"
+                    onClick={handleRegister}
+                    className="w-full bg-black text-white text-lg font-semibold p-3 
+                   rounded-md hover:bg-gray-900 transition-all duration-300"
                   >
-                    LOG IN
+                    REGISTER
                   </button>
 
-                  <p className="text-center text-sm mt-4 text-gray-500">
-                    Forgot your password?
-                  </p>
-
-                  <p className="text-center text-sm mt-4">
-                    Don't have an account?{" "}
+                  <p className="text-center text-sm mt-6 text-gray-500">
                     <span
-                      onClick={openRegisterModal}
-                      className="text-blue-500 cursor-pointer"
+                      onClick={openLoginModal}
+                      className="cursor-pointer underline hover:text-black"
                     >
-                      Register now
+                      Back to login
                     </span>
                   </p>
                 </div>
               </div>
             )}
-            {/* Register Modal */}
-            {isRegisterModalOpen && (
-  <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
-    <div className="bg-white p-8 rounded-lg shadow-md w-96 relative">
-      {/* Close Button Positioned Top Right Over the Modal */}
-      <AiOutlineClose
-        className="absolute -top-5 -right-5 text-2xl text-gray-800 cursor-pointer 
-                   transition-transform duration-1000 ease-in-out hover:rotate-[360deg]"
-        onClick={closeModal}
-      />
-
-      {/* Modal Header */}
-      <h2 className="text-center text-xl font-semibold tracking-wide mb-6">
-        REGISTER
-      </h2>
-
-      {/* Email Input */}
-      <input
-        type="email"
-        placeholder="Email address"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="w-full border border-gray-300 rounded-md p-3 mb-4 
-                   text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
-      />
-
-      {/* Password Input with Eye Icon */}
-      <div className="relative">
-        <input
-          type={showPassword ? "text" : "password"}
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full border border-gray-300 rounded-md p-3 pr-10 mb-4 
-                     text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
-        />
-        <div
-          className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
-          onClick={() => setShowPassword((prev) => !prev)}
-        >
-          {showPassword ? <FaEyeSlash /> : <FaEye />}
-        </div>
-      </div>
-
-      {/* Register Button */}
-      <button
-        onClick={handleRegister}
-        className="w-full bg-black text-white text-lg font-semibold p-3 
-                   rounded-md hover:bg-gray-900 transition-all duration-300"
-      >
-        REGISTER
-      </button>
-
-      {/* Back to Login Button */}
-      <p className="text-center text-sm mt-6 text-gray-500">
-        <span
-          onClick={openLoginModal}
-          className="cursor-pointer underline hover:text-black"
-        >
-          Back to login
-        </span>
-      </p>
-    </div>
-  </div>
-)}
-
           </div>
           <Link href="/wishlist" className="hover:text-gray-900">
             <svg

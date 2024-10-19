@@ -11,7 +11,9 @@ const config: Config = {
       colors: {
         customBackground: "#cea384",  
         customText: "#92959a",
-        custombutton:"#d4553a",   
+        custombutton:"#d4553a",
+        customtextopacity:"#c5c4c4",
+        buttonhovercolor:"#f2f2f2",
       },
       fontFamily: {
         sans: ['Graphik', 'sans-serif'],
