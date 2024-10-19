@@ -9,7 +9,7 @@ export default function FullScreenSwiper() {
   const firstSlideRef = useRef(null);
   const secondSlideRef = useRef(null);
 
-  const handleSlideChange = (swiper) => {
+  const handleSlideChange = (swiper: any) => {
     if (swiper.activeIndex === 0 && firstSlideRef.current) {
       resetAnimation(firstSlideRef);
     }
@@ -18,7 +18,7 @@ export default function FullScreenSwiper() {
     }
   };
 
-  const resetAnimation = (slideRef) => {
+  const resetAnimation = (slideRef: any) => {
     slideRef.current.classList.remove("animate-toss-up");
     void slideRef.current.offsetWidth;
     slideRef.current.classList.add("animate-toss-up");
