@@ -496,127 +496,131 @@ export default function Header() {
               </div>
             </div>
           </div>
+          <div className="relative group">
+  {/* FEATURED Link and Chevron */}
+  <div className="flex items-center cursor-pointer">
+    <Link
+      href="/featured"
+      className="hover:text-customBackground font-semibold"
+    >
+      FEATURED
+    </Link>
+    <div className="mt-1 text-xs pl-1">
+      <GoChevronDown />
+    </div>
+  </div>
 
-          <div className="relative">
-            <div className="flex items-center cursor-pointer group">
-              <Link
-                href="/featured"
-                className="hover:text-customBackground font-semibold"
-              >
-                FEATURED
-              </Link>
-              <div className="mt-1 text-xs pl-1">
-                <GoChevronDown />
-              </div>
+  {/* Dropdown Content - Visible on Hover */}
+  <div className="absolute top-5 left-24 transform translate-x-[-300px] w-[700px] h-[700px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-white shadow-lg mt-2 p-6 z-50">
+    <div className="flex justify-between space-x-10 py-6 mt-4">
+      {/* First Column */}
+      <div className="w-1/3 space-y-4 text-left relative">
+        <h2 className="font-semibold hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+          Animate Demos
+        </h2>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            Quickview-Popup
+          </span>
+          <span className="absolute text-white bg-green-500 text-xs px-2 py-1 left-[110px] -top-[20px]">
+            TREND
+          </span>
+        </div>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            Minicart Draws
+          </span>
+        </div>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            Quick Add to cart
+          </span>
+          <span className="absolute text-white bg-green-500 text-xs px-2 py-1 left-[110px] -top-[20px]">
+            NEW
+          </span>
+        </div>
+      </div>
 
-              <div className="absolute top-4 left-0 transform translate-x-[-300px] w-[700px] h-[700px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white shadow-lg mt-2 p-6 pointer-events-none group-hover:pointer-events-auto">
-                <div className="flex justify-between space-x-10 py-6 mt-4">
-                  <div className="w-1/3 space-y-4 text-left relative">
-                    <h2 className="font-semibold hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
-                      Animate Demos
-                    </h2>
-                    <div className="relative">
-                      <span className="text-customText hover:text-customBackground">
-                        Quickview-Popup
-                      </span>
-                      <span className="absolute text-white bg-green-500 text-xs px-2 py-1  left-[120px] -top-[15px]">
-                        TREND
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <span className="text-customText hover:text-customBackground">
-                        Minicart Draws
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <span className="text-customText hover:text-customBackground">
-                        Quick Add to cart
-                      </span>
-                      <span className="absolute text-white bg-green-500 text-xs px-2 py-1  left-[120px] -top-[15px]">
-                        NEW
-                      </span>
-                    </div>
-                  </div>
+      {/* Second Column */}
+      <div className="w-1/3 space-y-4 text-left relative">
+        <h2 className="font-semibold text-gray-800 hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+          9 Product Hover
+        </h2>
+        <span className="absolute text-white bg-red-500 text-xs px-1 py-1 left-[145px] -top-[35px]">
+          HOT
+        </span>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            Product Hover Style 1
+          </span>
+        </div>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            Product Hover Style 2
+          </span>
+        </div>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            Product Hover Style 3
+          </span>
+        </div>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            Product Hover Style 4
+          </span>
+        </div>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            All Style
+          </span>
+          <span className="absolute text-white bg-red-500 text-xs px-2 py-1 left-[55px] -top-[16px]">
+            HOT
+          </span>
+        </div>
+      </div>
 
-                  <div className="w-1/3 space-y-4 text-left relative">
-                    <div className="relative">
-                      <h2 className="font-semibold text-gray-800 hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
-                        9 Product Hover
-                      </h2>
-                      <span className="absolute text-white bg-red-500 text-xs px-2 py-1  left-[145px] -top-[18px]">
-                        HOT
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <span className="text-customText hover:text-customBackground">
-                        Product Hover Style 1
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <span className=" text-customText hover:text-customBackground">
-                        Product Hover Style 2
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <span className="text-customText hover:text-customBackground">
-                        Product Hover Style 3
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <span className="text-customText hover:text-customBackground">
-                        Product Hover Style 4
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <span className="text-customText hover:text-customBackground">
-                        All Style
-                      </span>
-                      <span className="absolute text-white bg-red-500 text-xs px-2 py-1  left-[55px] -top-[16px]">
-                        HOT
-                      </span>
-                    </div>
-                  </div>
+      {/* Third Column */}
+      <div className="w-1/3 space-y-4 text-left relative">
+        <h2 className="font-semibold text-gray-800 hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
+          Theme Element
+        </h2>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            Ajax Search Ajax
+          </span>
+        </div>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            Minicart
+          </span>
+          <span className="absolute text-white bg-green-500 text-xs px-1 py-1 left-[50px] -top-[20px]">
+            NEW
+          </span>
+        </div>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            Recently Products
+          </span>
+        </div>
+        <div className="relative">
+          <span className="text-customText hover:text-customBackground">
+            Social Share
+          </span>
+        </div>
+      </div>
+    </div>
 
-                  <div className="w-1/3 space-y-4 text-left relative">
-                    <h2 className="font-semibold text-gray-800 hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
-                      Theme Element
-                    </h2>
-                    <div className="relative">
-                      <span className="text-customText hover:text-customBackground">
-                        Ajax Search Ajax
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <span className="text-customText hover:text-customBackground">
-                        Minicart
-                      </span>
-                      <span className="absolute text-white bg-green-500 text-xs px-1 py-1  left-[50px] -top-[15px]">
-                        NEW
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <span className="text-customText hover:text-customBackground">
-                        Recently Products
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <span className="text-customText hover:text-customBackground">
-                        Social Share
-                      </span>
-                    </div>
-                  </div>
-                </div>
+    {/* Image at the Bottom */}
+    <div className="mt-6">
+      <img
+        src="https://mikadu-store-demo.myshopify.com/cdn/shop/t/3/assets/apmenuitem_ihtml_5.jpg?v=182077993597399219061652516028"
+        alt="Featured Product"
+        className="w-full h-[370px] rounded-lg shadow-lg"
+      />
+    </div>
+  </div>
+</div>
 
-                <div className="mt-6">
-                  <img
-                    src="https://mikadu-store-demo.myshopify.com/cdn/shop/t/3/assets/apmenuitem_ihtml_5.jpg?v=182077993597399219061652516028"
-                    alt="Featured Product"
-                    className="w-full h-[370px] rounded-lg shadow-lg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
 
           <div className="relative group z-20">
             <div className="flex items-center z-30 relative">
@@ -873,7 +877,7 @@ export default function Header() {
             </svg>
           </Link>
           <div>
-            <ToastContainer/>
+            <ToastContainer />
             <svg
               onClick={openLoginModal}
               width="24"
@@ -942,7 +946,9 @@ export default function Header() {
                   </div>
 
                   {error && (
-                    <p className="text-red-500 text-sm mt-2 text-center">{error}</p>
+                    <p className="text-red-500 text-sm mt-2 text-center">
+                      {error}
+                    </p>
                   )}
                   <p className="pl-11 mt-4 text-customtextopacity text-sm hover:text-customBackground">
                     Forget your password?

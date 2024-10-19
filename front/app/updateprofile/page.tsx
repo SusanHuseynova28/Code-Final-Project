@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "../_featured/header";
+import Footer from "../_featured/footer";
 
 export default function UpdateProfile() {
   const router = useRouter();
@@ -69,6 +70,7 @@ export default function UpdateProfile() {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
