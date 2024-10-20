@@ -36,20 +36,22 @@ const reviews = [
 
 export default function ReviewSlider() {
   return (
-    <div className="w-full max-w-8xl mx-auto px-6 py-16">
+    <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
       <div className="flex flex-col">
-        <h2 className="text-center text-4xl font-bold mt-14">Customer Reviews</h2>
-        <p className="text-center text-texthovercolor mt-4 text-sm">
+        <h2 className="text-center text-3xl sm:text-4xl font-bold mt-10 sm:mt-14">
+          Customer Reviews
+        </h2>
+        <p className="text-center text-texthovercolor mt-3 sm:mt-4 text-xs sm:text-sm">
           Apparently we had reached a great height in the atmosphere, for the sky was a dead black and there a stars.
         </p>
       </div>
       <Swiper
-        spaceBetween={30}
-        slidesPerView={2}
+        spaceBetween={20}
+        slidesPerView={1} // Mobil görünüşdə 1 kart göstər
         modules={[Pagination]}
         breakpoints={{
           640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
+          768: { slidesPerView: 2 }, // Tablet və yuxarıda 2 kart göstər
         }}
         pagination={{ clickable: true }}
         grabCursor={true}
@@ -57,31 +59,33 @@ export default function ReviewSlider() {
       >
         {reviews.map((review, index) => (
           <SwiperSlide key={index}>
-            <div className="flex flex-col justify-between p-16 border bg-white mt-14 h-full min-h-[380px] w-full">
+            <div className="flex flex-col justify-between p-8 sm:p-16 border bg-white mt-8 sm:mt-14 h-full min-h-[300px] sm:min-h-[380px]">
               <div>
                 <div className="flex justify-center">
-                  <span className="text-yellow-500 text-2xl">★★★★★</span>
+                  <span className="text-yellow-500 text-xl sm:text-2xl">★★★★★</span>
                 </div>
-                <h3 className="text-lg font-semibold text-center mt-4">
+                <h3 className="text-md sm:text-lg font-semibold text-center mt-2 sm:mt-4">
                   "{review.title}"
                 </h3>
-                <div className="text-center mt-4 space-y-2 text-hovercolor3">
+                <div className="text-center mt-3 sm:mt-4 space-y-1 sm:space-y-2 text-hovercolor3">
                   {review.text.map((paragraph, idx) => (
-                    <p key={idx} className="leading-relaxed">
+                    <p key={idx} className="leading-relaxed text-sm sm:text-base">
                       {paragraph}
                     </p>
                   ))}
                 </div>
               </div>
-              <div className="flex items-center justify-center flex-col mt-6">
-                <div className="w-20 h-20 rounded-full border-2 border-customBackground flex items-center justify-center">
+              <div className="flex items-center justify-center flex-col mt-4 sm:mt-6">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-customBackground flex items-center justify-center">
                   <img
                     src={review.image}
                     alt={review.name}
-                    className="w-16 h-16 rounded-full"
+                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-full"
                   />
                 </div>
-                <span className="text-lg font-medium mt-4">{review.name}</span>
+                <span className="text-md sm:text-lg font-medium mt-3 sm:mt-4">
+                  {review.name}
+                </span>
               </div>
             </div>
           </SwiperSlide>
