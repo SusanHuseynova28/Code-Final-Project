@@ -11,7 +11,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Style the Swiper pagination bullets */
+
 .swiper-pagination-bullet {
   background-color: #000 !important; /* Black bullets */
   opacity: 0.6; /* Slight transparency */
@@ -89,3 +89,6 @@ body {
 
   
   
+  .swiper-pagination {
+    display: none;
+  }

@@ -2,25 +2,20 @@
 import Link from "next/link";
 import Layout from "./_featured/layout/layout";
 
-
 export default function NotFound() {
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center h-screen bg-white">
-    
         <h1 className="text-8xl font-bold text-gray-800">404</h1>
 
-       
         <h2 className="mt-4 text-4xl font-semibold text-gray-800">
           Oops! That Page Can’t Be Found.
         </h2>
 
-    
         <p className="mt-2 text-lg text-gray-500">
           THE PAGE YOU ARE LOOKING FOR DOES NOT EXIST.
         </p>
 
- 
         <p className="mt-2 text-sm text-gray-500">
           Please return to{" "}
           <Link href="/" className="text-[#cea384] hover:underline">
@@ -28,7 +23,6 @@ export default function NotFound() {
           </Link>
         </p>
 
-   
         <div className="mt-6 relative">
           <input
             type="text"
