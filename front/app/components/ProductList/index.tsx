@@ -42,7 +42,7 @@ export default function ProductList() {
           <button
             key={cat}
             className={`px-4 py-2 rounded ${
-              category === cat ? "bg-gray-800 text-white" : "bg-gray-300 text-black"
+              category === cat ? "bg-gray-800 text-white" : " text-black"
             }`}
             onClick={() => setCategory(cat as "Featured" | "Latest" | "Bestseller")}
           >
@@ -54,20 +54,20 @@ export default function ProductList() {
         {products.map((product) => (
           <div
             key={product._id}
-            className=" rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow object-cover"
+            className="  p-4  transition-shadow object-cover"
             onMouseEnter={(e) => {
               const img = e.currentTarget.querySelector("img") as HTMLImageElement;
-              if (img) img.src = product.hoverImage; // Burada tam URL kullanın
+              if (img) img.src = product.hoverImage; 
             }}
             onMouseLeave={(e) => {
               const img = e.currentTarget.querySelector("img") as HTMLImageElement;
-              if (img) img.src = product.images[0]; // Burada tam URL kullanın
+              if (img) img.src = product.images[0]; 
             }}
           >
             <img
-              src={product.images[0]} // Burada tam URL kullanın
+              src={product.images[0]} 
               alt={product.name}
-              className="w-full h-48 object-cover mb-4 rounded"
+              className="w-full h-48 object-cover mb-4 "
             />
             <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
             <p className="text-gray-500 mb-2">${product.price.toFixed(2)}</p>

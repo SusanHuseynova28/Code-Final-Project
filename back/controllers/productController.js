@@ -1,10 +1,10 @@
 const Product = require('../models/productModel');
 
-// GET products by category
+
 exports.getProductsByCategory = async (req, res) => {
   const { category } = req.query;
   try {
-    const filter = category ? { category } : {}; // Apply filter if category exists
+    const filter = category ? { category } : {};
     const products = await Product.find(filter);
     res.status(200).json(products);
   } catch (error) {
@@ -15,12 +15,12 @@ exports.getProductsByCategory = async (req, res) => {
 
 
 
-// POST create a new product
+
 exports.createProduct = async (req, res) => {
     try {
       const { name, price, salePrice, isOnSale, category, images, hoverImage, description, stock } = req.body;
   
-      // Gerekli alanların kontrolü
+   
       if (!name || !price || !category || !images || !hoverImage) {
         return res.status(400).json({ message: 'Please provide all required fields.' });
       }
@@ -42,12 +42,12 @@ exports.createProduct = async (req, res) => {
       await newProduct.save();
       res.status(201).json(newProduct);
     } catch (error) {
-      console.error('Error creating product:', error); // Hata mesajını konsola yazdır
+      console.error('Error creating product:', error); 
       res.status(500).json({ message: 'Error creating product.' });
     }
   };
   
-// DELETE product by ID
+
 exports.deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -68,8 +68,8 @@ exports.deleteProduct = async (req, res) => {
 };
 exports.updateProduct = async (req, res) => {
     try {
-      const { id } = req.params; // URL'den ID'yi al
-      const updates = req.body; // Güncellenecek alanlar
+      const { id } = req.params; 
+      const updates = req.body; 
   
       // Güncellemeleri veritabanında uygula
       const updatedProduct = await Product.findByIdAndUpdate(id, updates, { new: true, runValidators: true });
