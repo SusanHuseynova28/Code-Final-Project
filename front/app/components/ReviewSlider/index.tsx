@@ -38,7 +38,7 @@ export default function ReviewSlider() {
   return (
     <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
       <div className="flex flex-col">
-        <h2 className="text-center text-3xl sm:text-4xl font-bold mt-10 sm:mt-14">
+        <h2 className="text-center text-lg sm:text-4xl font-semibold mt-10 sm:mt-14">
           Customer Reviews
         </h2>
         <p className="text-center text-texthovercolor mt-3 sm:mt-4 text-xs sm:text-sm">

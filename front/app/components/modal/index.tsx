@@ -13,44 +13,53 @@ export default function Modal() {
   if (!isModalOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white w-[600px] p-8 rounded-lg shadow-lg relative text-center">
-        <button
-          className="absolute top-4 right-4 text-2xl font-bold text-gray-800"
-          onClick={() => setIsModalOpen(false)}
-        >
-          &times;
-        </button>
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+      {/* Modal Container */}
+      <div className="bg-white w-[950px] p-3 relative text-center  shadow-md">
+        {/* Inner Border with Increased Padding */}
+        <div className="border border-gray-300 p-10 ">
+          {/* Close Button with Border */}
+          <button
+            className="absolute top-9 right-9 text-gray-500 hover:text-black text-2xl font-bold border border-black rounded-full w-9 h-9 flex items-center justify-center text-center"
+            onClick={() => setIsModalOpen(false)}
+          >
+            &times;
+          </button>
 
-        <h3 className="text-lg font-semibold mb-2 tracking-wide">
-          SIGNUP FOR EMAILS
-        </h3>
-        <hr className="my-2 border-t-2 border-[#cea384] w-1/12 mx-auto" />
+          {/* Header Text */}
+          <h3 className="text-2xl tracking-wider text-gray-700 mb-6">
+            SIGNUP FOR EMAILS
+          </h3>
+          <hr className="my-6 border-t-2 border-customBackground w-12 mx-auto" />
 
-        <h2 className="text-2xl font-bold my-4">
-          GET 20% DISCOUNT SHIPPED TO YOUR INBOX
-        </h2>
-        <p className="text-gray-600 mb-6">
-          Subscribe to our newsletter and we will ship 20% discount code today
-        </p>
+          {/* Main Content */}
+          <h2 className="text-3xl  my-8 text-gray-900 leading-snug w-[450px] mx-auto">
+            GET 20% DISCOUNT SHIPPED TO YOUR INBOX
+          </h2>
+          <p className="text-gray-600 mb-10">
+            Subscribe to our newsletter and we will ship a 20% discount code today.
+          </p>
 
-        <div className="flex items-center border border-gray-400 rounded overflow-hidden">
-          <input
-            type="email"
-            placeholder="Enter Your Email ..."
-            className="w-full p-4 outline-none"
-          />
-          <button className="bg-black text-white px-6 py-4 font-semibold hover:bg-gray-800">
-            SUBSCRIBE
+          {/* Email Input & Subscribe Button */}
+          <div className="flex items-center border mt-10 border-gray-300 w-[68%] mx-auto  overflow-hidden">
+            <input
+              type="email"
+              placeholder="Enter Your Email ..."
+              className="w-full px-4 py-4 text-gray-700 outline-none"
+            />
+            <button className="text-white bg-black px-14 py-4 font-semibold hover:bg-[#b18f6b] transition-all">
+              SUBSCRIBE
+            </button>
+          </div>
+
+          {/* No, Thanks Link */}
+          <button
+            className="mt-12 text-sm text-black underline hover:text-gray-700"
+            onClick={() => setIsModalOpen(false)}
+          >
+            No, Thanks.
           </button>
         </div>
-
-        <button
-          className="mt-4 text-sm text-gray-500 underline hover:text-gray-700"
-          onClick={() => setIsModalOpen(false)}
-        >
-          No, Thanks.
-        </button>
       </div>
     </div>
   );
