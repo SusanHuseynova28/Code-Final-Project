@@ -5,14 +5,16 @@ import Swipper from "../components/SwipperCollection"
 import ProductCategories from "../components/ProductCategories"
 import BagCollection from "../components/BagCollection"
 import ReviewSlider from "../components/ReviewSlider"
-import Modal from "../components/Modal"
+import ProductList from "../components/ProductList"
+
 export default function Home() {
     return(
         <>
         <Header/>
-        <Modal/>
+      
         <Swipper/>
         <ProductCategories/>
+        <ProductList/>
         <BagCollection/>
         <ReviewSlider/>
         <Footer/>
