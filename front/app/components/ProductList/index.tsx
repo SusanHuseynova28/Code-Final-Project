@@ -1,6 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
+import { BsBag } from "react-icons/bs";
+import { AiOutlineSearch, AiOutlineHeart } from "react-icons/ai";
+
 interface Product {
   _id: string;
   name: string;
@@ -14,7 +17,9 @@ interface Product {
 
 export default function ProductList() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [category, setCategory] = useState<"Featured" | "Latest" | "Bestseller">("Featured");
+  const [category, setCategory] = useState<
+    "Featured" | "Latest" | "Bestseller"
+  >("Featured");
 
   const fetchProducts = async (selectedCategory: string) => {
     try {
@@ -33,49 +38,135 @@ export default function ProductList() {
   useEffect(() => {
     fetchProducts(category);
   }, [category]);
-
+  const CustomBagIcon = ({ className }: { className?: string }) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 297.78668 398.66666"
+      className={`w-6 h-6 ${className}`} 
+      fill="currentColor" // This ensures it uses the current text color
+    >
+      <g transform="matrix(1.3333333,0,0,-1.3333333,0,398.66667)">
+        <g transform="scale(0.1)">
+          <path
+            id="path14"
+            d="M 2233.36,2432.71 H 0 V 0 h 2233.36 v 2432.71 z m -220,-220 V 220 H 220.004 V 2212.71 H 2021.36"
+          />
+          <path
+            id="path16"
+            d="m 1116.68,2990 v 0 C 755.461,2990 462.637,2697.18 462.637,2335.96 V 2216.92 H 1770.71 v 119.04 c 0,361.22 -292.82,654.04 -654.03,654.04 z m 0,-220 c 204.58,0 376.55,-142.29 422.19,-333.08 H 694.492 C 740.117,2627.71 912.102,2770 1116.68,2770"
+          />
+          <path
+            id="path18"
+            d="M 1554.82,1888.17 H 678.543 v 169.54 h 876.277 v -169.54"
+          />
+        </g>
+      </g>
+    </svg>
+  );
+  
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-semibold text-center mb-6">Products</h1>
-      <div className="flex justify-center space-x-4 mb-8">
+    <div className="container mx-auto py-10 p-14">
+      <h1 className="text-3xl font-semibold text-center mb-8">
+        Best Seller Products
+      </h1>
+
+      {/* Category Selection Buttons */}
+      <div className="flex justify-center space-x-16 mb-8">
         {["Featured", "Latest", "Bestseller"].map((cat) => (
           <button
             key={cat}
-            className={`px-4 py-2 rounded ${
-              category === cat ? "bg-gray-800 text-white" : " text-black"
+            className={`relative font-semibold uppercase transition-colors ${
+              category === cat
+                ? "text-[#cea384] after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-[#cea384]"
+                : "text-gray-500 hover:text-gray-700"
             }`}
-            onClick={() => setCategory(cat as "Featured" | "Latest" | "Bestseller")}
+            onClick={() =>
+              setCategory(cat as "Featured" | "Latest" | "Bestseller")
+            }
           >
-            {cat.toUpperCase()}
+            <span className="relative inline-block pb-2">
+              {cat}
+              <span
+                className={`absolute bottom-0 left-0 h-[1px] bg-gray-300 transition-transform duration-300 ${
+                  category === cat ? "scale-x-100" : "scale-x-100"
+                }`}
+                style={{ width: "100%" }}
+              />
+            </span>
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+
+      {/* Product Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {products.map((product) => (
           <div
             key={product._id}
-            className="  p-4  transition-shadow object-cover"
+            className="relative border overflow-hidden transition-shadow group"
             onMouseEnter={(e) => {
-              const img = e.currentTarget.querySelector("img") as HTMLImageElement;
-              if (img) img.src = product.hoverImage; 
+              const img = e.currentTarget.querySelector(
+                "img"
+              ) as HTMLImageElement;
+              if (img) img.src = product.hoverImage;
             }}
             onMouseLeave={(e) => {
-              const img = e.currentTarget.querySelector("img") as HTMLImageElement;
-              if (img) img.src = product.images[0]; 
+              const img = e.currentTarget.querySelector(
+                "img"
+              ) as HTMLImageElement;
+              if (img) img.src = product.images[0];
             }}
           >
-            <img
-              src={product.images[0]} 
-              alt={product.name}
-              className="w-full h-48 object-cover mb-4 "
-            />
-            <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
-            <p className="text-gray-500 mb-2">${product.price.toFixed(2)}</p>
-            {product.isOnSale && product.salePrice && (
-              <p className="text-red-500">
-                Sale: <span className="line-through">${product.salePrice.toFixed(2)}</span>
-              </p>
-            )}
+            {/* Product Image */}
+            <div className="relative">
+              {product.isOnSale && (
+                <span className="absolute top-3 left-16 bg-custombutton text-white text-xs px-2 py-1">
+                  SALE
+                </span>
+              )}
+              <img
+                src={product.images[0]}
+                alt={product.name}
+                className="w-full h-80 object-cover"
+              />
+
+              {/* Buttons shown on hover */}
+              <div className="absolute inset-0 flex items-end justify-center gap-4 pb-8 opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
+  <button className="w-12 h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center">
+  <CustomBagIcon className="text-black hover:text-white transition-colors duration-300" />
+  </button>
+ 
+  <button className="w-12 h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center">
+    <AiOutlineSearch className="w-6 h-6 text-black hover:text-white transition-colors duration-300" />
+  </button>
+  <button className="w-12 h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center">
+    <AiOutlineHeart className="w-6 h-6 text-black hover:text-white transition-colors duration-300" />
+  </button>
+</div>
+
+            </div>
+
+            {/* Product Details */}
+            <div className="p-6">
+              <h2 className="text-sm font-semibold mb-2 text-center">
+                {product.name}
+              </h2>
+              <div className="flex justify-center gap-3">
+                <p
+                  className={`${
+                    product.isOnSale
+                      ? "text-red-500"
+                      : "text-black font-semibold"
+                  } mb-1 text-center`}
+                >
+                  ${product.price.toFixed(2)}
+                </p>
+                {product.isOnSale && product.salePrice && (
+                  <p className="text-gray-400 line-through">
+                    ${product.salePrice.toFixed(2)}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         ))}
       </div>
