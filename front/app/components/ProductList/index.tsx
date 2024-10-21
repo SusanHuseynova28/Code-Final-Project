@@ -54,18 +54,18 @@ export default function ProductList() {
         {products.map((product) => (
           <div
             key={product._id}
-            className="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow"
+            className=" rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow object-cover"
             onMouseEnter={(e) => {
               const img = e.currentTarget.querySelector("img") as HTMLImageElement;
-              if (img) img.src = `http://localhost:8080/${product.hoverImage}`;
+              if (img) img.src = product.hoverImage; // Burada tam URL kullanın
             }}
             onMouseLeave={(e) => {
               const img = e.currentTarget.querySelector("img") as HTMLImageElement;
-              if (img) img.src = `http://localhost:8080/${product.images[0]}`;
+              if (img) img.src = product.images[0]; // Burada tam URL kullanın
             }}
           >
             <img
-              src={`http://localhost:8080/${product.images[0]}`}
+              src={product.images[0]} // Burada tam URL kullanın
               alt={product.name}
               className="w-full h-48 object-cover mb-4 rounded"
             />

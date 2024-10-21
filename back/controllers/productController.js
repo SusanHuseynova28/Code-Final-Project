@@ -66,3 +66,21 @@ exports.deleteProduct = async (req, res) => {
     res.status(500).json({ message: 'Error deleting product' });
   }
 };
+exports.updateProduct = async (req, res) => {
+    try {
+      const { id } = req.params; // URL'den ID'yi al
+      const updates = req.body; // Güncellenecek alanlar
+  
+      // Güncellemeleri veritabanında uygula
+      const updatedProduct = await Product.findByIdAndUpdate(id, updates, { new: true, runValidators: true });
+      
+      if (!updatedProduct) {
+        return res.status(404).json({ message: 'Product not found' });
+      }
+  
+      res.status(200).json(updatedProduct);
+    } catch (error) {
+      console.error('Error updating product:', error);
+      res.status(500).json({ message: 'Error updating product.' });
+    }
+  };
