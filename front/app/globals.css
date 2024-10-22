@@ -89,5 +89,64 @@ body {
     display: none;
   }
 
+/* Chevron düymələri üçün ümumi stil */
 
-  
+/* NewArrivals üçün Swiper konteyner */
+.new-arrivals-container .swiper-container {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  position: relative; /* Naviqasiya düymələri üçün kontekst yaradılır */
+}
+
+/* Slide tərzi */
+.new-arrivals-container .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+/* Naviqasiya düymələri */
+.new-arrivals-container .swiper-button-next,
+.new-arrivals-container .swiper-button-prev {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10; /* Düymələrin görünməsi üçün yüksək z-index */
+}
+
+/* Hover zamanı opacity */
+.new-arrivals-container .swiper-button-next:hover,
+.new-arrivals-container .swiper-button-prev:hover {
+  opacity: 1;
+}
+
+/* Sol naviqasiya düyməsi */
+.new-arrivals-container .swiper-button-prev {
+  left: 10px;
+}
+
+/* Sağ naviqasiya düyməsi */
+.new-arrivals-container .swiper-button-next {
+  right: 10px;
+}
+
+/* İkon ölçüləri */
+.new-arrivals-container .swiper-button-next::after,
+.new-arrivals-container .swiper-button-prev::after {
+  font-size: 20px;
+  font-weight: bold;
+  content: ''; /* React ikonları istifadə edildiyi üçün buranı boş saxlayırıq */
+}
