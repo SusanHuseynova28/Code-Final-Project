@@ -32,13 +32,13 @@ const upload = multer({
   });
   
 
-// Routes
+
 router.get('/products', productController.getProductsByCategory);
 router.post('/products', upload.array('images', 5), productController.createProduct);
 router.delete('/products/:id', productController.deleteProduct);
 router.put('/products/:id', productController.updateProduct);
 router.post('/products', upload.array('images', 5), (req, res, next) => {
-    console.log(req.files); // Yüklenen dosyaları kontrol edin
+    console.log(req.files); 
     productController.createProduct(req, res);
-  }); // Güncelleme işlemi için route
+  }); 
 module.exports = router;
