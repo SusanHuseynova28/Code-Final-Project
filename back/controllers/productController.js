@@ -71,7 +71,6 @@ exports.updateProduct = async (req, res) => {
       const { id } = req.params; 
       const updates = req.body; 
   
-      // Güncellemeleri veritabanında uygula
       const updatedProduct = await Product.findByIdAndUpdate(id, updates, { new: true, runValidators: true });
       
       if (!updatedProduct) {

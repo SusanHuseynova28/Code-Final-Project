@@ -13,8 +13,8 @@ body {
 
 
 .swiper-pagination-bullet {
-  background-color: #000 !important; /* Black bullets */
-  opacity: 0.6; /* Slight transparency */
+  background-color: #000 !important;
+  opacity: 0.6; 
   width: 12px;
   height: 12px;
   transition: opacity 0.3s;
@@ -22,32 +22,28 @@ body {
 }
 
 .swiper-pagination-bullet-active {
-  opacity: 1; /* Full opacity when active */
+  opacity: 1; 
 }
-
-
-/* styles/global.css */
-
 
 
 @keyframes tossUp {
   0% {
     opacity: 0;
-    transform: translateY(150px); /* Start below */
+    transform: translateY(150px);
   }
   50% {
     opacity: 1;
-    transform: translateY(-30px); /* Bounce slightly above */
+    transform: translateY(-30px); 
   }
   100% {
-    transform: translateY(0); /* Settle in place */
+    transform: translateY(0);
   }
 }
 
 .animate-toss-up {
   animation: tossUp 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   animation-fill-mode: forwards; 
-  /* Keep in the final position */
+
 }
 
 
@@ -89,44 +85,54 @@ body {
     display: none;
   }
 
-/* Chevron düymələri üçün ümumi stil */
 
 .new-arrivals-container .swiper-button-next,
 .new-arrivals-container .swiper-button-prev {
   background-color: white !important;
   color: black !important;
   border-radius: 50%;
-  width: 40px; /* Chevron konteynerinin eni artırıldı */
-  height: 40px; /* Chevron konteynerinin hündürlüyü artırıldı */
+  width: 40px; 
+  height: 40px; 
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   top: 50%;
-  transform: translateY(100%);
-
+  transform: translateY(100%); 
   cursor: pointer;
   z-index: 10;
   opacity: 1 !important;
+  transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 .new-arrivals-container .swiper-button-next {
   right: 10px;
-  content: '>';
-z-index: 10;
-
+  z-index: 10;
 }
 
 .new-arrivals-container .swiper-button-prev {
   left: 10px;
-  content: '<';
-
   z-index: 10;
 }
 
+
 .new-arrivals-container .swiper-button-next::after,
 .new-arrivals-container .swiper-button-prev::after {
-  font-size: 20px; /* Chevron işarəsinin ölçüsü artırıldı */
-   /* Chevron işarəsi */
+  font-size: 20px;
   color: black !important;
+  transition: color 0.3s ease; 
 }
+
+
+.new-arrivals-container .swiper-button-next:hover,
+.new-arrivals-container .swiper-button-prev:hover {
+  background-color: #cea384 !important;
+  color: white !important;
+}
+
+.new-arrivals-container .swiper-button-next:hover::after,
+.new-arrivals-container .swiper-button-prev:hover::after {
+  color: white !important;
+}
+
+

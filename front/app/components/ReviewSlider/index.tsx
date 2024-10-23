@@ -1,4 +1,3 @@
-// components/ReviewSlider/index.tsx
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -36,9 +35,9 @@ const reviews = [
 
 export default function ReviewSlider() {
   return (
-    <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
+    <div className="w-full max-w-8xl mx-auto px-4 sm:px-6 py-10 sm:py-16 mb-10">
       <div className="flex flex-col">
-        <h2 className="text-center text-lg sm:text-4xl font-semibold mt-10 sm:mt-14">
+        <h2 className="text-center text-lg sm:text-4xl font-semibold  sm:mt-14">
           Customer Reviews
         </h2>
         <p className="text-center text-texthovercolor mt-3 sm:mt-4 text-xs sm:text-sm">
@@ -47,11 +46,11 @@ export default function ReviewSlider() {
       </div>
       <Swiper
         spaceBetween={20}
-        slidesPerView={1} // Mobil görünüşdə 1 kart göstər
+        slidesPerView={1}
         modules={[Pagination]}
         breakpoints={{
           640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 }, // Tablet və yuxarıda 2 kart göstər
+          768: { slidesPerView: 2 }, 
         }}
         pagination={{ clickable: true }}
         grabCursor={true}

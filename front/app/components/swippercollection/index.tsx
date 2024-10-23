@@ -34,7 +34,6 @@ export default function FullScreenSwiper() {
         className="w-full h-full"
         onSlideChange={handleSlideChange}
       >
-        {/* First Slide */}
         <SwiperSlide>
           <div className="relative w-full h-full">
             <img
@@ -66,7 +65,6 @@ export default function FullScreenSwiper() {
           </div>
         </SwiperSlide>
 
-        {/* Second Slide */}
         <SwiperSlide>
           <div className="relative w-full h-full">
             <img

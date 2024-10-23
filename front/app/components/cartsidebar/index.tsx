@@ -41,7 +41,6 @@ export default function CartSidebar({ isOpen, toggleCart }) {
               Your shopping bag is empty
             </p>
 
-            {/* Go to Shop Button */}
             <Link href="/drowerfilter" legacyBehavior>
               <a className="bg-black mt-6 text-white uppercase hover:bg-[#cea384] hover:text-color tracking-widest text-sm py-4 sm:py-5 px-6 sm:px-8 font-semibold text-center">
                 Go to the shop

@@ -14,11 +14,8 @@ export default function Modal() {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
-      {/* Modal Container */}
       <div className="bg-white w-[950px] p-3 relative text-center  shadow-md">
-        {/* Inner Border with Increased Padding */}
         <div className="border border-gray-300 p-10 ">
-          {/* Close Button with Border */}
           <button
             className="absolute top-9 right-9 text-gray-500 hover:text-black text-2xl font-bold border border-black rounded-full w-9 h-9 flex items-center justify-center text-center"
             onClick={() => setIsModalOpen(false)}
@@ -26,21 +23,19 @@ export default function Modal() {
             &times;
           </button>
 
-          {/* Header Text */}
           <h3 className="text-2xl tracking-wider text-gray-700 mb-6">
             SIGNUP FOR EMAILS
           </h3>
           <hr className="my-6 border-t-2 border-customBackground w-12 mx-auto" />
 
-          {/* Main Content */}
           <h2 className="text-3xl  my-8 text-gray-900 leading-snug w-[450px] mx-auto">
             GET 20% DISCOUNT SHIPPED TO YOUR INBOX
           </h2>
           <p className="text-gray-600 mb-10">
-            Subscribe to our newsletter and we will ship a 20% discount code today.
+            Subscribe to our newsletter and we will ship a 20% discount code
+            today.
           </p>
 
-          {/* Email Input & Subscribe Button */}
           <div className="flex items-center border mt-10 border-gray-300 w-[68%] mx-auto  overflow-hidden">
             <input
               type="email"
@@ -52,7 +47,6 @@ export default function Modal() {
             </button>
           </div>
 
-          {/* No, Thanks Link */}
           <button
             className="mt-12 text-sm text-black underline hover:text-gray-700"
             onClick={() => setIsModalOpen(false)}

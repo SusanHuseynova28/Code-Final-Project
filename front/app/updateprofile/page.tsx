@@ -70,7 +70,7 @@ export default function UpdateProfile() {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

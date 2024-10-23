@@ -16,8 +16,8 @@ export default function Home() {
         <ProductCategories/>
         <ProductList/>
         <BagCollection/>
-        <ReviewSlider/>
         <NewArrivals/>
+        <ReviewSlider/>
         <Footer/>
         </>
     )

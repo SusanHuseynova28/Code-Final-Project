@@ -1,6 +1,6 @@
 const NewArrival = require('../models/newarrivalModel');
 
-// Bütün məhsulları çəkmək (GET)
+
 exports.getNewArrivals = async (req, res) => {
   try {
     const arrivals = await NewArrival.find();
@@ -11,7 +11,7 @@ exports.getNewArrivals = async (req, res) => {
   }
 };
 
-// Yeni məhsul yaratmaq (POST)
+
 exports.createNewArrival = async (req, res) => {
   try {
     const { name, price, salePrice, isOnSale, description, stock, hoverImage, image } = req.body;
@@ -35,7 +35,7 @@ exports.createNewArrival = async (req, res) => {
   }
 };
 
-// Məhsulu ID ilə yeniləmək (PUT)
+
 exports.updateNewArrival = async (req, res) => {
   try {
     const { id } = req.params;
@@ -57,7 +57,6 @@ exports.updateNewArrival = async (req, res) => {
   }
 };
 
-// Məhsulu ID ilə silmək (DELETE)
 exports.deleteNewArrival = async (req, res) => {
   try {
     const { id } = req.params;

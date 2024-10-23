@@ -5,19 +5,19 @@ const productController = require('../controllers/productController');
 
 const router = express.Router();
 
-// Multer configuration (file upload)
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Save files to 'uploads/' directory
+    cb(null, 'uploads/');
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`); // Unique filename
+    cb(null, `${Date.now()}-${file.originalname}`);
   },
 });
 
 const upload = multer({
     storage,
-    limits: { fileSize: 5 * 1024 * 1024 }, // 5MB file size limit
+    limits: { fileSize: 5 * 1024 * 1024 }, 
     fileFilter: (req, file, cb) => {
       const fileTypes = /jpeg|jpg|png/;
       const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());

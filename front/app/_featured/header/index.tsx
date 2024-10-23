@@ -162,7 +162,6 @@ export default function Header() {
             )}
           </div>
 
-          {/* Divider */}
           <div className="hidden sm:block border-l-2 border-gray h-6"></div>
 
           <div className="relative">
@@ -266,7 +265,6 @@ export default function Header() {
                 </p>
               </div>
 
-             
               <div className="relative">
                 <img
                   src="https://mikadu-store-demo.myshopify.com/cdn/shop/files/home4.jpg?v=1653376268"
@@ -487,7 +485,6 @@ export default function Header() {
             </div>
           </div>
           <div className="relative group">
-            {/* FEATURED Link and Chevron */}
             <div className="flex items-center cursor-pointer">
               <Link
                 href="/featured"
@@ -500,10 +497,8 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Dropdown Content - Visible on Hover */}
             <div className="absolute top-5 left-24 transform translate-x-[-300px] w-[700px] h-[700px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-white shadow-lg mt-2 p-6 z-50">
-              <div className="flex justify-between space-x-10 py-6 mt-4">
-                {/* First Column */}
+              <div className="flex justify-between space-x-10 py-6 mt-1">
                 <div className="w-1/3 space-y-4 text-left relative">
                   <h2 className="font-semibold hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                     Animate Demos
@@ -531,7 +526,6 @@ export default function Header() {
                   </div>
                 </div>
 
-                {/* Second Column */}
                 <div className="w-1/3 space-y-4 text-left relative">
                   <h2 className="font-semibold text-gray-800 hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                     9 Product Hover
@@ -569,7 +563,6 @@ export default function Header() {
                   </div>
                 </div>
 
-                {/* Third Column */}
                 <div className="w-1/3 space-y-4 text-left relative">
                   <h2 className="font-semibold text-gray-800 hover:text-customBackground uppercase after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                     Theme Element
@@ -600,12 +593,11 @@ export default function Header() {
                 </div>
               </div>
 
-              {/* Image at the Bottom */}
-              <div className="mt-6">
+              <div className="mt-2">
                 <img
                   src="https://mikadu-store-demo.myshopify.com/cdn/shop/t/3/assets/apmenuitem_ihtml_5.jpg?v=182077993597399219061652516028"
                   alt="Featured Product"
-                  className="w-full h-[370px] rounded-lg shadow-lg"
+                  className="w-full h-[370px] "
                 />
               </div>
             </div>
@@ -641,7 +633,6 @@ export default function Header() {
                       </li>
                       <li className="relative text-customText hover:text-customBackground">
                         Blog Without Sidebar
-                        {/* "NEW" Button directly on top of the text */}
                         <span className="absolute bottom-4 left-32 px-2 py-1 text-xs text-white bg-green-600 rounded">
                           NEW
                         </span>
@@ -649,7 +640,6 @@ export default function Header() {
                     </ul>
                   </div>
 
-                  {/* BLOG STYLE */}
                   <div className="pl-16 w-[300px]">
                     <h2 className="text-lg font-semibold mt-4 hover:text-customBackground">
                       BLOG STYLE
@@ -670,7 +660,6 @@ export default function Header() {
                     </ul>
                   </div>
 
-                  {/* POST LAYOUT */}
                   <div className="mt-4">
                     <h2 className="text-lg font-semibold mb-2 hover:text-customBackground">
                       POST LAYOUT
@@ -685,7 +674,6 @@ export default function Header() {
                       </li>
                       <li className="relative text-customText hover:text-customBackground">
                         Without Sidebar
-                        {/* "NEW" Button directly on top of the text */}
                         <span className="absolute bottom-4 right-5 px-2 py-1 text-xs text-white bg-green-600 rounded">
                           NEW
                         </span>
@@ -693,7 +681,6 @@ export default function Header() {
                     </ul>
                   </div>
 
-                  {/* POST FORMAT */}
                   <div className="pl-16 w-[300px] mt-4">
                     <h2 className="text-lg font-semibold mb-2 hover:text-customBackground">
                       POST FORMAT
@@ -713,12 +700,10 @@ export default function Header() {
                   </div>
                 </div>
 
-                {/* Recent Posts Section */}
                 <div className="pl-32 w-[400px] mt-4">
                   <h2 className="text-lg font-semibold mb-2">RECENT POST</h2>
                   <hr className="w-12 border-t-2 border-yellow-600 mb-4" />
                   <ul className="space-y-4">
-                    {/* Post Item 1 */}
                     <li className="flex space-x-4">
                       <img
                         className="w-28 h-16 object-cover"
@@ -735,7 +720,6 @@ export default function Header() {
                       </div>
                     </li>
 
-                    {/* Post Item 2 */}
                     <li className="flex space-x-4">
                       <img
                         className="w-28 h-16 object-cover"
@@ -752,7 +736,6 @@ export default function Header() {
                       </div>
                     </li>
 
-                    {/* Post Item 3 */}
                     <li className="flex space-x-4">
                       <img
                         className="w-28 h-16 object-cover"
@@ -775,7 +758,6 @@ export default function Header() {
           </div>
 
           <div className="relative pages-hover">
-            {/* PAGES Link */}
             <div className="flex items-center cursor-pointer">
               <Link href="/pages" className="hover:text-gray-900 font-semibold">
                 PAGES
@@ -785,15 +767,12 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Dropdown Menu (opens when hovering on PAGES or the dropdown itself) */}
             <div className="absolute left-0 dropdown-menu w-52 bg-white z-10 pt-2 shadow-lg">
               <ul>
-                {/* About Section */}
                 <li className="relative about-item">
                   <div className="flex justify-between text-sm items-center py-2 px-4 cursor-pointer">
                     About
                     <GoChevronRight className="text-gray-500 cursor-pointer" />
-                    {/* About Submenu */}
                     <ul className="absolute top-0 left-full mt-3 text-sm about-submenu hidden bg-white border text-black shadow-lg p-2 w-44 z-20">
                       <li className="py-2 px-4  cursor-pointer">
                         <Link
@@ -966,7 +945,6 @@ export default function Header() {
               </div>
             )}
 
-            {/* Register Modal */}
             {isRegisterModalOpen && (
               <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
                 <div className="bg-white p-8 shadow-md w-[500px] h-[600px] relative">

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Product schema
+
 const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: { type: Number, required: true },
@@ -11,10 +11,10 @@ const productSchema = new mongoose.Schema({
     enum: ['Featured', 'Latest', 'Bestseller'],
     required: true,
   },
-  images: [{ type: String, required: true }], // Görsel URL'leri
-  hoverImage: { type: String, required: true }, // Hover görseli URL'si
-  description: { type: String }, // Ürün açıklaması
-  stock: { type: Number, default: 0 }, // Stok durumu
+  images: [{ type: String, required: true }], 
+  hoverImage: { type: String, required: true }, 
+  description: { type: String }, 
+  stock: { type: Number, default: 0 },
 });
 
 const Product = mongoose.model('Product', productSchema);

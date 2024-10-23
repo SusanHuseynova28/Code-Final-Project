@@ -61,7 +61,6 @@ export default function ProductList() {
         Best Seller Products
       </h1>
 
-      {/* Category Selection Buttons */}
       <div className="flex flex-wrap justify-center space-x-4 sm:space-x-16 mb-8">
         {["Featured", "Latest", "Bestseller"].map((cat) => (
           <button
@@ -88,7 +87,6 @@ export default function ProductList() {
         ))}
       </div>
 
-      {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
         {products.map((product) => (
           <div
@@ -107,7 +105,6 @@ export default function ProductList() {
               if (img) img.src = product.images[0];
             }}
           >
-            {/* Product Image */}
             <div className="relative">
               {product.isOnSale && (
                 <span className="absolute top-3 left-3 sm:left-16 bg-custombutton text-white text-xs px-2 py-1">
@@ -120,7 +117,6 @@ export default function ProductList() {
                 className="w-full h-64 sm:h-80 object-cover"
               />
 
-              {/* Buttons shown on hover */}
               <div className="absolute inset-0 flex items-end justify-center gap-2 sm:gap-4 pb-8 opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
                 <button className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center">
                   <CustomBagIcon className="text-black hover:text-white transition-colors duration-300" />
@@ -136,9 +132,8 @@ export default function ProductList() {
               </div>
             </div>
 
-            {/* Product Details */}
             <div className="p-4 sm:p-6">
-              <h2 className="text-sm font-semibold mb-2 text-center">
+              <h2 className="text-sm font-semibold mb-2 text-center hover:text-customBackground cursor-pointer">
                 {product.name}
               </h2>
               <div className="flex justify-center gap-3">

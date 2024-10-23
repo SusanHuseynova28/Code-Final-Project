@@ -2,7 +2,6 @@
 export default function BagCollection() {
   return (
     <div className="flex flex-col md:flex-row h-auto md:h-screen max-w-[1400px] items-center justify-between mx-auto">
-      {/* Şəkil Bölməsi */}
       <div className="w-full md:w-1/2 h-64 md:h-screen">
         <img
           src="https://mikadu-store-demo.myshopify.com/cdn/shop/files/banner3.jpg?v=1652513266"
@@ -11,7 +10,6 @@ export default function BagCollection() {
         />
       </div>
 
-      {/* Məzmun Bölməsi */}
       <div className="w-full md:w-1/2 h-64 md:h-screen bg-[#fdf3e6] p-8 md:p-16 flex flex-col justify-center mt-6 md:mt-0">
         <p className="text-xs tracking-widest text-center text-customBackground uppercase">
           New Arrival

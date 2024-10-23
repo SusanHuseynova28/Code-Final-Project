@@ -3,7 +3,6 @@
 export default function ProductCategories() {
   return (
     <div className="flex flex-col md:flex-row justify-center gap-8 p-8 md:p-16 mt-6 md:mt-10">
-      {/* Handbags Section */}
       <div className="relative group w-full md:w-1/2 overflow-hidden">
         <img
           src="https://mikadu-store-demo.myshopify.com/cdn/shop/files/banner1.jpg?v=1652511176"
@@ -20,7 +19,6 @@ export default function ProductCategories() {
         </div>
       </div>
 
-      {/* Travel Section */}
       <div className="relative group w-full md:w-1/2 overflow-hidden">
         <img
           src="https://mikadu-store-demo.myshopify.com/cdn/shop/files/banner2.jpg?v=1652511339"

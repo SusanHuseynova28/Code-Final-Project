@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 const verifyToken = (req) => {
-  const token = req.cookies?.access_token; 
+  const token = req.cookies?.access_token;
   if (!token) return null;
 
   try {
