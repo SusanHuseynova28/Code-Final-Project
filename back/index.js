@@ -3,9 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const connection = require('./db/ConnectionDb');
-const authRoutes = require('./routes/authRouter');
+const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const newArrivalRoutes = require('./routes/newarrivalRoutes');
+const latestRoutes = require('./routes/latestRoutes');
 
 if (!process.env.JWT_SECRET) {
   console.error('FATAL ERROR: JWT_SECRET is not defined.');
@@ -20,12 +21,14 @@ app.use(cors({ origin: '*', credentials: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
+
 connection();
 
 
 app.use('/api/auth', authRoutes);
 app.use('/api', productRoutes);
 app.use('/api/newarrivals', newArrivalRoutes);
+app.use('/api/latest', latestRoutes);
 
 
 app.use((err, req, res, next) => {

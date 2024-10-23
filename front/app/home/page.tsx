@@ -7,6 +7,7 @@ import BagCollection from "../components/BagCollection"
 import ReviewSlider from "../components/ReviewSlider"
 import ProductList from "../components/ProductList"
 import NewArrivals from "../components/NewArrivals"
+import LatestNews from "../components/LatestNews"
 
 export default function Home() {
     return(
@@ -18,6 +19,7 @@ export default function Home() {
         <BagCollection/>
         <NewArrivals/>
         <ReviewSlider/>
+        <LatestNews/>
         <Footer/>
         </>
     )
