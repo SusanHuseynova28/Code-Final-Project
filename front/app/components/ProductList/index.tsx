@@ -1,8 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
-import { AiOutlineSearch, AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
 import { LiaSearchSolid } from "react-icons/lia";
+import Link from "next/link";
+import { useRouter } from "next/navigation"; 
+
 interface Product {
   _id: string;
   name: string;
@@ -19,6 +21,8 @@ export default function ProductList() {
   const [category, setCategory] = useState<
     "Featured" | "Latest" | "Bestseller"
   >("Featured");
+
+  const router = useRouter();
 
   const fetchProducts = async (selectedCategory: string) => {
     try {
@@ -38,6 +42,10 @@ export default function ProductList() {
     fetchProducts(category);
   }, [category]);
 
+  const handleCardClick = (id: string) => {
+    router.push(`/Products/${id}`);
+  };
+  
   const CustomBagIcon = ({ className }: { className?: string }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +82,7 @@ export default function ProductList() {
               setCategory(cat as "Featured" | "Latest" | "Bestseller")
             }
           >
-            <span className="relative inline-block pb-2 ">
+            <span className="relative inline-block pb-2">
               {cat}
               <span
                 className={`absolute bottom-0 left-0 h-[1px]  bg-gray-300 transition-transform duration-300 ${
@@ -92,6 +100,7 @@ export default function ProductList() {
           <div
             key={product._id}
             className="relative border overflow-hidden transition-shadow group"
+            onClick={() => handleCardClick(product._id)} 
             onMouseEnter={(e) => {
               const img = e.currentTarget.querySelector(
                 "img"
@@ -134,7 +143,7 @@ export default function ProductList() {
 
             <div className="p-4 sm:p-6">
               <h2 className="text-sm font-semibold mb-2 text-center hover:text-customBackground cursor-pointer">
-                {product.name}
+                <Link href={`/product/${product._id}`}>{product.name}</Link>
               </h2>
               <div className="flex justify-center gap-3">
                 <p

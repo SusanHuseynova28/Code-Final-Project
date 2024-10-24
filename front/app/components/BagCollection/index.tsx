@@ -1,7 +1,7 @@
 "use client";
 export default function BagCollection() {
   return (
-    <div className="flex flex-col md:flex-row h-auto md:h-screen max-w-[1400px] items-center justify-between mx-auto">
+    <div className="flex flex-col md:flex-row h-auto mt-20 md:h-screen max-w-[1400px] items-center justify-between mx-auto">
       <div className="w-full md:w-1/2 h-64 md:h-screen">
         <img
           src="https://mikadu-store-demo.myshopify.com/cdn/shop/files/banner3.jpg?v=1652513266"

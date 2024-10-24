@@ -63,7 +63,7 @@ export default function NewArrivals() {
   }
 
   return (
-    <div className="new-arrivals-container container mx-auto px-10 py-20">
+    <div className="new-arrivals-container container mx-auto px-10 py-24">
       <div className="flex flex-col justify-center">
         <h2 className="text-4xl font-semibold text-center">New Arrivals</h2>
         <p className="text-hovercolor3 text-center mt-4">

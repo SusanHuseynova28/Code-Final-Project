@@ -44,16 +44,16 @@ const LatestNews: React.FC = () => {
       </p>
       <Swiper
         modules={[Mousewheel]}
-        spaceBetween={5} // Məsafəni azaltdıq
+        spaceBetween={5}
         slidesPerView={1} 
         breakpoints={{
           768: {
             slidesPerView: 2,
-            spaceBetween: 10, // Tablet üçün məsafə
+            spaceBetween: 10,
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 15, // Desktop üçün məsafə
+            spaceBetween: 15, 
           },
         }}
         mousewheel={{ forceToAxis: true }}
@@ -71,7 +71,7 @@ const LatestNews: React.FC = () => {
                 <p className="text-sm md:text-lg text-customBackground text-center">
                   {news.dateAdded}
                 </p>
-                <h3 className="text-lg md:text-xl font-semibold mt-2 md:mt-3 text-center">
+                <h3 className="text-lg md:text-xl font-semibold mt-2 md:mt-3 text-center hover:text-customBackground">
                   {news.title}
                 </h3>
                 <p className="text-sm md:text-base text-texthovercolor text-center mt-2 md:mt-3">
