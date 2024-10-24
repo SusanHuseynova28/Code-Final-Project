@@ -9,6 +9,7 @@ import ProductList from "../components/ProductList"
 import NewArrivals from "../components/NewArrivals"
 import LatestNews from "../components/LatestNews"
 
+
 export default function Home() {
     return(
         <>

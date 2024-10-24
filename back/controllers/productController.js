@@ -1,6 +1,6 @@
 const Product = require('../models/productModel');
 
-// Məhsulları kateqoriyaya görə gətirir
+
 exports.getProductsByCategory = async (req, res) => {
   const { category } = req.query;
   try {
@@ -13,12 +13,12 @@ exports.getProductsByCategory = async (req, res) => {
   }
 };
 
-// ID-yə əsasən məhsul gətirir
+
 exports.getProductById = async (req, res) => {
   try {
     const { id } = req.params;
 
-    console.log('Requested Product ID:', id); // ID-nin düzgün alındığını yoxlayın
+    console.log('Requested Product ID:', id);
 
     if (!id || id.length !== 24) {
       return res.status(400).json({ message: 'Invalid product ID' });
@@ -36,7 +36,7 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-// Yeni məhsul yaradır
+
 exports.createProduct = async (req, res) => {
   try {
     const { name, price, salePrice, isOnSale, category, images, hoverImage, description, stock } = req.body;
@@ -65,7 +65,7 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-// Məhsulu silir
+
 exports.deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -86,7 +86,7 @@ exports.deleteProduct = async (req, res) => {
   }
 };
 
-// Məhsulu yeniləyir
+
 exports.updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
