@@ -6,8 +6,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+ 
 }
-body {
+html,body {
   overflow-x: hidden;
 }
 
@@ -151,5 +152,16 @@ body {
   animation: fade-in-up 0.5s ease-in-out;
 }
 
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
 
 

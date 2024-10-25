@@ -32,6 +32,7 @@ export default function ProductDetails() {
   const [hoverImage, setHoverImage] = useState<string | null>(null);
   const [selectedTab, setSelectedTab] = useState<string>("description");
   const router = useRouter();
+  const tabs = ["description", "additional information", "review"];
 
   const fetchProductDetails = async () => {
     try {
@@ -55,18 +56,31 @@ export default function ProductDetails() {
     if (slug) fetchProductDetails();
     console.log(product);
   }, [slug]);
+  const movementSpeed = 2;
   const handleMouseMove = (e: React.MouseEvent) => {
-    const { current: container } = imageContainerRef;
+    const container = imageContainerRef.current;
     if (container) {
       const rect = container.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      const x = ((e.clientX - rect.left) / rect.width) * 100 * movementSpeed;
+      const y = ((e.clientY - rect.top) / rect.height) * 100 * movementSpeed;
       container.style.backgroundPosition = `${x}% ${y}%`;
     }
   };
 
-  const incrementQuantity = () => setQuantity(quantity + 1);
-  const decrementQuantity = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
+  const handleMouseLeave = () => {
+    const container = imageContainerRef.current;
+    if (container) {
+      container.style.backgroundPosition = "center";
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value) || 1;
+    setQuantity(value >= 1 ? value : 1);
+  };
+
+  const increment = () => setQuantity((prev) => prev + 1);
+  const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
   if (loading) return <p className="text-center mt-20">Loading...</p>;
   if (!product) return <p className="text-center mt-20">Product not found.</p>;
@@ -104,32 +118,84 @@ export default function ProductDetails() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
-            <div
-              ref={imageContainerRef}
-              onMouseMove={handleMouseMove}
-              className=" w-[820px] h-[800px] bg-cover bg-center overflow-hidden transition-all duration-500"
-              style={{
-                backgroundImage: `url(${selectedImage || product.images[0]})`,
-                backgroundSize: "100%",
-              }}
-              onMouseLeave={() => setHoverImage(null)}
-            />
-            <div className="flex gap-4 mt-4 justify-center overflow-x-auto max-w-[500px] mx-auto">
+            <div className="relative w-[820px] h-[800px]">
+              <div
+                ref={imageContainerRef}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className="w-full h-full bg-cover overflow-hidden transition-all duration-300"
+                style={{
+                  backgroundImage: `url(${selectedImage})`,
+                  backgroundSize: "120%",
+                  backgroundPosition: "center",
+                }}
+              />
+
+              <button
+                className="absolute bottom-8 right-8 flex items-center space-x-2 bg-white hover:text-white hover:bg-customBackground text-[#c49777] font-semibold py-3 px-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                onClick={() =>
+                  window.open(
+                    "https://www.youtube.com/watch?v=VQUqiKb7FAY",
+                    "_blank"
+                  )
+                }
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14.752 11.168l-4.586-2.664A1 1 0 009 9.305v5.39a1 1 0 001.166.987l4.586-2.664a1 1 0 000-1.74z"
+                  />
+                </svg>
+                <span>PLAY VIDEO</span>
+              </button>
+            </div>
+
+            <div className="flex gap-4 mt-4 justify-start flex-wrap max-w-[400px]">
               {product.images.slice(0, 4).map((img, index) => (
-                <img
+                <div
                   key={index}
-                  src={img}
-                  alt={`Thumbnail ${index}`}
-                  className={`w-36 h-34 object-cover  cursor-pointer  ${
-                    selectedImage === img ? "border-black" : "border-gray-300"
+                  className={`relative w-36 h-36 cursor-pointer border-2 overflow-hidden ${
+                    selectedImage === img
+                      ? "hover:border-customBackground"
+                      : "border-gray-300"
                   }`}
                   onClick={() => setSelectedImage(img)}
-                  onMouseEnter={() =>
-                    product.hoverImages && product.hoverImages[index]
-                      ? setHoverImage(product.hoverImages[index])
-                      : null
-                  }
-                />
+                >
+                  <img
+                    src={img}
+                    alt={`Thumbnail ${index}`}
+                    className={`w-full h-full object-cover transition-opacity duration-300 ${
+                      hoverImage &&
+                      hoverImage === (product.hoverImages?.[index] || "")
+                        ? "opacity-0"
+                        : "opacity-100"
+                    }`}
+                  />
+
+                  {product.hoverImages?.[index] && (
+                    <img
+                      src={product.hoverImages[index]}
+                      alt={`Hover Thumbnail ${index}`}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+                        hoverImage === product.hoverImages[index]
+                          ? "opacity-100"
+                          : "opacity-0"
+                      }`}
+                      onMouseEnter={() =>
+                        setHoverImage(product.hoverImages[index])
+                      }
+                      onMouseLeave={() => setHoverImage(null)}
+                    />
+                  )}
+                </div>
               ))}
             </div>
           </div>
@@ -177,14 +243,28 @@ export default function ProductDetails() {
               </div>
 
               <div className="flex items-center space-x-4 mt-4 pl-10">
-                <div className="number-input-container border border-b-2">
+                <div className="flex border border-gray-300 rounded overflow-hidden">
                   <input
                     type="number"
                     value={quantity}
                     min={1}
-                    className="styled-number-input p-4 w-[80px]"
-                    onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+                    className="w-12 text-center text-lg outline-none border-r border-gray-300"
                   />
+
+                  <div className="flex flex-col">
+                    <button
+                      onClick={increment}
+                      className="px-3 h-6 border-b border-gray-300 text-gray-600 hover:text-customBackground"
+                    >
+                      ▲
+                    </button>
+                    <button
+                      onClick={decrement}
+                      className="px-3 h-6 text-gray-600 hover:text-customBackground"
+                    >
+                      ▼
+                    </button>
+                  </div>
                 </div>
 
                 <button className="w-[79%] bg-[#d1a682] hover:bg-detailbuttonbackground text-white py-4">
@@ -274,22 +354,28 @@ export default function ProductDetails() {
           <div className="border w-full mt-16"></div>
 
           <div className="mt-4 ">
-            <div className="flex space-x-10 mt-8 justify-center ">
-              {["description", "additional information", "review"].map(
-                (tab) => (
+            <div className="flex flex-col items-center space-y-2 mt-8">
+              <div className="flex space-x-10 justify-center">
+                {tabs.map((tab) => (
                   <button
                     key={tab}
-                    className={`text-[17px] font-semibold  ${
-                      selectedTab === tab
-                        ? "border-b-2 border-customBackground"
-                        : "text-gray-500"
+                    className={`relative text-[17px] font-semibold transition-colors duration-300 ${
+                      selectedTab === tab ? "text-black" : "text-gray-500"
                     }`}
                     onClick={() => setSelectedTab(tab)}
                   >
                     {tab.toUpperCase().replace("_", " ")}
+
+                    <span
+                      className={`absolute left-1/2 bottom-0 h-[2px] bg-customBackground transition-all duration-500 ease-in-out transform ${
+                        selectedTab === tab
+                          ? "w-full -translate-x-1/2"
+                          : "w-0 -translate-x-1/2"
+                      }`}
+                    />
                   </button>
-                )
-              )}
+                ))}
+              </div>
             </div>
             <div className="border mt-6"></div>
 
