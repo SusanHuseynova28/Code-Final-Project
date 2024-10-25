@@ -13,7 +13,7 @@ exports.createLatest = async (req, res) => {
 exports.getLatestById = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log('Received ID:', id); // Log the ID for debugging
+    console.log('Received ID:', id); 
 
     if (!id || id.length !== 24) {
       return res.status(400).json({ message: 'Invalid ID format.' });

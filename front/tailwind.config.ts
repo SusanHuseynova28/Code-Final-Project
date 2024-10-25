@@ -17,10 +17,7 @@ const config: Config = {
         texthovercolor:"#6d7178",
         hovercolor3:"#0006",
         detailbuttonbackground:"#e96d00",
-      },
-      fontFamily: {
-        sans: ['Graphik', 'sans-serif'],
-        serif: ['Merriweather', 'serif'],
+        texthovercolor1:"#a8a8a8"
       },
     },
   },
