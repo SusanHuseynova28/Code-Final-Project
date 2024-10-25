@@ -10,6 +10,7 @@ const {
 
 
 router.get('/', getAllLatest);
+router.get('/api/latest/:id', getLatestById);
 router.get('/:id', getLatestById);
 router.post('/', createLatest);
 router.put('/:id', updateLatest);

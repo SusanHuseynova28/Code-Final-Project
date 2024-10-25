@@ -15,10 +15,11 @@ const latestSchema = new mongoose.Schema({
     required: true,
   },
   dateAdded: {
-    type: String, // Tarixi mətn kimi saxlayırıq
+    type: String, 
     required: true,
     
   },
+  
 });
 
 module.exports = mongoose.model('Latest', latestSchema);

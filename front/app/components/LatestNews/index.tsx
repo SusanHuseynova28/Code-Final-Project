@@ -1,5 +1,7 @@
+"use client"
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useRouter } from "next/navigation";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -15,6 +17,8 @@ interface LatestNewsItem {
 
 const LatestNews: React.FC = () => {
   const [latestNews, setLatestNews] = useState<LatestNewsItem[]>([]);
+  const router = useRouter();
+
 
   const fetchLatestNews = async (): Promise<void> => {
     try {
@@ -22,13 +26,16 @@ const LatestNews: React.FC = () => {
       const data: LatestNewsItem[] = await response.json();
       setLatestNews(data);
     } catch (error) {
-      console.error("Məlumatları yükləmək mümkün olmadı:", error);
+      console.error("Failed to load news:", error);
     }
   };
 
   useEffect(() => {
     fetchLatestNews();
   }, []);
+  const handleCardClick = (id: string) => {
+    router.push(`/LatestNews/${id}`); // Pass the correct ID to the route
+  };
 
   return (
     <div className="max-w-8xl mx-auto p-6 md:p-10">
@@ -61,7 +68,8 @@ const LatestNews: React.FC = () => {
       >
         {latestNews.map((news) => (
           <SwiperSlide key={news._id}>
-            <div className="p-1 mt-4 md:mt-8">
+            <div className="p-1 mt-4 md:mt-8"
+            onClick={() => handleCardClick(news._id)}>
               <img
                 src={news.imageUrl}
                 alt={news.title}
