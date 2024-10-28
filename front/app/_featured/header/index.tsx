@@ -300,9 +300,9 @@ export default function Header() {
               </div>
             </div>
 
-            <div className="fixed top-34 left-0 w-full h-full hidden group-hover:flex bg-white z-10 pt-4">
+            <div className="fixed top-34 left-0 w-full  h-full hidden group-hover:flex bg-white z-50 pt-4 ">
               <div className="w-full h-full flex items-start justify-center">
-                <div className="grid grid-cols-6 gap-8 max-w-screen-lg mx-auto mt-4">
+                <div className="grid grid-cols-6  mx-44 w-full  mt-4 ">
                   <div>
                     <h3 className="text-lg font-semibold mb-2 mt-1 inline-block w-[200px] hover:text-customBackground  bg-opacity-50 bg-white py-1    after:content-[''] after:block after:w-1/4 after:border-b-[2px] after:border-[#cea384] after:mt-1">
                       SHOP LAYOUTS
@@ -770,18 +770,18 @@ export default function Header() {
             <div className="absolute left-0 dropdown-menu w-52 bg-white z-10 pt-2 shadow-lg">
               <ul>
                 <li className="relative about-item">
-                  <div className="flex justify-between text-sm items-center py-2 px-4 cursor-pointer">
+                  <div className="flex justify-between text-sm items-center py-2  px-4 cursor-pointer">
                     About
                     <GoChevronRight className="text-gray-500 cursor-pointer" />
                     <ul className="absolute top-0 left-full mt-3 text-sm about-submenu hidden bg-white border text-black shadow-lg p-2 w-44 z-20">
-                      <li className="py-2 px-4  cursor-pointer">
-                        <Link
-                          href="/about"
-                          className="text-black hover:text-customBackground"
-                        >
+                      <Link
+                        href="/about"
+                        className="text-black abouttext hover:text-customBackground"
+                      >
+                        <li className="py-2 px-4  cursor-pointer">
                           About Us #1
-                        </Link>
-                      </li>
+                        </li>
+                      </Link>
 
                       <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
                         About Us #2
@@ -802,7 +802,7 @@ export default function Header() {
                     <GoChevronRight className="text-gray-500 cursor-pointer" />
                     <ul className="absolute top-0 left-full text-sm contact-submenu hidden bg-white border text-black p-2 w-44 z-20">
                       <Link href="/contact">
-                        <li className="py-2 px-4 hover:text-customBackground cursor-pointer">
+                        <li className="py-2 px-4 contactext hover:text-customBackground cursor-pointer">
                           Contact Us #1
                         </li>
                       </Link>
@@ -815,12 +815,11 @@ export default function Header() {
                     </ul>
                   </div>
                 </li>
-
-                <li className="block hover:block-black py-2 px-4 text-sm cursor-pointer text-black">
-                  <Link href="/faq" className="text-black">
+                <Link href="/faq" className="text-black">
+                  <li className="block hover:block-black py-2 px-4 faqtext text-sm cursor-pointer text-black">
                     FAQ
-                  </Link>
-                </li>
+                  </li>
+                </Link>
               </ul>
             </div>
           </div>

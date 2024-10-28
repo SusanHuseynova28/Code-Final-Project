@@ -166,3 +166,43 @@ input[type="number"] {
 }
 
 
+.abouttext{
+  color: #000 !important;
+  
+}
+.abouttext:hover{
+   color:#cea384 !important;
+}
+
+.contactext{
+  color:#000 !important;
+}
+
+.contactext:hover{
+  color:#cea384 !important;
+}
+
+.faqtext{
+  color:#000 !important;
+
+}
+.faqtext:hover{
+  color:#cea384 !important;
+  
+}
+
+
+
+.swiper1 {
+  width: 70%;
+  height: auto;
+}
+
+.swiper-slide1 {
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100px;
+}
