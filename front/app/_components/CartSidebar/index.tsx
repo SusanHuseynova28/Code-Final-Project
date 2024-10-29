@@ -1,7 +1,12 @@
 import { AiOutlineClose } from "react-icons/ai";
 import Link from "next/link";
 
-export default function CartSidebar({ isOpen, toggleCart }) {
+interface CartSidebarProps {
+  isOpen: boolean;
+  toggleCart: () => void;
+}
+
+export default function CartSidebar({ isOpen, toggleCart }: CartSidebarProps) {
   return (
     <>
       <div>
