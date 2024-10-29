@@ -277,7 +277,7 @@ input[type="number"] {
   white-space: nowrap;
 }
 
-/* Swiper-in əsas stil sinifini özümüzə uyğun adla əvəz edirik */
+
 .custom-swiper {
   width: 100%;
   max-width: 1200px;
@@ -299,4 +299,34 @@ input[type="number"] {
 .custom-swiper .swiper-button-next,
 .custom-swiper .swiper-button-prev {
   color: #cea384; 
+}
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.3s ease-in-out;
+}
+
+.infinity-spinner {
+  font-size: 80px;
+  color: #000;
+  animation: spin 2s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
