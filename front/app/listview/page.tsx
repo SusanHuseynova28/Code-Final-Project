@@ -1,7 +1,7 @@
 "use client";
-import CategorySlider from "../components/CategorySlider";
+import CategorySlider from "../_components/CategorySlider";
 import Header from "../_featured/header";
-import ProductCardsList from "../components/ProductCardsList";
+import ProductCardsList from "../_components/ProductCardsList";
 
 export default function ListView() {
   return (

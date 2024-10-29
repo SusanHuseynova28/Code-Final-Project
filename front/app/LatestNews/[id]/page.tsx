@@ -7,7 +7,7 @@ import Footer from "@/app/_featured/footer";
 import { FaRegUser } from "react-icons/fa";
 import { GoClock } from "react-icons/go";
 import { TiMessage } from "react-icons/ti";
-import RelatedPostsLayout from "@/app/components/RelatedPost";
+import RelatedPostsLayout from "@/app/_components/RelatedPost";
 
 interface LatestNewsItem {
   _id: string;

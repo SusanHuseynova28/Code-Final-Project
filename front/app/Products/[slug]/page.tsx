@@ -9,7 +9,7 @@ import { SlPlane } from "react-icons/sl";
 import { FaTwitter } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaPinterestP } from "react-icons/fa";
-import RelatedProducts from "@/app/components/RelatedProducts";
+import RelatedProducts from "@/app/_components/RelatedProducts";
 
 interface Product {
   _id: string;

@@ -1,4 +1,3 @@
-// components/RelatedProducts.tsx
 import { FC, useState } from "react";
 import { FiShoppingBag, FiHeart } from "react-icons/fi";
 import { VscSearch } from "react-icons/vsc";

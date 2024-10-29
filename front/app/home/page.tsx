@@ -1,13 +1,13 @@
 "use client"
 import Footer from "../_featured/footer"
 import Header from "../_featured/header"
-import Swipper from "../components/SwipperCollection"
-import ProductCategories from "../components/ProductCategories"
-import BagCollection from "../components/BagCollection"
-import ReviewSlider from "../components/ReviewSlider"
-import ProductList from "../components/ProductList"
-import NewArrivals from "../components/NewArrivals"
-import LatestNews from "../components/LatestNews"
+import Swipper from "../_components/SwipperCollection"
+import ProductCategories from "../_components/ProductCategories"
+import BagCollection from "../_components/BagCollection"
+import ReviewSlider from "../_components/ReviewSlider"
+import ProductList from "../_components/ProductList"
+import NewArrivals from "../_components/NewArrivals"
+import LatestNews from "../_components/LatestNews"
 
 
 export default function Home() {
