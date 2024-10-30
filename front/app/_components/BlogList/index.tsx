@@ -2,57 +2,54 @@
 
 import Link from "next/link";
 import { IoChevronForward } from "react-icons/io5";
-const articles = [
-  {
-    id: 1,
-    title: "What First Trio Bag Eladnau?",
-    date: "May 14,2022",
-    image: "https://mikadu-store-demo.myshopify.com/cdn/shop/articles/blog6_1024x1024_9d699dfa-4024-4e22-b43d-f8a6c755621e_1024x1024.png?v=1653550925",
-    description:
-      "Nunc aliquet, justo non commodo congue, velit sem pulvinar enim, ac bibendum mi mi eget libero. Maecenas ac...",
-  },
-  {
-    id: 2,
-    title: "17 Beach Bags To Tote",
-    date: "May 14,2022",
-    image: "https://mikadu-store-demo.myshopify.com/cdn/shop/articles/blog3_1024x1024_104fe49f-f5c9-4912-96ff-43a392355842_1024x1024.png?v=1653550940",
-    description:
-      "In mattis scelerisque magna, ut tincidunt ex. Quisque nibh urna, pretium in tristique in, bibendum sed libero. Pellentesque...",
-  },
-  {
-    id: 3,
-    title: "Post Format Video Blogs",
-    date: "May 14,2022",
-    image: "https://mikadu-store-demo.myshopify.com/cdn/shop/articles/blog5_1024x1024_3375a735-6eb9-4d28-ac6d-ba5a1f529599_1024x1024.png?v=1653550963",
-    description:
-      "Nunc aliquet, justo non commodo congue, velit sem pulvinar enim, ac bibendum mi mi eget libero. Maecenas ac...",
-  },
-  {
-    id: 4,
-    title: "Traveling Solo is Awesome",
-    date: "May 14,2022",
-    image: "https://mikadu-store-demo.myshopify.com/cdn/shop/articles/Frame_4_1024x1024.jpg?v=1652685157",
-    description:
-      "In mattis scelerisque magna, ut tincidunt ex. Quisque nibh urna, pretium in tristique in, bibendum sed libero. Pellentesque...",
-  },
-  {
-    id: 5,
-    title: "A Beautiful Sunday Morning",
-    date: "May 14,2022",
-    image: "https://mikadu-store-demo.myshopify.com/cdn/shop/articles/Frame_5_1024x1024.jpg?v=1652685171",
-    description:
-      "In mattis scelerisque magna, ut tincidunt ex. Quisque nibh urna, pretium in tristique in, bibendum sed libero. Pellentesque...",
-  },
-  {
-    id: 6,
-    title: "Kitchen Inspired On Japanese",
-    date: "May 14,2022",
-    image: "https://mikadu-store-demo.myshopify.com/cdn/shop/articles/Frame_6_1024x1024.jpg?v=1652685186",
-    description:
-      "In mattis scelerisque magna, ut tincidunt ex. Quisque nibh urna, pretium in tristique in, bibendum sed libero. Pellentesque...",
-  },
-];
+import { useState, useEffect } from "react";
+
+// Define the Article type
+interface Article {
+  id: number;
+  title: string;
+  slug: string;
+  date: string;
+  image: string;
+  description: string;
+}
+
 export default function BlogList() {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const articlesPerPage = 6; // Show 6 articles on the first page
+
+  // Fetch articles from the backend
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/articles");
+        if (!response.ok) throw new Error("Failed to fetch articles");
+        const data: Article[] = await response.json();
+        setArticles(data);
+      } catch (error) {
+        console.error("Error fetching articles:", error);
+      }
+    };
+    fetchArticles();
+  }, []);
+
+  // Pagination logic: calculate which articles to display for the current page
+  const indexOfLastArticle = currentPage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticles = articles.slice(
+    indexOfFirstArticle,
+    indexOfLastArticle
+  );
+
+  const totalPages = Math.ceil(articles.length / articlesPerPage);
+
+  // Handle page change
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <>
       <div
@@ -224,36 +221,78 @@ export default function BlogList() {
             </div>
           </div>
         </aside>
-        <main>
-          <div className="container p-10 mt-6">
-            {articles.map((article) => (
+        <div className="flex">
+          <main className="container p-10 mt-6">
+            {currentArticles.map((article) => (
               <div
                 key={article.id}
                 className="flex flex-col lg:flex-row mb-8 border-b pb-4"
               >
                 <div className="lg:w-1/3">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="max-w-[500px] h-auto"
-                  />
+                  <Link href={`/news/${article.slug}`}>
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="max-w-[500px] h-auto"
+                    />
+                  </Link>
                 </div>
                 <div className="lg:w-2/3 lg:pl-44 mt-4 lg:mt-0 px-10">
-                <p className="text-xs text-customBackground">NEWS</p>
-               
-                  <h2 className="text-2xl font-[50px] mt-4 hover:text-customBackground">{article.title}</h2>
+                  <p className="text-xs text-customBackground">NEWS</p>
+                  <h2 className="text-2xl font-[50px] mt-4 hover:text-customBackground">
+                    {article.title}
+                  </h2>
                   <p className="text-hovercolor3 mt-2">{article.description}</p>
-                  <p className="text-sm text-hovercolor3 mt-2">{article.date}</p>
+                  <p className="text-sm text-hovercolor3 mt-2">
+                    {article.date}
+                  </p>
                   <div className="mt-4">
-                  <Link href="#" className="text-black mt-6 underline hover:text-customBackground font-semibold">
-                    Read more
-                  </Link>
+                    <Link href={`/news/${article.slug}`}>
+                      <span className="text-black underline hover:text-customBackground font-semibold">
+                        Read more
+                      </span>
+                    </Link>
                   </div>
                 </div>
               </div>
             ))}
-          </div>
-        </main>
+<div className="flex justify-center mt-20 space-x-2">
+  {/* Render the Chevron button as a 'Previous' button on Page 2 */}
+  {currentPage > 1 && (
+    <button
+      onClick={() => handlePageChange(currentPage - 1)}
+      className="px-4 py-2 border  bg-white text-gray-600"
+    >
+      <IoChevronForward className="rotate-180" /> {/* Rotates to act as a back arrow */}
+    </button>
+  )}
+
+  {Array.from({ length: totalPages }, (_, index) => (
+    <button
+      key={index + 1}
+      onClick={() => handlePageChange(index + 1)}
+      className={`px-4 py-2 border  ${
+        currentPage === index + 1
+          ? "bg-[#cea384] text-white"
+          : "bg-white text-gray-600"
+      }`}
+    >
+      {index + 1}
+    </button>
+  ))}
+
+  {currentPage < totalPages && (
+    <button
+      onClick={() => handlePageChange(currentPage + 1)}
+      className="px-3 py-2 border  bg-white text-gray-600"
+    >
+      <IoChevronForward />
+    </button>
+  )}
+</div>
+
+          </main>
+        </div>
       </div>
     </>
   );
