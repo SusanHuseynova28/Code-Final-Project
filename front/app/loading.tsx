@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import "./globals.css"; 
 
 const LoadingSpinner: React.FC = () => {
   return (
