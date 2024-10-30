@@ -43,7 +43,7 @@ export default function ProductList() {
   }, [category]);
 
   const handleCardClick = (id: string) => {
-    router.push(`/Products/${id}`);
+    router.push(`/products/${id}`);
   };
   
   const CustomBagIcon = ({ className }: { className?: string }) => (

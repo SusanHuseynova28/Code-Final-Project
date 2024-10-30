@@ -63,22 +63,33 @@ export default function NewArrivals() {
   }
 
   return (
-    <div className="new-arrivals-container container mx-auto px-10 py-24">
+    <div className="new-arrivals-container container mx-auto px-4 sm:px-6 lg:px-10 py-24">
       <div className="flex flex-col justify-center">
-        <h2 className="text-4xl font-semibold text-center">New Arrivals</h2>
-        <p className="text-hovercolor3 text-center mt-4">
+        <h2 className="text-3xl sm:text-4xl font-semibold text-center">
+          New Arrivals
+        </h2>
+        <p className="text-hovercolor3 text-center mt-2 sm:mt-4">
           Treat yourself to some of our best-selling superstars.
         </p>
       </div>
       <Swiper
         spaceBetween={15}
-        slidesPerView={3}
+        slidesPerView={1}
+   
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
         slidesPerGroup={3}
         navigation
         modules={[Navigation]}
         speed={1000}
         loop={true}
-        className="w-full"
+        className="w-full mt-8"
       >
         {products.map((product) => (
           <SwiperSlide key={product.id || product.name}>
@@ -92,10 +103,10 @@ export default function NewArrivals() {
 
 function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="group relative overflow-hidden mt-16 mx-2">
-      <div className="relative w-full h-[450px] overflow-hidden">
+    <div className="group relative overflow-hidden mt-8 mx-2">
+      <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] overflow-hidden">
         {product.isOnSale && (
-          <span className="absolute top-4 left-3 sm:left-16 bg-custombutton text-white text-xs px-2 py-1 z-20">
+          <span className="absolute top-2 sm:top-4 left-2 sm:left-3 bg-custombutton text-white text-xs px-2 py-1 z-20">
             SALE
           </span>
         )}
@@ -111,25 +122,25 @@ function ProductCard({ product }: { product: Product }) {
         />
       </div>
 
-      <div className="absolute flex items-center justify-center gap-4 opacity-0 top-[62%] left-1/2 -translate-x-1/2 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
-        <button className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center shadow-md">
+      <div className="absolute flex items-center justify-center gap-2 sm:gap-4 opacity-0 top-[60%] left-1/2 -translate-x-1/2 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
+        <button className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center shadow-md">
           <CustomBagIcon className="text-black hover:text-white transition-colors duration-300" />
         </button>
 
-        <button className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center shadow-md">
-          <LiaSearchSolid className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
+        <button className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center shadow-md">
+          <LiaSearchSolid className="w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 text-black hover:text-white transition-colors duration-300" />
         </button>
 
-        <button className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center shadow-md">
-          <AiOutlineHeart className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
+        <button className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center shadow-md">
+          <AiOutlineHeart className="w-4 sm:w-5 md:w-6 h-4 sm:h-5 md:h-6 text-black hover:text-white transition-colors duration-300" />
         </button>
       </div>
 
-      <div className="p-4 sm:p-6 border">
-        <h2 className="text-sm font-semibold mb-2 text-center hover:text-customBackground cursor-pointer">
+      <div className="p-2 sm:p-4 md:p-6 border">
+        <h2 className="text-sm sm:text-base font-semibold mb-2 text-center hover:text-customBackground cursor-pointer">
           {product.name}
         </h2>
-        <div className="flex justify-center gap-3">
+        <div className="flex justify-center gap-2 sm:gap-3">
           <p
             className={`${
               product.isOnSale ? "text-red-500" : "text-black font-semibold"

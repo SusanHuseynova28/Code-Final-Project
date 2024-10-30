@@ -231,7 +231,7 @@ export default function Header() {
               </div>
             </div>
 
-            <div className="absolute left-[-210px] top-full pt-6 w-[1000px] h-[620px] hidden group-hover:grid grid-cols-3 gap-4 p-4 bg-white shadow-lg z-50 overflow-hidden">
+            <div className="absolute left-[-210px] text-sm top-full pt-6 w-[1000px] h-[620px] hidden group-hover:grid grid-cols-3 gap-4 p-4 bg-white shadow-lg z-50 overflow-hidden">
               <div className="relative">
                 <Link href="/">
                   <img
@@ -1073,23 +1073,46 @@ export default function Header() {
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out bg-white`}
       >
-        <nav className="flex flex-col items-start  space-y-6 h-full text-gray-700 w-64 p-10">
-          <Link href="/" className="text-lg">
-            HOME
+        <div className="flex items-center justify-between bg-black text-white py-4 px-6">
+          <div className="flex items-center space-x-2">
+            <button onClick={toggleMobileMenu}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+            <span>MENU</span>
+          </div>
+        </div>
+
+        <nav className="flex flex-col items-start w-full h-[calc(100%-64px)] p-4 space-y-6 text-lg text-gray-700">
+          <Link href="/" className="flex justify-between w-full">
+            HOME <span>&#8250;</span>
           </Link>
-          <Link href="/shop" className="text-lg">
-            SHOP
+          <Link href="/shop" className="flex justify-between w-full">
+            SHOP <span>&#8250;</span>
           </Link>
-          <Link href="/featured" className="text-lg">
-            FEATURED
+          <Link href="/featured" className="flex justify-between w-full">
+            FEATURED <span>&#8250;</span>
           </Link>
-          <Link href="/blog" className="text-lg">
-            BLOG
+          <Link href="/blog" className="flex justify-between w-full">
+            BLOG <span>&#8250;</span>
           </Link>
-          <Link href="/pages" className="text-lg">
-            PAGES
+          <Link href="/pages" className="flex justify-between w-full">
+            PAGES <span>&#8250;</span>
           </Link>
         </nav>
+
         <div className="absolute bottom-0 w-full bg-[#cea384] py-4 text-center text-white">
           <button onClick={toggleMobileMenu}>CLOSE</button>
         </div>

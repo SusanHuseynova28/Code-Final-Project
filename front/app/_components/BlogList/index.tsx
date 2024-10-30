@@ -4,7 +4,6 @@ import Link from "next/link";
 import { IoChevronForward } from "react-icons/io5";
 import { useState, useEffect } from "react";
 
-// Define the Article type
 interface Article {
   id: number;
   title: string;
@@ -18,9 +17,8 @@ export default function BlogList() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const articlesPerPage = 6; // Show 6 articles on the first page
+  const articlesPerPage = 6;
 
-  // Fetch articles from the backend
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -35,7 +33,6 @@ export default function BlogList() {
     fetchArticles();
   }, []);
 
-  // Pagination logic: calculate which articles to display for the current page
   const indexOfLastArticle = currentPage * articlesPerPage;
   const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
   const currentArticles = articles.slice(
@@ -45,7 +42,6 @@ export default function BlogList() {
 
   const totalPages = Math.ceil(articles.length / articlesPerPage);
 
-  // Handle page change
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
@@ -256,41 +252,39 @@ export default function BlogList() {
                 </div>
               </div>
             ))}
-<div className="flex justify-center mt-20 space-x-2">
-  {/* Render the Chevron button as a 'Previous' button on Page 2 */}
-  {currentPage > 1 && (
-    <button
-      onClick={() => handlePageChange(currentPage - 1)}
-      className="px-4 py-2 border  bg-white text-gray-600"
-    >
-      <IoChevronForward className="rotate-180" /> {/* Rotates to act as a back arrow */}
-    </button>
-  )}
+            <div className="flex justify-center mt-20 space-x-2">
+              {currentPage > 1 && (
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  className="px-4 py-2 border  bg-white text-gray-600"
+                >
+                  <IoChevronForward className="rotate-180" />
+                </button>
+              )}
 
-  {Array.from({ length: totalPages }, (_, index) => (
-    <button
-      key={index + 1}
-      onClick={() => handlePageChange(index + 1)}
-      className={`px-4 py-2 border  ${
-        currentPage === index + 1
-          ? "bg-[#cea384] text-white"
-          : "bg-white text-gray-600"
-      }`}
-    >
-      {index + 1}
-    </button>
-  ))}
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index + 1}
+                  onClick={() => handlePageChange(index + 1)}
+                  className={`px-4 py-2 border  ${
+                    currentPage === index + 1
+                      ? "bg-[#cea384] text-white"
+                      : "bg-white text-gray-600"
+                  }`}
+                >
+                  {index + 1}
+                </button>
+              ))}
 
-  {currentPage < totalPages && (
-    <button
-      onClick={() => handlePageChange(currentPage + 1)}
-      className="px-3 py-2 border  bg-white text-gray-600"
-    >
-      <IoChevronForward />
-    </button>
-  )}
-</div>
-
+              {currentPage < totalPages && (
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className="px-3 py-2 border  bg-white text-gray-600"
+                >
+                  <IoChevronForward />
+                </button>
+              )}
+            </div>
           </main>
         </div>
       </div>

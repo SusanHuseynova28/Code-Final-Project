@@ -34,7 +34,7 @@ const LatestNews: React.FC = () => {
     fetchLatestNews();
   }, []);
   const handleCardClick = (id: string) => {
-    router.push(`/LatestNews/${id}`); 
+    router.push(`/latestnews/${id}`); 
   };
 
   return (

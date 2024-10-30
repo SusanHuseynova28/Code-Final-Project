@@ -22,10 +22,10 @@ interface Article {
 
 export default function BlogDetail() {
   const [article, setArticle] = useState<Article | null>(null);
-  const { slug } = useParams(); // Get the slug from the URL
+  const { slug } = useParams();
 
   useEffect(() => {
-    if (!slug) return; // Don't fetch if slug is not available
+    if (!slug) return; 
 
     const fetchArticle = async () => {
       try {

@@ -82,7 +82,7 @@ export default function ReviewSlider() {
                     className="w-14 h-14 sm:w-16 sm:h-16 rounded-full"
                   />
                 </div>
-                <span className="text-md sm:text-lg font-medium mt-3 sm:mt-4">
+                <span className="text-xs sm:text-sm font-medium mt-3 sm:mt-4">
                   {review.name}
                 </span>
               </div>
