@@ -13,15 +13,15 @@ export default function ContactUs() {
       }}
     >
       <div className="py-10">
-        <h2 className="text-[45px] font-[40px] text-white mt-24">
+        <h2 className="text-[45px] font-[40px] text-white mt-24 md:text-[45px] lg:text-[45px]">
           Contact Us #1
         </h2>
-        <div className="bread-crumb text-white text-lg flex items-center gap-1 justify-center">
+        <div className="bread-crumb text-white mt-2 text-lg md:text-md flex items-center gap-1 justify-center">
           <Link href="/" passHref legacyBehavior>
             <a className="hover:text-customBackground">Home</a>
           </Link>
           <IoChevronForward className="text-white" />
-          <strong>Contact Us #1</strong>
+         <p>Contact Us #1</p>
         </div>
       </div>
     </div>

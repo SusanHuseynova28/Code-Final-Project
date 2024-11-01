@@ -433,7 +433,7 @@ export default function ProductDetails() {
                         <ul className=" text-hovercolor3 mt-6 flex flex-col gap-2">
                           <li>You show me what is deep as sea</li>
                           <li>Crew neck</li>
-                          <li>Short sleeves</li>
+                          <li>Short sleeeves</li>
                           <li>Large logo print to chest</li>
                           <li>Regular fit</li>
                           <li>True size</li>

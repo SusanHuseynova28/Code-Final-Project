@@ -15,7 +15,7 @@ export default function ContactForm() {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium  text-gray-700"
+              className="block text-sm font-medium text-gray-700"
             >
               Name<span className="text-red-500">*</span>
             </label>
@@ -23,7 +23,7 @@ export default function ContactForm() {
               type="text"
               id="name"
               name="name"
-              className="mt-4 block w-full border  focus:outline-none border-gray-300   px-4 py-4"
+              className="mt-4 block w-full border focus:outline-none border-gray-300 px-4 py-4"
               required
             />
           </div>
@@ -31,7 +31,7 @@ export default function ContactForm() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium focus:outline-none text-gray-700"
+              className="block text-sm font-medium text-gray-700"
             >
               Email Address<span className="text-red-500">*</span>
             </label>
@@ -56,7 +56,7 @@ export default function ContactForm() {
             id="message"
             name="message"
             rows={6}
-            className="mt-4 block w-[100%] border focus:outline-none border-gray-300   px-4 py-20"
+            className="mt-4 block w-full border focus:outline-none border-gray-300 px-4 py-12"
             required
           ></textarea>
         </div>
@@ -64,7 +64,7 @@ export default function ContactForm() {
         <div className="text-center">
           <button
             type="submit"
-            className="px-16 py-4 text-white bg-black hover:bg-customBackground  transition"
+            className="px-16 py-4 text-white bg-black hover:bg-customBackground transition"
           >
             SUBMIT
           </button>

@@ -24,7 +24,7 @@ export default function InstagramSlider() {
       <Swiper
         modules={[Navigation, Autoplay]}
         spaceBetween={0}
-        slidesPerView={5}
+        slidesPerView={1} // Mobil görünüş üçün 1 şəkil
         navigation={{
           nextEl: ".instagram-swiper-button-next",
           prevEl: ".instagram-swiper-button-prev",
@@ -32,6 +32,17 @@ export default function InstagramSlider() {
         autoplay={{
           delay: 4000,
           disableOnInteraction: false,
+        }}
+        breakpoints={{
+          640: {
+            slidesPerView: 2, // 640px-dən yuxarı 2 şəkil
+          },
+          768: {
+            slidesPerView: 3, // 768px-dən yuxarı 3 şəkil
+          },
+          1024: {
+            slidesPerView: 5, // 1024px-dən yuxarı 5 şəkil
+          },
         }}
         className="instagram-swiper w-full h-auto"
       >
@@ -53,13 +64,13 @@ export default function InstagramSlider() {
         ))}
       </Swiper>
 
-      <div className="center-text">
+      <div className="center-text text-center mt-4">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
           alt="Instagram"
-          className="w-6 h-6"
+          className="w-6 h-6 inline-block"
         />
-        Follow Us On Instagram
+        <span>Follow Us On Instagram</span>
       </div>
 
       <div className="instagram-swiper-button-next chevron-btn">

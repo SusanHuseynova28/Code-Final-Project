@@ -291,7 +291,7 @@ export default function BlogDetail() {
       </div>
      
     </div>
-    <div className="border w-full w-[95%] mx-auto"></div>
+    <div className="border  w-[95%] mx-auto"></div>
     <RelatedPostsLayout/>
     <Footer />
   </>

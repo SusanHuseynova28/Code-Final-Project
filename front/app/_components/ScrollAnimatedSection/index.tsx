@@ -10,11 +10,11 @@ export default function ScrollAnimatedSection() {
         backgroundAttachment: "fixed",
       }}
     >
-      <div className="container mx-44 grid md:grid-cols-3 ">
+      <div className="container mx-4 md:mx-44 grid grid-cols-1 md:grid-cols-3">
         <div className="text-center">
           <div className="flex justify-center ">
             <span className="w-20 h-20 mt-6">
-              <svg
+            <svg
                 xmlns="http://www.w3.org/2000/svg"
                 id="Capa_1"
                 x="0px"
@@ -50,9 +50,9 @@ export default function ScrollAnimatedSection() {
               </svg>
             </span>
           </div>
-          <h4 className="text-2xl mt-10 text-white ">Design</h4>
+          <h4 className="text-2xl mt-10 text-white">Design</h4>
           <div className="w-[65px] h-[1px] bg-white mx-auto mt-5"></div>
-          <p className="text-white w-[400px] mt-4 pl-4">
+          <p className="text-white w-[400px] mt-4 pl-4 mx-auto">
             Praesent metus tellus, elementum eu, semper Vestibulum volutpat
             pretium libero
           </p>
@@ -66,7 +66,7 @@ export default function ScrollAnimatedSection() {
                 height="512"
                 viewBox="0 0 60 60"
                 width="512"
-                className="w-[100px] h-[120px] "
+                className="w-[100px] h-[120px]"
                 fill="white"
               >
                 <path
@@ -76,9 +76,9 @@ export default function ScrollAnimatedSection() {
               </svg>
             </span>
           </div>
-          <h4 className="text-2xl  text-white mb-4">Inovation</h4>
+          <h4 className="text-2xl text-white mb-4">Inovation</h4>
           <div className="w-[65px] h-[1px] bg-white mx-auto mt-4"></div>
-          <p className="text-white  w-[400px] mt-4 pl-2">
+          <p className="text-white w-[400px] mt-4 pl-2 mx-auto">
             Praesent metus tellus, elementum eu, semper Vestibulum volutpat
             pretium libero
           </p>
@@ -93,7 +93,7 @@ export default function ScrollAnimatedSection() {
                 height="512"
                 viewBox="0 0 512 512"
                 width="512"
-                className="w-[100px] h-[120px] "
+                className="w-[100px] h-[120px]"
                 fill="white"
               >
                 <g>
@@ -106,10 +106,10 @@ export default function ScrollAnimatedSection() {
             </span>
           </div>
 
-          <h4 className="text-2xl  text-white mt-28 pl-14">Journey</h4>
+          <h4 className="text-2xl text-white mt-28 pl-14">Journey</h4>
           <div className="w-[65px] h-[1px] bg-white mt-4 mx-48"></div>
 
-          <p className="text-white w-[410px] mt-4 pl-14">
+          <p className="text-white w-[410px] mt-4 pl-14 mx-auto">
             Praesent metus tellus, elementum eu, semper Vestibulum volutpat
             pretium libero
           </p>

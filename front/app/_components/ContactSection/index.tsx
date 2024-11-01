@@ -8,10 +8,10 @@ import { TfiYoutube } from "react-icons/tfi";
 
 export default function ContactSection() {
   return (
-    <div className="flex flex-col lg:flex-row justify-between px-44 mt-16 lg:space-y-0">
-      <div className="w-full lg:w-1/2 p-24 bg-[whitesmoke]">
+    <div className="flex flex-col lg:flex-row justify-between px-4 lg:px-44 mt-16 lg:space-y-0">
+      <div className="w-full lg:w-1/2 p-6 lg:p-24 bg-[whitesmoke]">
         <div>
-          <h2 className="text-xl  tracking-wide">Contact Information</h2>
+          <h2 className="text-xl tracking-wide">Contact Information</h2>
           <hr className="border-t border-customBackground w-16 mt-6" />
         </div>
 
@@ -28,17 +28,17 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="text-4xl font-[40px] mt-20 underline  transition">
+        <div className="text-4xl font-[40px] mt-20 underline transition">
           help@example.com
         </div>
 
         <div>
           <h3 className="text-lg font-[40px] tracking-wide mt-14">Follow Us</h3>
-          <hr className="border-t border-customBackground w-16 mt-6 " />
+          <hr className="border-t border-customBackground w-16 mt-6" />
 
           <div className="flex space-x-4 mt-6">
             <Link href="#" passHref>
-              <div className="p-2 border border-black hover:border-customBackground hover:bg-customBackground rounded-full  transition">
+              <div className="p-2 border border-black hover:border-customBackground hover:bg-customBackground rounded-full transition">
                 <svg
                   width="24"
                   height="24"
@@ -52,20 +52,20 @@ export default function ContactSection() {
 
             <Link href="#" passHref>
               <div className="p-3 border rounded-full border-black hover:border-customBackground hover:bg-customBackground transition">
-                <div className="hover:text-white ">
+                <div className="hover:text-white">
                   <IoLogoInstagram />
                 </div>
               </div>
             </Link>
 
             <Link href="#" passHref>
-              <div className="p-3 border rounded-full border-black hover:border-customBackground hover:bg-customBackground  transition">
+              <div className="p-3 border rounded-full border-black hover:border-customBackground hover:bg-customBackground transition">
                 <FaFacebookF className="hover:text-white" />
               </div>
             </Link>
 
             <Link href="#" passHref>
-              <div className="p-3 border rounded-full border-black hover:border-customBackground hover:bg-customBackground  transition">
+              <div className="p-3 border rounded-full border-black hover:border-customBackground hover:bg-customBackground transition">
                 <TfiYoutube className="hover:text-white" />
               </div>
             </Link>
@@ -77,7 +77,7 @@ export default function ContactSection() {
         <img
           src="https://mikadu-store-demo.myshopify.com/cdn/shop/files/map_1.jpg?v=1652773798"
           alt="Map Image"
-          className="w-[550px] h-auto object-cover"
+          className="w-full h-auto object-cover"
         />
       </div>
     </div>

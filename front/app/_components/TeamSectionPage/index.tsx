@@ -44,11 +44,11 @@ const teamMembers: TeamMember[] = [
 
 export default function TeamSectionPage() {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center py-12">
-      <h2 className="text-5xl mt-10 font-[70px]">Behind The Brands</h2>
-      <p className="text-[16px] text-center max-w-[1180px] mt-6">
+    <div className="min-h-screen bg-white flex flex-col items-center py-12 px-4 lg:px-0">
+      <h2 className="text-3xl lg:text-5xl font-[40px] mt-10 text-center">Behind The Brands</h2>
+      <p className="text-[16px] text-center max-w-[90%] lg:max-w-[1180px] mt-6">
         We are a female-founded, 100% woman-led team of collaborative dreamers
-        who value innovation, curiosity and free-thinking fearlessness in
+        who value innovation, curiosity, and free-thinking fearlessness in
         everything that we do. We take immeasurable pride in our work,
         intentionally stitching love into the very fiber and fabric of our
         designs. We are small, but we are a mighty group of talented individuals
@@ -62,12 +62,16 @@ export default function TeamSectionPage() {
           className="custom-swiper"
           modules={[Autoplay]}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
-          spaceBetween={5} // Aradakı məsafəni azaldır
-          slidesPerView={3}
+          spaceBetween={5}
+          slidesPerView={1}
           slidesPerGroup={1}
           centeredSlides={true}
           loop={true}
           initialSlide={2}
+          breakpoints={{
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
         >
           {teamMembers.map((member, index) => (
             <SwiperSlide key={index}>
@@ -82,8 +86,8 @@ export default function TeamSectionPage() {
 
 function ProfileCard({ member }: { member: TeamMember }) {
   return (
-    <div className="w-[350px] h-[470px] flex flex-col items-center"> 
-      <div className="relative w-full h-[400px] overflow-hidden group bg-gray-200">
+    <div className="w-full lg:w-[350px] h-[400px] lg:h-[470px] flex flex-col items-center mx-auto">
+      <div className="relative w-full h-[300px] lg:h-[400px] overflow-hidden group bg-gray-200">
         {member.image ? (
           <img
             src={member.image}
@@ -114,7 +118,7 @@ function ProfileCard({ member }: { member: TeamMember }) {
       </div>
 
       <div className="text-center mt-4">
-        <h3 className="text-xl font-[40px]">{member.name}</h3>
+        <h3 className="text-lg lg:text-xl font-semibold">{member.name}</h3>
         <p className="text-gray-500 mt-2">{member.role}</p>
       </div>
     </div>
@@ -123,7 +127,7 @@ function ProfileCard({ member }: { member: TeamMember }) {
 
 function IconWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-white p-3 hover:bg-customBackground transition-all duration-300">
+    <div className="bg-white p-2 lg:p-3 hover:bg-customBackground transition-all duration-300">
       <div className="hover:text-white text-gray-400">{children}</div>
     </div>
   );
