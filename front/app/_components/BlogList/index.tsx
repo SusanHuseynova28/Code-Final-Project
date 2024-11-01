@@ -200,7 +200,7 @@ export default function BlogList() {
                 {["Bag", "Handbag", "Leather Bag"].map((tag) => (
                   <button
                     key={tag}
-                    className="border border-gray-400 hover:text-white px-4 py-2 hover:bg-customBackground"
+                    className="border border-gray-200 text-sm hover:text-white px-6 py-2 hover:bg-customBackground"
                   >
                     {tag}
                   </button>

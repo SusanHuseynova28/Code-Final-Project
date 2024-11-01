@@ -19,15 +19,24 @@ const categories = [
 
 export default function CategorySlider() {
   const swiperRef = useRef<any>(null);
-  const [viewMode, setViewMode] = useState<"first" | "second">("first");
+  const [slidesPerView, setSlidesPerView] = useState(5);
 
   useEffect(() => {
-    if (swiperRef.current) {
-      console.log("Swiper is ready:", swiperRef.current);
-    }
-  }, []);
+    const updateSlidesPerView = () => {
+      if (window.innerWidth < 640) {
+        setSlidesPerView(1); // Mobil üçün
+      } else if (window.innerWidth < 1024) {
+        setSlidesPerView(2); // Tablet üçün
+      } else {
+        setSlidesPerView(5); // Desktop üçün
+      }
+    };
 
-  const slidesPerView = viewMode === "first" ? 5 : 2;
+    updateSlidesPerView();
+    window.addEventListener("resize", updateSlidesPerView);
+
+    return () => window.removeEventListener("resize", updateSlidesPerView);
+  }, []);
 
   return (
     <>
@@ -39,9 +48,9 @@ export default function CategorySlider() {
         }}
       >
         <div className="py-10">
-          <h2 className="text-[60px] font-semibold text-white mt-24">All</h2>
+          <h2 className="text-[60px] font-[50px] text-white mt-24">All</h2>
           <div className="bread-crumb text-white text-lg flex items-center gap-1 justify-center">
-            <Link href="/" title="Back to the frontpage">
+            <Link href="/" title="Back to the frontpage" className="hover:text-customBackground">
               Home
             </Link>
             <IoChevronForward className="text-white" />
@@ -52,7 +61,7 @@ export default function CategorySlider() {
 
       <div className="relative py-4 bg-gray-100">
         <button
-          className="absolute left-52 top-1/2 -translate-y-1/2 z-10 p-2"
+          className="absolute left-8 md:left-52 top-1/2 -translate-y-1/2 z-10 p-2"
           onClick={() => swiperRef.current?.slidePrev()}
         >
           <IoChevronBack size={20} />
@@ -77,7 +86,7 @@ export default function CategorySlider() {
         </Swiper>
 
         <button
-          className="absolute right-52 top-1/2 -translate-y-1/2 z-10 p-2"
+          className="absolute right-8 md:right-52 top-1/2 -translate-y-1/2 z-10 p-2"
           onClick={() => swiperRef.current?.slideNext()}
         >
           <IoChevronForward size={20} />

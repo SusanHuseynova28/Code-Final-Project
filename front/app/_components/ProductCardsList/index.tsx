@@ -148,21 +148,22 @@ export default function ProductCardsList() {
   return (
     <>
       <div className="p-8 w-full mx-6 mt-6">
-        <div className="flex justify-between items-center mb-8">
-          <button className="flex items-center px-6 py-2 hover:text-white hover:border-customBackground hover:bg-customBackground gap-2  border-black border-2 text-gray-600  transition">
-            <div className="">
+        <div className="flex flex-col sm:flex-row sm:justify-between items-center mb-8">
+          <button className="flex items-center px-6 py-2 hover:text-white hover:border-customBackground hover:bg-customBackground gap-2 border-black border-2 text-gray-600 transition">
+            <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="-4 0 393 393.99003"
                 width="393pt"
                 className="w-[20px] hover:text-white"
+                fill="currentColor"
               >
                 <path d="m368.3125 0h-351.261719c-6.195312-.0117188-11.875 3.449219-14.707031 8.960938-2.871094 5.585937-2.3671875 12.3125 1.300781 17.414062l128.6875 181.28125c.042969.0625.089844.121094.132813.183594 4.675781 6.3125 7.203125 13.957031 7.21875 21.816406v147.796875c-.027344 4.378906 1.691406 8.582031 4.777344 11.6875 3.085937 3.105469 7.28125 4.847656 11.65625 4.847656 2.226562 0 4.425781-.445312 6.480468-1.296875l72.3125-27.574218c6.480469-1.976563 10.78125-8.089844 10.78125-15.453126v-120.007812c.011719-7.855469 2.542969-15.503906 7.214844-21.816406.042969-.0625.089844-.121094.132812-.183594l128.683594-181.289062c3.667969-5.097657 4.171875-11.820313 1.300782-17.40625-2.832032-5.511719-8.511719-8.9726568-14.710938-8.960938zm-131.53125 195.992188c-7.1875 9.753906-11.074219 21.546874-11.097656 33.664062v117.578125l-66 25.164063v-142.742188c-.023438-12.117188-3.910156-23.910156-11.101563-33.664062l-124.933593-175.992188h338.070312zm0 0"></path>
               </svg>
             </div>
             <span>Filter</span>
           </button>
-          <div className="flex items-center pr-[23rem]">
+          <div className="flex items-center sm:pr-[23rem] mt-4 sm:mt-0">
             <div className="flex">
               <div className="text-hovercolor3 underline">Default sorting</div>
               <p className="mt-1">
@@ -172,17 +173,17 @@ export default function ProductCardsList() {
           </div>
         </div>
 
-        <div className="space-y-10 w-full pr-24 mt-14">
+        <div className="space-y-10 w-full pr-0 sm:pr-24 mt-14">
           {productCards.map((card) => (
             <div
               key={card.id}
-              className="flex items-start space-x-6 border-b pb-10"
+              className="flex flex-col sm:flex-row items-start space-y-6 sm:space-y-0 sm:space-x-6 border-b pb-10"
             >
-              <div className="relative">
+              <div className="relative w-full sm:w-auto">
                 <img
                   src={card.image}
                   alt={card.title}
-                  className="w-[450px] h-[450px] object-cover"
+                  className="w-full sm:w-[450px] h-[250px] sm:h-[450px] object-cover"
                 />
                 {card.oldPrice && (
                   <div className="absolute top-3 right-0 bg-custombutton text-white px-3 py-1 text-xs font-bold trapezoid">
@@ -191,8 +192,8 @@ export default function ProductCardsList() {
                 )}
               </div>
 
-              <div className="flex-1 pl-10">
-                <h3 className="text-2xl font-[25px] text-gray-800 hover:text-customBackground">
+              <div className="flex-1 pl-0 sm:pl-10">
+                <h3 className="text-lg sm:text-2xl font-[25px] text-gray-800 hover:text-customBackground">
                   {card.title}
                 </h3>
                 <div className="mt-4 flex items-center space-x-3">
@@ -201,19 +202,19 @@ export default function ProductCardsList() {
                       {card.oldPrice}
                     </span>
                   )}
-                  <span className="text-xl text-hovercolor3">{card.price}</span>
+                  <span className="text-lg sm:text-xl text-hovercolor3">
+                    {card.price}
+                  </span>
                 </div>
                 <p className="text-black mt-3 text-sm">{card.description}</p>
 
-                <div className="mt-6 flex space-x-4">
-                  <button className="w-10 text-2xl sm:w-12 h-10 sm:h-12 bg-white hover:bg-customBackground flex items-center justify-center shadow-md">
-                    <AiOutlineHeart className="text-black hover:text-white transition-colors duration-300" />
+                <div className="mt-6 flex justify-center sm:justify-start space-x-4">
+                  <button className="w-10 sm:w-12 h-10 sm:h-12 bg-white hover:bg-customBackground flex items-center justify-center shadow-md">
+                    <AiOutlineHeart className="text-black text-[23px] hover:text-white transition-colors duration-300" />
                   </button>
-
                   <button className="w-10 sm:w-12 h-10 sm:h-12 bg-white hover:bg-customBackground flex items-center justify-center shadow-md">
                     <CustomBagIcon className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
                   </button>
-
                   <button className="w-10 sm:w-12 h-10 sm:h-12 bg-white hover:bg-customBackground flex items-center justify-center shadow-md">
                     <IoSearchOutline className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
                   </button>
@@ -222,6 +223,7 @@ export default function ProductCardsList() {
             </div>
           ))}
         </div>
+
         <div className="flex justify-center mt-20 space-x-2">
           <button className="w-10 h-10 border bg-customBackground text-white">
             1

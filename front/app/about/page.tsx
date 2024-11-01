@@ -11,7 +11,7 @@ export default function AboutPage() {
     <div>
       <Header />
       <AboutUs/>
-      < ScrollAnimatedSection/>
+      <ScrollAnimatedSection/>
       <TeamSectionPage/>
       <Newsletter/>
       <InstagramSlider/>

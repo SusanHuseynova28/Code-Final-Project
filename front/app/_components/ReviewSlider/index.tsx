@@ -1,35 +1,38 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const reviews = [
   {
-    name: 'Jonh Mery',
+    name: "Jonh Mery",
     text: [
       '"Wonderful communication and your company even sent a generous',
-      'amount of samples to me, making my decision to spend...',
+      "amount of samples to me, making my decision to spend...",
     ],
-    title: 'Amazing Piece Of History',
-    image: 'https://mikadu-store-demo.myshopify.com/cdn/shop/files/avata1.jpg?v=1652514315',
+    title: "Amazing Piece Of History",
+    image:
+      "https://mikadu-store-demo.myshopify.com/cdn/shop/files/avata1.jpg?v=1652514315",
   },
   {
-    name: 'Annette Black',
+    name: "Annette Black",
     text: [
       '"Wonderful communication and your company even sent a generous',
-      'amount of samples to me, making my decision to spend...',
+      "amount of samples to me, making my decision to spend...",
     ],
-    title: 'Amazing Piece Of History',
-    image: 'https://mikadu-store-demo.myshopify.com/cdn/shop/files/avata2.jpg?v=1652514330',
+    title: "Amazing Piece Of History",
+    image:
+      "https://mikadu-store-demo.myshopify.com/cdn/shop/files/avata2.jpg?v=1652514330",
   },
   {
-    name: 'Alice Johnson',
+    name: "Alice Johnson",
     text: [
       '"Wonderful communication and your company even sent a generous',
-      'amount of samples to me, making my decision to spend...',
+      "amount of samples to me, making my decision to spend...",
     ],
-    title: 'Top-notch Service',
-    image: 'https://mikadu-store-demo.myshopify.com/cdn/shop/files/avata3.jpg?v=1652514347',
+    title: "Top-notch Service",
+    image:
+      "https://mikadu-store-demo.myshopify.com/cdn/shop/files/avata3.jpg?v=1652514347",
   },
 ];
 
@@ -41,7 +44,8 @@ export default function ReviewSlider() {
           Customer Reviews
         </h2>
         <p className="text-center text-texthovercolor mt-3 sm:mt-4 text-xs sm:text-sm">
-          Apparently we had reached a great height in the atmosphere, for the sky was a dead black and there a stars.
+          Apparently we had reached a great height in the atmosphere, for the
+          sky was a dead black and there a stars.
         </p>
       </div>
       <Swiper
@@ -50,7 +54,7 @@ export default function ReviewSlider() {
         modules={[Pagination]}
         breakpoints={{
           640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 }, 
+          768: { slidesPerView: 2 },
         }}
         pagination={{ clickable: true }}
         grabCursor={true}
@@ -61,14 +65,19 @@ export default function ReviewSlider() {
             <div className="flex flex-col justify-between p-8 sm:p-16 border bg-white mt-8 sm:mt-14 h-full min-h-[300px] sm:min-h-[380px]">
               <div>
                 <div className="flex justify-center">
-                  <span className="text-yellow-500 text-xl sm:text-2xl">★★★★★</span>
+                  <span className="text-yellow-500 text-xl sm:text-2xl">
+                    ★★★★★
+                  </span>
                 </div>
                 <h3 className="text-md sm:text-lg font-semibold text-center mt-2 sm:mt-4">
                   "{review.title}"
                 </h3>
                 <div className="text-center mt-3 sm:mt-4 space-y-1 sm:space-y-2 text-hovercolor3">
                   {review.text.map((paragraph, idx) => (
-                    <p key={idx} className="leading-relaxed text-sm sm:text-base">
+                    <p
+                      key={idx}
+                      className="leading-relaxed text-sm sm:text-base"
+                    >
                       {paragraph}
                     </p>
                   ))}
