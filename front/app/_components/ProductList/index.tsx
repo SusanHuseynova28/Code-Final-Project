@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 import { LiaSearchSolid } from "react-icons/lia";
 import Link from "next/link";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 
 interface Product {
   _id: string;
@@ -45,7 +45,18 @@ export default function ProductList() {
   const handleCardClick = (id: string) => {
     router.push(`/products/${id}`);
   };
-  
+  const handleHeartClick = async (product: Product) => {
+    try {
+      await fetch("http://localhost:3001/api/wishlist/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product),
+      });
+      console.log("Product added to wishlist");
+    } catch (error) {
+      console.error("Error adding to wishlist:", error);
+    }
+  };
   const CustomBagIcon = ({ className }: { className?: string }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +111,7 @@ export default function ProductList() {
           <div
             key={product._id}
             className="relative border overflow-hidden transition-shadow group"
-            onClick={() => handleCardClick(product._id)} 
+            onClick={() => handleCardClick(product._id)}
             onMouseEnter={(e) => {
               const img = e.currentTarget.querySelector(
                 "img"
@@ -127,15 +138,29 @@ export default function ProductList() {
               />
 
               <div className="absolute inset-0 flex items-end justify-center gap-2 sm:gap-4 pb-8 opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
-                <button className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center">
-                  <CustomBagIcon className="text-black hover:text-white transition-colors duration-300" />
-                </button>
-
-                <button className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center">
-                  <LiaSearchSolid className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
-                </button>
-
-                <button className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center">
+                <Link href="/">
+                  <button
+                    onClick={(e) => e.stopPropagation()}
+                    className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center"
+                  >
+                    <CustomBagIcon className="text-black hover:text-white transition-colors duration-300" />
+                  </button>
+                </Link>
+                <Link href="/">
+                  <button
+                    onClick={(e) => e.stopPropagation()}
+                    className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center"
+                  >
+                    <LiaSearchSolid className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
+                  </button>
+                </Link>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleHeartClick(product);
+                  }}
+                  className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center"
+                >
                   <AiOutlineHeart className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
                 </button>
               </div>

@@ -2,14 +2,19 @@ import Link from "next/link";
 import { FaFacebookF, FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
 import { GoChevronDown, GoChevronRight } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import CartSidebar from "@/app/_components/CartSidebar";
-
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  images: string[];
+}
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
@@ -21,6 +26,8 @@ export default function Header() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [wishlist, setWishlist] = useState<Product[]>([]);
+  const [showWishlistDropdown, setShowWishlistDropdown] = useState(false);
 
   const router = useRouter();
 
@@ -117,6 +124,23 @@ export default function Header() {
     }
   };
 
+  const fetchWishlist = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/wishlist?userId=user_id"
+      );
+      if (!response.ok) throw new Error("Error fetching wishlist");
+
+      const data: Product[] = await response.json();
+      setWishlist(data);
+    } catch (error) {
+      console.error("Error fetching wishlist:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchWishlist();
+  }, []);
   return (
     <>
       <div className="flex flex-col sm:flex-row justify-between items-center px-4 sm:px-10 py-2 mt-1 text-gray-500 text-sm">
@@ -1002,7 +1026,7 @@ export default function Header() {
               </div>
             )}
           </div>
-          <Link href="/wishlist" className="hover:text-gray-900">
+          <Link href="/wishlist" className="relative hover:text-gray-900">
             <svg
               width="24"
               height="24"
@@ -1017,6 +1041,12 @@ export default function Header() {
                 strokeLinejoin="round"
               />
             </svg>
+
+           {wishlist.length > 0 && (
+              <span className="absolute top-0 right-0 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                {wishlist.length}
+              </span>
+            )}
           </Link>
           <Link
             href="#"
