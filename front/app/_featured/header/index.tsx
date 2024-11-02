@@ -360,9 +360,11 @@ export default function Header() {
                       SHOP HEADING
                     </h3>
                     <ul className="space-y-2 text-customText pl-10 w-[300px] mt-4">
+                      <Link href="/admin">
                       <li className="hover:text-customBackground">
                         Heading Style 1
                       </li>
+                      </Link>
                       <li className="hover:text-customBackground">
                         Heading Style 2
                       </li>
@@ -1043,7 +1045,7 @@ export default function Header() {
             </svg>
 
            {wishlist.length > 0 && (
-              <span className="absolute top-0 right-0 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+              <span className="absolute top-3 left-2 w-5 h-5 bg-customBackground text-white text-xs rounded-full flex items-center justify-center">
                 {wishlist.length}
               </span>
             )}

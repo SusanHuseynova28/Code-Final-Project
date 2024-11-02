@@ -80,7 +80,7 @@ export default function WishlistPage() {
     <>
       <Header />
       <div className="container mx-auto py-10 px-4 sm:px-14">
-        <h1 className="text-3xl font-semibold text-center mb-8">My Wishlist</h1>
+        <h1 className="text-3xl  text-center mb-8">My Wishlist</h1>
 
         {isLoginModalOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
