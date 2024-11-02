@@ -15,7 +15,6 @@ const productSchema = new mongoose.Schema({
   hoverImage: { type: String, required: true }, 
   description: { type: String }, 
   stock: { type: Number, default: 0 },
-  isDeleted: { type: Boolean, default: false }
 });
 
 const Product = mongoose.model('Product', productSchema);

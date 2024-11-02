@@ -36,6 +36,7 @@ const upload = multer({
 router.get('/products', productController.getProductsByCategory);
 router.get('/products/:id', productController.getProductById);
 router.post('/products', upload.array('images', 5), productController.createProduct);
+router.post('/products/:id', productController.getProductById);
 router.delete('/products/:id', productController.deleteProduct);
 router.put('/products/:id', productController.updateProduct);
 router.post('/products', upload.array('images', 5), (req, res, next) => {
