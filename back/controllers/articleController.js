@@ -1,6 +1,6 @@
 const Article = require('../models/articleModels');
 
-// Get all articles
+
 exports.getArticles = async (req, res) => {
   try {
     const articles = await Article.find();
@@ -10,7 +10,7 @@ exports.getArticles = async (req, res) => {
   }
 };
 
-// Get an article by slug
+
 exports.getArticleBySlug = async (req, res) => {
   try {
     const { slug } = req.params;
@@ -26,7 +26,7 @@ exports.getArticleBySlug = async (req, res) => {
   }
 };
 
-// Add a new article
+
 exports.createArticle = async (req, res) => {
   try {
     const newArticle = new Article(req.body);
@@ -37,7 +37,7 @@ exports.createArticle = async (req, res) => {
   }
 };
 
-// Delete an article by ID
+
 exports.deleteArticle = async (req, res) => {
   try {
     const { id } = req.params;

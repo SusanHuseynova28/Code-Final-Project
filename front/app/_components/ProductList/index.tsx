@@ -4,6 +4,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { LiaSearchSolid } from "react-icons/lia";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import ProductModal from "../ProductModal";
 
 interface Product {
   _id: string;
@@ -21,6 +22,9 @@ export default function ProductList() {
   const [category, setCategory] = useState<
     "Featured" | "Latest" | "Bestseller"
   >("Featured");
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
@@ -42,9 +46,33 @@ export default function ProductList() {
     fetchProducts(category);
   }, [category]);
 
+  const fetchProductById = async (id: string) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`http://localhost:3001/api/products/${id}`);
+      const product = await response.json();
+      setSelectedProduct(product);
+      setIsModalOpen(true);
+
+      router.push(`/home?id=${id}`);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+
+    router.replace("/home");
+  };
+
   const handleCardClick = (id: string) => {
     router.push(`/products/${id}`);
   };
+
   const handleHeartClick = async (product: Product) => {
     try {
       await fetch("http://localhost:3001/api/wishlist/add", {
@@ -57,6 +85,7 @@ export default function ProductList() {
       console.error("Error adding to wishlist:", error);
     }
   };
+
   const CustomBagIcon = ({ className }: { className?: string }) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +135,7 @@ export default function ProductList() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mt-16">
         {products.map((product) => (
           <div
             key={product._id}
@@ -146,14 +175,15 @@ export default function ProductList() {
                     <CustomBagIcon className="text-black hover:text-white transition-colors duration-300" />
                   </button>
                 </Link>
-                <Link href="/">
-                  <button
-                    onClick={(e) => e.stopPropagation()}
-                    className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center"
-                  >
-                    <LiaSearchSolid className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
-                  </button>
-                </Link>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    fetchProductById(product._id);
+                  }}
+                  className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center"
+                >
+                  <LiaSearchSolid className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
+                </button>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -165,7 +195,6 @@ export default function ProductList() {
                 </button>
               </div>
             </div>
-
             <div className="p-4 sm:p-6">
               <h2 className="text-sm font-semibold mb-2 text-center hover:text-customBackground cursor-pointer">
                 <Link href={`/product/${product._id}`}>{product.name}</Link>
@@ -190,6 +219,20 @@ export default function ProductList() {
           </div>
         ))}
       </div>
+
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
+          Loading...
+        </div>
+      )}
+
+      {selectedProduct && isModalOpen && (
+        <ProductModal
+          product={selectedProduct}
+          isOpen={isModalOpen}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 }

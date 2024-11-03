@@ -23,7 +23,8 @@
     "react-swiper": "^0.1.5",
     "react-toastify": "^10.0.6",
     "sass": "^1.79.5",
-    "swiper": "^11.1.14"
+    "swiper": "^11.1.14",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@types/node": "^20",

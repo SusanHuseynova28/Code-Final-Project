@@ -9,6 +9,7 @@ const newArrivalRoutes = require('./routes/newarrivalRoutes');
 const latestRoutes = require('./routes/latestRoutes');
 const articleRoutes = require('./routes/articleRoutes');
 const wishlistRoutes = require("./routes/wishlistRoutes");
+const cardRoutes = require('./routes/cardRoutes');
 
 
 
@@ -35,6 +36,7 @@ app.use('/api/newarrivals', newArrivalRoutes);
 app.use('/api/latest', latestRoutes);
 app.use('/articles', articleRoutes);
 app.use("/api/wishlist", wishlistRoutes);
+app.use('/api/cards', cardRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

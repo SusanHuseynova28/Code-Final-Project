@@ -169,7 +169,7 @@ export default function AdminPanel() {
                     <button onClick={() => openModal("view", product)} className="text-gray-500">
                       <AiFillEye />
                     </button>
-                    <button onClick={() => openModal("edit", product)} className="text-blue-500">
+                    <button onClick={() => openModal("edit", product)} className="text-customBackground">
                       <AiFillEdit />
                     </button>
                     <button onClick={() => openModal("delete", product)} className="text-red-500">

@@ -5,7 +5,7 @@ const articleSchema = new mongoose.Schema({
   description: { type: String, required: true },
   image: { type: String, required: true },
   date: { type: String, required: true },
-  slug: { type: String, required: true, unique: true },  // New slug field
+  slug: { type: String, required: true, unique: true },  
 });
 
 const Article = mongoose.model('Article', articleSchema);
