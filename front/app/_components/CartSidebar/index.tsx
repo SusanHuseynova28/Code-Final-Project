@@ -1,12 +1,13 @@
+"use client";
+
 import { AiOutlineClose } from "react-icons/ai";
 import Link from "next/link";
+import { useCart } from "../CartContext";
+import { IoTrashOutline } from "react-icons/io5";
 
-interface CartSidebarProps {
-  isOpen: boolean;
-  toggleCart: () => void;
-}
+export default function CartSidebar() {
+  const { cartItems, isOpen, toggleCart, removeFromCart } = useCart();
 
-export default function CartSidebar({ isOpen, toggleCart }: CartSidebarProps) {
   return (
     <>
       <div>
@@ -38,19 +39,50 @@ export default function CartSidebar({ isOpen, toggleCart }: CartSidebarProps) {
 
             <div className="hidden sm:block h-6 w-[1px] bg-gray-300 mx-3"></div>
 
-            <span className="text-base font-semibold text-gray-800">0</span>
+            <span className="text-base font-semibold text-gray-800">
+              {cartItems.length}
+            </span>
           </div>
 
-          <div className="flex flex-col justify-center items-center py-10 sm:py-20 flex-grow">
-            <p className="text-black mt-20 sm:mt-32 text-center text-xl sm:text-2xl">
-              Your shopping bag is empty
-            </p>
-
-            <Link href="/drowerfilter" legacyBehavior>
-              <a className="bg-black mt-6 text-white uppercase hover:bg-[#cea384] hover:text-color tracking-widest text-sm py-4 sm:py-5 px-6 sm:px-8 font-semibold text-center">
-                Go to the shop
-              </a>
-            </Link>
+          <div className="p-4">
+            {cartItems.length === 0 ? (
+              <div className="flex flex-col justify-center items-center py-10 sm:py-20 flex-grow">
+                <p className="text-black mt-20 sm:mt-32 text-center text-xl sm:text-2xl">
+                  Your shopping bag is empty
+                </p>
+                <Link href="/drowerfilter" legacyBehavior>
+                  <a className="bg-black mt-6 text-white uppercase hover:bg-[#cea384] hover:text-color tracking-widest text-sm py-4 sm:py-5 px-6 sm:px-8 font-semibold text-center">
+                    Go to the shop
+                  </a>
+                </Link>
+              </div>
+            ) : (
+              <div>
+                {cartItems.map((item) => (
+                  <div
+                    key={item._id}
+                    className="flex items-center space-x-4 mb-4"
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-16 h-16 object-cover"
+                    />
+                    <div className="flex-1">
+                      <h3 className="">{item.name}</h3>
+                      <p>QTY: {item.quantity}</p>
+                      <p>${item.price.toFixed(2)}</p>
+                    </div>
+                    <button
+                      onClick={() => removeFromCart(item._id)}
+                      className="text-black mb-10"
+                    >
+                      <IoTrashOutline />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -24,11 +24,11 @@ export default function CategorySlider() {
   useEffect(() => {
     const updateSlidesPerView = () => {
       if (window.innerWidth < 640) {
-        setSlidesPerView(1); // Mobil üçün
+        setSlidesPerView(1); 
       } else if (window.innerWidth < 1024) {
-        setSlidesPerView(2); // Tablet üçün
+        setSlidesPerView(2); 
       } else {
-        setSlidesPerView(5); // Desktop üçün
+        setSlidesPerView(5); 
       }
     };
 

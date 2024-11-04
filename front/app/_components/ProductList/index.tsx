@@ -4,7 +4,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { LiaSearchSolid } from "react-icons/lia";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import ProductModal from "../ProductModal"; // Import the ProductModal component
+import ProductModal from "../ProductModal"; 
 
 interface Product {
   _id: string;

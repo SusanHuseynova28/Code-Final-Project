@@ -1,25 +1,26 @@
 import Link from "next/link";
-import { FaFacebookF, FaYoutube, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebookF, FaYoutube, FaInstagram, FaTwitter, FaEye, FaEyeSlash } from "react-icons/fa";
 import { GoChevronDown, GoChevronRight } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
 import { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import CartSidebar from "@/app/_components/CartSidebar";
+import { useCart } from "@/app/_components/CartContext";
+
 interface Product {
   _id: string;
   name: string;
   price: number;
   images: string[];
 }
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
   const [email, setEmail] = useState("");
@@ -27,8 +28,7 @@ export default function Header() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [wishlist, setWishlist] = useState<Product[]>([]);
-  const [showWishlistDropdown, setShowWishlistDropdown] = useState(false);
-
+  const { toggleCart, cartCount } = useCart();
   const router = useRouter();
 
   const toggleMobileMenu = () => {
@@ -41,10 +41,6 @@ export default function Header() {
 
   const toggleLanguageMenu = () => {
     setIsLanguageOpen(!isLanguageOpen);
-  };
-
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
   };
 
   const openLoginModal = () => {
@@ -91,7 +87,6 @@ export default function Header() {
       }
 
       localStorage.setItem("loggedInEmail", email);
-
       toast.success("Login successful!");
       router.push("/account");
     } catch (error) {
@@ -141,8 +136,10 @@ export default function Header() {
   useEffect(() => {
     fetchWishlist();
   }, []);
+
   return (
     <>
+    
       <div className="flex flex-col sm:flex-row justify-between items-center px-4 sm:px-10 py-2 mt-1 text-gray-500 text-sm">
         <div className="flex space-x-4 mb-4 sm:mb-0">
           <Link href="#" className="hover:text-customBackground">
@@ -1050,55 +1047,57 @@ export default function Header() {
               </span>
             )}
           </Link>
-          <Link
-            href="#"
-            onClick={toggleCart}
-            className="relative hover:text-gray-900"
+          <button
+          onClick={(e) => {
+            e.preventDefault();
+            toggleCart(); // toggleCart funksiyasını buradan çağırın
+          }}
+          className="relative hover:text-gray-900"
+        >
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              width="24"
-              height="24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001"
-                stroke="#30343A"
-                strokeWidth="1.5"
-                strokeMiterlimit="10"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M9.00007 22H15.0001C19.0201 22 19.7401 20.39 19.9501 18.43L20.7001 12.43C20.9701 9.99 20.2701 8 16.0001 8H8.00007C3.73007 8 3.03007 9.99 3.30007 12.43L4.05007 18.43C4.26007 20.39 4.98007 22 9.00007 22Z"
-                stroke="#30343A"
-                strokeWidth="1.5"
-                strokeMiterlimit="10"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M15.4955 12H15.5045"
-                stroke="#30343A"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M8.49451 12H8.50349"
-                stroke="#30343A"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="absolute -bottom-2 -right-2 bg-[#cea384] text-white text-xs px-2 py-1 rounded-full">
-              0
-            </span>
-          </Link>
-          <CartSidebar isOpen={isCartOpen} toggleCart={toggleCart} />
+            <path
+              d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001"
+              stroke="#30343A"
+              strokeWidth="1.5"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M9.00007 22H15.0001C19.0201 22 19.7401 20.39 19.9501 18.43L20.7001 12.43C20.9701 9.99 20.2701 8 16.0001 8H8.00007C3.73007 8 3.03007 9.99 3.30007 12.43L4.05007 18.43C4.26007 20.39 4.98007 22 9.00007 22Z"
+              stroke="#30343A"
+              strokeWidth="1.5"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M15.4955 12H15.5045"
+              stroke="#30343A"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M8.49451 12H8.50349"
+              stroke="#30343A"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span className="absolute -bottom-2 -right-2 bg-[#cea384] text-white text-xs px-2 py-1 rounded-full">
+            {cartCount} 
+          </span>
+        </button>
         </div>
       </header>
+      <CartSidebar />
 
       <div
         className={`lg:hidden fixed inset-0 z-50 transform ${
