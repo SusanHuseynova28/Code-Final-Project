@@ -158,14 +158,14 @@ export default function ProductDetails() {
               </button>
             </div>
 
-            <div className="flex gap-4 mt-4 justify-start flex-wrap max-w-[400px]">
+            <div className="flex gap-4 mt-4 justify-start max-w-[820px]">
               {product.images.slice(0, 4).map((img, index) => (
                 <div
                   key={index}
                   className={`relative w-36 h-36 cursor-pointer border-2 overflow-hidden ${
                     selectedImage === img
                       ? "hover:border-customBackground"
-                      : "border-gray-300"
+                      : "border-none"
                   }`}
                   onClick={() => setSelectedImage(img)}
                 >

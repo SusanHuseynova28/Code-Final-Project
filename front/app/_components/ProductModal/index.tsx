@@ -33,16 +33,19 @@ export default function ProductModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-80 flex  justify-center items-center z-50">
-      <div className="bg-white  max-w-3xl h-[520px] w-full flex">
-        <button onClick={onClose} className="absolute top-24 right-[22rem] text-4xl text-white hover:text-customBackground">
+    <div className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+      <div className="bg-white max-w-3xl h-[520px] w-full flex">
+        <button
+          onClick={onClose}
+          className="absolute top-24 right-[22rem] text-4xl text-white hover:text-customBackground"
+        >
           &times;
         </button>
 
         <div className="w-1/2 p-4">
           <img src={mainImage} alt={product.name} className="w-full h-auto" />
           <div className="flex mt-4 space-x-2">
-            {product.images.map((img, index) => (
+            {product.images.slice(0, 3).map((img, index) => (
               <img
                 key={index}
                 src={img}
@@ -66,8 +69,8 @@ export default function ProductModal({
             another...
           </p>
 
-          <div className="flex items-center space-x-4 mt-6 ">
-            <div className="flex border border-gray-300 p-1  overflow-hidden">
+          <div className="flex items-center space-x-4 mt-6">
+            <div className="flex border border-gray-300 p-1 overflow-hidden">
               <input
                 type="number"
                 value={quantity}
@@ -91,7 +94,7 @@ export default function ProductModal({
               </div>
             </div>
 
-            <button className="w-[60%] bg-[#d1a682]  text-white py-4 hover:bg-black">
+            <button className="w-[60%] bg-[#d1a682] text-white py-4 hover:bg-black">
               ADD TO CART
             </button>
           </div>
