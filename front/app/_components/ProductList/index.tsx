@@ -4,7 +4,9 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { LiaSearchSolid } from "react-icons/lia";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import ProductModal from "../ProductModal"; 
+import ProductModal from "../ProductModal";
+import CardModal from "../CartModal"; 
+
 
 interface Product {
   _id: string;
@@ -18,19 +20,21 @@ interface Product {
 }
 
 export default function ProductList() {
+ 
   const [products, setProducts] = useState<Product[]>([]);
   const [category, setCategory] = useState<"Featured" | "Latest" | "Bestseller">("Featured");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  
+  const [isCardModalOpen, setIsCardModalOpen] = useState(false);
+  const [selectedCardProduct, setSelectedCardProduct] = useState<Product | null>(null); 
+
   const router = useRouter();
+
 
   const fetchProducts = async (selectedCategory: string) => {
     try {
-      const response = await fetch(
-        `http://localhost:3001/api/products?category=${selectedCategory}`
-      );
+      const response = await fetch(`http://localhost:3001/api/products?category=${selectedCategory}`);
       if (!response.ok) throw new Error("Error fetching products");
 
       const data: Product[] = await response.json();
@@ -44,29 +48,31 @@ export default function ProductList() {
     fetchProducts(category);
   }, [category]);
 
+
   const fetchProductById = async (id: string) => {
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
       const response = await fetch(`http://localhost:3001/api/products/${id}`);
       const product = await response.json();
       setSelectedProduct(product);
-      setIsModalOpen(true); // Open modal after fetching product
-
-      // Update URL with the product ID as a query parameter
+      setIsModalOpen(true);
       router.push(`/home?id=${id}`);
     } catch (error) {
       console.error("Error fetching product:", error);
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
     }
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedProduct(null);
-
-    // Remove the product ID from the URL
     router.replace("/home");
+  };
+
+  const closeCardModal = () => {
+    setIsCardModalOpen(false);
+    setSelectedCardProduct(null); 
   };
 
   const handleCardClick = (id: string) => {
@@ -84,6 +90,12 @@ export default function ProductList() {
     } catch (error) {
       console.error("Error adding to wishlist:", error);
     }
+  };
+
+ 
+  const openCardModal = (product: Product) => {
+    setSelectedCardProduct(product); 
+    setIsCardModalOpen(true); 
   };
 
   const CustomBagIcon = ({ className }: { className?: string }) => (
@@ -104,10 +116,8 @@ export default function ProductList() {
   );
 
   return (
-<div className="container mx-auto py-10 px-4 sm:px-14">
-<h1 className="text-3xl font-semibold text-center mb-8">
-        Best Seller Products
-      </h1>
+    <div className="container mx-auto py-10 px-4 sm:px-14">
+      <h1 className="text-3xl font-semibold text-center mb-8">Best Seller Products</h1>
 
       <div className="flex flex-wrap justify-center space-x-4 sm:space-x-16 mb-8">
         {["Featured", "Latest", "Bestseller"].map((cat) => (
@@ -118,14 +128,12 @@ export default function ProductList() {
                 ? "text-[#cea384] after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1px] after:bg-[#cea384]"
                 : "text-gray-500 hover:text-customBackground"
             }`}
-            onClick={() =>
-              setCategory(cat as "Featured" | "Latest" | "Bestseller")
-            }
+            onClick={() => setCategory(cat as "Featured" | "Latest" | "Bestseller")}
           >
             <span className="relative inline-block pb-2">
               {cat}
               <span
-                className={`absolute bottom-0 left-0 h-[1px]  bg-gray-300 transition-transform duration-300 ${
+                className={`absolute bottom-0 left-0 h-[1px] bg-gray-300 transition-transform duration-300 ${
                   category === cat ? "scale-x-100" : "scale-x-100"
                 }`}
                 style={{ width: "100%" }}
@@ -134,103 +142,110 @@ export default function ProductList() {
           </button>
         ))}
       </div>
- 
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-      {products.map((product) => (
-        <div
-          key={product._id}
-          className="relative border overflow-hidden transition-shadow group"
-          onClick={() => handleCardClick(product._id)}
-          onMouseEnter={(e) => {
-            const img = e.currentTarget.querySelector("img") as HTMLImageElement;
-            if (img) img.src = product.hoverImage;
-          }}
-          onMouseLeave={(e) => {
-            const img = e.currentTarget.querySelector("img") as HTMLImageElement;
-            if (img) img.src = product.images[0];
-          }}
-        >
-          <div className="relative">
-            {product.isOnSale && (
-              <span className="absolute top-3 left-3 sm:left-16 bg-custombutton text-white text-xs px-2 py-1">
-                SALE
-              </span>
-            )}
-            <img
-              src={product.images[0]}
-              alt={product.name}
-              className="w-full h-64 sm:h-80 object-cover"
-            />
 
-            <div className="absolute inset-0 flex items-end justify-center gap-2 sm:gap-4 pb-8 opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
-              <Link href="/">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mt-16">
+        {products.map((product) => (
+          <div
+            key={product._id}
+            className="relative border overflow-hidden transition-shadow group"
+            onClick={() => handleCardClick(product._id)}
+            onMouseEnter={(e) => {
+              const img = e.currentTarget.querySelector("img") as HTMLImageElement;
+              if (img) img.src = product.hoverImage;
+            }}
+            onMouseLeave={(e) => {
+              const img = e.currentTarget.querySelector("img") as HTMLImageElement;
+              if (img) img.src = product.images[0];
+            }}
+          >
+            <div className="relative">
+              {product.isOnSale && (
+                <span className="absolute top-3 left-3 sm:left-16 bg-custombutton text-white text-xs px-2 py-1">
+                  SALE
+                </span>
+              )}
+              <img
+                src={product.images[0]}
+                alt={product.name}
+                className="w-full h-64 sm:h-80 object-cover"
+              />
+
+              <div className="absolute inset-0 flex items-end justify-center gap-2 sm:gap-4 pb-8 opacity-0 translate-y-10 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-in-out">
                 <button
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation(); 
+                    openCardModal(product); 
+                  }}
                   className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center"
                 >
                   <CustomBagIcon className="text-black hover:text-white transition-colors duration-300" />
                 </button>
-              </Link>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  fetchProductById(product._id); 
-                }}
-                className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center"
-              >
-                <LiaSearchSolid className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleHeartClick(product);
-                }}
-                className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center"
-              >
-                <AiOutlineHeart className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
-              </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    fetchProductById(product._id);
+                  }}
+                  className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center"
+                >
+                  <LiaSearchSolid className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleHeartClick(product);
+                  }}
+                  className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-white hover:bg-customBackground flex items-center justify-center"
+                >
+                  <AiOutlineHeart className="w-5 sm:w-6 h-5 sm:h-6 text-black hover:text-white transition-colors duration-300" />
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="p-4 sm:p-6">
-            <h2 className="text-sm font-semibold mb-2 text-center hover:text-customBackground cursor-pointer">
-              <Link href={`/product/${product._id}`}>{product.name}</Link>
-            </h2>
-            <div className="flex justify-center gap-3">
-              <p
-                className={`${
-                  product.isOnSale
-                    ? "text-red-500"
-                    : "text-black font-semibold"
-                } mb-1 text-center`}
-              >
-                ${product.price.toFixed(2)}
-              </p>
-              {product.isOnSale && product.salePrice && (
-                <p className="text-gray-400 line-through">
-                  ${product.salePrice.toFixed(2)}
+            <div className="p-4 sm:p-6">
+              <h2 className="text-sm font-semibold mb-2 text-center hover:text-customBackground cursor-pointer">
+                <Link href={`/product/${product._id}`}>{product.name}</Link>
+              </h2>
+              <div className="flex justify-center gap-3">
+                <p
+                  className={`${
+                    product.isOnSale
+                      ? "text-red-500"
+                      : "text-black font-semibold"
+                  } mb-1 text-center`}
+                >
+                  ${product.price.toFixed(2)}
                 </p>
-              )}
+                {product.isOnSale && product.salePrice && (
+                  <p className="text-gray-400 line-through">
+                    ${product.salePrice.toFixed(2)}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
-
-    
-    {loading && (
-      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
-        Loading...
+        ))}
       </div>
-    )}
 
-   
-    {selectedProduct && isModalOpen && (
-      <ProductModal
-        product={selectedProduct}
-        isOpen={isModalOpen}
-        onClose={closeModal}
-      />
-    )}
-  </div>
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white">
+          Loading...
+        </div>
+      )}
+
+      {selectedProduct && isModalOpen && (
+        <ProductModal
+          product={selectedProduct}
+          isOpen={isModalOpen}
+          onClose={closeModal}
+        />
+      )}
+
+      {selectedCardProduct && isCardModalOpen && (
+        <CardModal
+          item={selectedCardProduct} 
+          isOpen={isCardModalOpen}
+          onClose={closeCardModal}
+        />
+      )}
+    </div>
   );
 }

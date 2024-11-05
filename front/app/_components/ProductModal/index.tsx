@@ -45,11 +45,10 @@ export default function ProductModal({
     const loggedInEmail = localStorage.getItem("loggedInEmail");
 
     if (!loggedInEmail) {
-      setLoginModalOpen(true); // Open login modal if not logged in
+      setLoginModalOpen(true);
       return;
     }
 
-    // Add to cart if logged in
     addToCart({
       _id: product._id,
       name: product.name,
@@ -57,8 +56,8 @@ export default function ProductModal({
       quantity,
       image: product.images[0],
     });
-    toggleCart(); // Open cart sidebar
-    onClose(); // Close product modal
+    toggleCart();
+    onClose();
   };
 
   const handleLogin = async () => {
@@ -81,8 +80,8 @@ export default function ProductModal({
       }
 
       localStorage.setItem("loggedInEmail", email);
-      setLoginModalOpen(false); // Close login modal after successful login
-      handleAddToCart(); // Retry adding item to cart after login
+      setLoginModalOpen(false);
+      handleAddToCart();
     } catch (error) {
       console.error("Login error:", error);
       setError("An error occurred. Please try again.");
@@ -118,7 +117,9 @@ export default function ProductModal({
 
         <div className="w-1/2 p-4">
           <h2 className="text-xl font-semibold">{product.name}</h2>
-          <p className="text-md text-gray-700 mt-4">${product.price.toFixed(2)} USD</p>
+          <p className="text-md text-gray-700 mt-4">
+            ${product.price.toFixed(2)} USD
+          </p>
           <p className="border mt-6"></p>
           <p className="mt-4 text-black">
             Nullam sagittis. Vivamus laoreet. Vestibulum rutrum, mi nec
