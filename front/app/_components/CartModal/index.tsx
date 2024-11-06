@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
 import Link from "next/link";
-import axios from "axios";
+
 
 interface CardModalProps {
   item: {
@@ -18,21 +18,7 @@ export default function CardModal({ item, isOpen, onClose }: CardModalProps) {
   const quantity = 1;
   const [agreedToTerms, setAgreedToTerms] = useState(false);
 
-  const handleCheckout = async () => {
-    if (!agreedToTerms) return;
-
-    try {
-      const { data } = await axios.post("/api/checkout_sessions", {
-        items: [{ name: item.name, price: item.price, quantity }],
-      });
-
-      if (data.id) {
-        window.location.href = data.url; // Stripe ödəniş səhifəsinə yönləndir.
-      }
-    } catch (error) {
-      console.error("Checkout səhv baş verdi", error);
-    }
-  };
+ 
 
   if (!isOpen) return null;
 

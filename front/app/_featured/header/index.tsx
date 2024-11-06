@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { FaFacebookF, FaYoutube, FaInstagram, FaTwitter, FaEye, FaEyeSlash } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaYoutube,
+  FaInstagram,
+  FaTwitter,
+  FaEye,
+  FaEyeSlash,
+} from "react-icons/fa";
 import { GoChevronDown, GoChevronRight } from "react-icons/go";
 import { AiOutlineClose } from "react-icons/ai";
 import { useState, useEffect } from "react";
@@ -29,6 +36,7 @@ export default function Header() {
   const [error, setError] = useState("");
   const [wishlist, setWishlist] = useState<Product[]>([]);
   const { toggleCart, cartCount } = useCart();
+
   const router = useRouter();
 
   const toggleMobileMenu = () => {
@@ -139,7 +147,6 @@ export default function Header() {
 
   return (
     <>
-    
       <div className="flex flex-col sm:flex-row justify-between items-center px-4 sm:px-10 py-2 mt-1 text-gray-500 text-sm">
         <div className="flex space-x-4 mb-4 sm:mb-0">
           <Link href="#" className="hover:text-customBackground">
@@ -358,13 +365,15 @@ export default function Header() {
                     </h3>
                     <ul className="space-y-2 text-customText pl-10 w-[300px] mt-4">
                       <Link href="/admin">
-                      <li className="hover:text-customBackground">
-                        Heading Style 1
-                      </li>
+                        <li className="hover:text-customBackground">
+                          Heading Style 1
+                        </li>
                       </Link>
-                      <li className="hover:text-customBackground">
+                      <Link href="/order">
+                      <li className="hover:text-customBackground mt-2">
                         Heading Style 2
                       </li>
+                      </Link>
                       <li className="hover:text-customBackground">
                         Heading Style 3
                       </li>
@@ -674,9 +683,11 @@ export default function Header() {
                           Blog List
                         </li>
                       </Link>
+
                       <li className="relative text-customText hover:text-customBackground">
                         Blog Grid
                       </li>
+
                       <li className="relative text-customText hover:text-customBackground">
                         Blog Masonry
                       </li>
@@ -1041,60 +1052,60 @@ export default function Header() {
               />
             </svg>
 
-           {wishlist.length > 0 && (
+            {wishlist.length > 0 && (
               <span className="absolute top-3 left-2 w-5 h-5 bg-customBackground text-white text-xs rounded-full flex items-center justify-center">
                 {wishlist.length}
               </span>
             )}
           </Link>
           <button
-          onClick={(e) => {
-            e.preventDefault();
-            toggleCart(); // toggleCart funksiyasını buradan çağırın
-          }}
-          className="relative hover:text-gray-900"
-        >
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+            onClick={(e) => {
+              e.preventDefault();
+              toggleCart(); 
+            }}
+            className="relative hover:text-gray-900"
           >
-            <path
-              d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001"
-              stroke="#30343A"
-              strokeWidth="1.5"
-              strokeMiterlimit="10"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M9.00007 22H15.0001C19.0201 22 19.7401 20.39 19.9501 18.43L20.7001 12.43C20.9701 9.99 20.2701 8 16.0001 8H8.00007C3.73007 8 3.03007 9.99 3.30007 12.43L4.05007 18.43C4.26007 20.39 4.98007 22 9.00007 22Z"
-              stroke="#30343A"
-              strokeWidth="1.5"
-              strokeMiterlimit="10"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M15.4955 12H15.5045"
-              stroke="#30343A"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            <path
-              d="M8.49451 12H8.50349"
-              stroke="#30343A"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span className="absolute -bottom-2 -right-2 bg-[#cea384] text-white text-xs px-2 py-1 rounded-full">
-            {cartCount} 
-          </span>
-        </button>
+            <svg
+              width="24"
+              height="24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001"
+                stroke="#30343A"
+                strokeWidth="1.5"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M9.00007 22H15.0001C19.0201 22 19.7401 20.39 19.9501 18.43L20.7001 12.43C20.9701 9.99 20.2701 8 16.0001 8H8.00007C3.73007 8 3.03007 9.99 3.30007 12.43L4.05007 18.43C4.26007 20.39 4.98007 22 9.00007 22Z"
+                stroke="#30343A"
+                strokeWidth="1.5"
+                strokeMiterlimit="10"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M15.4955 12H15.5045"
+                stroke="#30343A"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M8.49451 12H8.50349"
+                stroke="#30343A"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <span className="absolute -bottom-2 -right-2 bg-[#cea384] text-white text-xs px-2 py-1 rounded-full">
+              {cartCount}
+            </span>
+          </button>
         </div>
       </header>
       <CartSidebar />

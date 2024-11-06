@@ -17,6 +17,8 @@ interface CartContextType {
   toggleCart: () => void;
   isOpen: boolean;
   cartCount: number;
+  totalAmount: number;
+  clearCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -25,8 +27,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [cartItems, setCartItems] = useState<CartProduct[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
 
- 
   useEffect(() => {
     try {
       const storedCart = localStorage.getItem("cartItems");
@@ -38,12 +40,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-
   useEffect(() => {
     try {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       const count = cartItems.reduce((total, item) => total + item.quantity, 0);
+      const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
       setCartCount(count);
+      setTotalAmount(total);
+      setIsOpen(cartItems.length > 0); // Səbətdə məhsul olduqda sidebar açıq olsun
     } catch (error) {
       console.error("Error saving to localStorage:", error);
     }
@@ -67,13 +71,26 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCartItems((prevItems) => prevItems.filter((item) => item._id !== id));
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   const toggleCart = () => {
     setIsOpen(!isOpen);
   };
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, toggleCart, isOpen, cartCount }}
+      value={{
+        cartItems,
+        addToCart,
+        removeFromCart,
+        toggleCart,
+        isOpen,
+        cartCount,
+        totalAmount,
+        clearCart,
+      }}
     >
       {children}
     </CartContext.Provider>
