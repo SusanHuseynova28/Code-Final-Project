@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { IoChevronBackOutline } from "react-icons/io5";
-import { IoChevronForwardOutline } from "react-icons/io5";
+import { IoChevronBackOutline, IoChevronForwardOutline } from "react-icons/io5";
 import Link from "next/link";
+import axios from "axios";
 
 interface CardModalProps {
   item: {
@@ -18,18 +18,34 @@ export default function CardModal({ item, isOpen, onClose }: CardModalProps) {
   const quantity = 1;
   const [agreedToTerms, setAgreedToTerms] = useState(false);
 
+  const handleCheckout = async () => {
+    if (!agreedToTerms) return;
+
+    try {
+      const { data } = await axios.post("/api/checkout_sessions", {
+        items: [{ name: item.name, price: item.price, quantity }],
+      });
+
+      if (data.id) {
+        window.location.href = data.url; // Stripe ödəniş səhifəsinə yönləndir.
+      }
+    } catch (error) {
+      console.error("Checkout səhv baş verdi", error);
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
       <button
         onClick={onClose}
-        className="absolute top-0 right-[21.5rem]  text-white text-4xl hover:text-customBackground"
+        className="absolute top-0 right-[21.5rem] text-white text-4xl hover:text-customBackground"
       >
         &times;
       </button>
-      <div className="bg-white  max-w-3xl w-full p-6 relative flex flex-col  h-screen">
-        <p className="text-red-500 text-lg pl-14 mb-4 w-[400px] ">
+      <div className="bg-white max-w-3xl w-full p-6 relative flex flex-col h-screen">
+        <p className="text-red-500 text-lg pl-14 mb-4 w-[400px]">
           ✓ Added to cart successfully!
         </p>
 
@@ -42,22 +58,21 @@ export default function CardModal({ item, isOpen, onClose }: CardModalProps) {
             />
             <div className="flex flex-col justify-center items-center">
               <h2 className="text-md">{item.name}</h2>
-              <p className=" mt-2 text-sm flex">
+              <p className="mt-2 text-sm flex">
                 <span className="text-xs">PRICE:</span>
-                <p className="text-customBackground">
+                <span className="text-customBackground ml-1">
                   ${item.price.toFixed(2)}
-                </p>
+                </span>
               </p>
               <div className="flex">
                 <p className="mt-2 text-xs">QTY:</p>
-                <p className="text-customBackground mt-1 pl-1">1</p>
+                <span className="text-customBackground mt-1 pl-1">1</span>
               </div>
-              <p className=" text-sm mt-2 flex">
+              <p className="text-sm mt-2 flex">
                 <span className="text-xs">CART TOTALS:</span>{" "}
-                <span className="text-red-500"></span>
-                <p className="text-customBackground">
+                <span className="text-customBackground ml-1">
                   ${(item.price * quantity).toFixed(2)}
-                </p>
+                </span>
               </p>
             </div>
           </div>
@@ -68,7 +83,7 @@ export default function CardModal({ item, isOpen, onClose }: CardModalProps) {
                 There are 1 items in your cart
               </p>
               <div className="flex justify-center items-center mt-4">
-                <p className="text-xs"> CART TOTALS:</p>
+                <p className="text-xs">CART TOTALS:</p>
                 <p className="text-lg text-[#cea384] pl-2">
                   ${item.price.toFixed(2)}
                 </p>
@@ -81,9 +96,11 @@ export default function CardModal({ item, isOpen, onClose }: CardModalProps) {
                   CONTINUE SHOPPING
                 </button>
               </Link>
-              <button className="w-[250px] py-3 text-sm bg-customBackground text-white hover:bg-black border-customBackground font-semibold  hover:text-white">
-                GO TO CART
-              </button>
+              <Link href="/cart">
+                <button className="w-[250px] py-3 text-sm bg-customBackground text-white hover:bg-black border-customBackground font-semibold">
+                  GO TO CART
+                </button>
+              </Link>
               <div className="flex items-center space-x-2 mt-6">
                 <input
                   type="checkbox"
@@ -91,12 +108,13 @@ export default function CardModal({ item, isOpen, onClose }: CardModalProps) {
                   checked={agreedToTerms}
                   onChange={() => setAgreedToTerms(!agreedToTerms)}
                 />
-                <label htmlFor="terms" className="text-gray-400 text-xs pr-8 ">
+                <label htmlFor="terms" className="text-gray-400 text-xs pr-8">
                   Agree with terms and conditions.
                 </label>
               </div>
-              <Link href="/">
+              <Link href="/pages">
               <button
+                
                 className={`w-[250px] py-4 bg-[#cea384] text-white hover:bg-black text-sm ${
                   !agreedToTerms ? "opacity-50 cursor-not-allowed" : ""
                 }`}
@@ -108,26 +126,23 @@ export default function CardModal({ item, isOpen, onClose }: CardModalProps) {
             </div>
           </div>
         </div>
+
         <div className="border w-full mt-6"></div>
-        <div className="flex justify-between">
-          <h3 className="text-xl  mt-16">With this products also buy:</h3>
-          <div className="flex mt-16 text-2xl">
-            <p>
-              <IoChevronBackOutline />
-            </p>
-            <p>
-              <IoChevronForwardOutline />
-            </p>
+        <div className="flex justify-between mt-16">
+          <h3 className="text-xl">With this products also buy:</h3>
+          <div className="flex text-2xl">
+            <IoChevronBackOutline />
+            <IoChevronForwardOutline />
           </div>
         </div>
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
           {[...Array(4)].map((_, idx) => (
-            <div key={idx} className=" p-4 text-center">
-              <div className="w-full h-32  mb-2" />
+            <div key={idx} className="p-4 text-center">
+              <div className="w-full h-32 mb-2 bg-gray-200"></div>
               <p className="text-sm w-[150px]">Example Title Product</p>
               <p className="text-sm font-semibold mt-3">
-                $40.00{" "}
-                <span className="line-through text-gray-500">$80.00</span>
+                $40.00 <span className="line-through text-gray-500">$80.00</span>
               </p>
             </div>
           ))}

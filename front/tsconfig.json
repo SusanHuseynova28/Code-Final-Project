@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/pages/api/checkout_sessions.js", "app/pages/api/hello.js", "app/pages/index.js", "app/pages/success.js", "app/pages/CardModal.js"],
   "exclude": ["node_modules"]
 }
