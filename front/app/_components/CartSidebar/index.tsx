@@ -37,7 +37,7 @@ export default function CartSidebar() {
       <div>
         {isOpen && (
           <div
-            className="fixed inset-0 w-full h-full bg-black bg-opacity-60 z-50"
+            className="fixed inset-0 w-full h-full bg-black bg-opacity-40 z-50"
             onClick={toggleCart}
           ></div>
         )}
@@ -54,11 +54,12 @@ export default function CartSidebar() {
             >
               <AiOutlineClose />
             </button>
+            <div className="h-6 w-[1px] bg-gray-300 mx-3"></div>
 
             <h2 className="text-lg font-medium text-gray-900 mx-auto text-center sm:text-left">
               Shopping Cart
             </h2>
-
+            <div className="h-6 w-[1px] bg-gray-300 mx-3"></div>
             <span className="text-base font-semibold text-gray-800">
               {cartItems.length}
             </span>
@@ -106,8 +107,8 @@ export default function CartSidebar() {
           </div>
 
           {cartItems.length > 0 && (
-            <div className="fixed bottom-0 left-0 w-full sm:max-w-[380px] bg-white p-4 border-t border-gray-300">
-              <div className="flex justify-between mb-4">
+            <div className="fixed bottom-0 left-0 w-full sm:max-w-[380px] bg-white border-t border-gray-300">
+              <div className="flex justify-between p-2 mb-4">
                 <span className="text-lg font-semibold">Total:</span>
                 <span className="text-lg font-semibold text-[#cea384]">
                   ${totalAmount.toFixed(2)}
@@ -116,13 +117,13 @@ export default function CartSidebar() {
               <div className="flex">
                 <button
                   onClick={handleViewCart}
-                  className="w-full bg-gray-800 text-white py-4 rounded-l-lg"
+                  className="w-1/2 bg-[#2a2a2a] text-sm text-white py-5 border-r hover:bg-customBackground border-gray-300"
                 >
                   VIEW CART
                 </button>
                 <button
                   onClick={handleCheckout}
-                  className="w-full bg-black text-white py-4 rounded-r-lg"
+                  className="w-1/2 bg-black text-sm hover:bg-customBackground  text-white py-5"
                 >
                   CHECK OUT
                 </button>
