@@ -106,7 +106,7 @@ function ProductCard({ product }: { product: Product }) {
     <div className="group relative overflow-hidden mt-8 mx-2">
       <div className="relative w-full h-[300px] sm:h-[400px] md:h-[450px] overflow-hidden">
         {product.isOnSale && (
-          <span className="absolute top-2 sm:top-4 left-2 sm:left-3 bg-custombutton text-white text-xs px-2 py-1 z-20">
+          <span className="absolute top-2 sm:top-4 left-6 sm:left-16 bg-custombutton text-white text-xs px-2 py-1 z-20">
             SALE
           </span>
         )}
