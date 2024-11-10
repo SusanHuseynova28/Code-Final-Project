@@ -330,31 +330,3 @@ input[type="number"] {
     transform: rotate(360deg);
   }
 }
-.pagination-btn {
-  width: 2.5rem;
-  height: 2.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #d1d5db; /* Light gray */
-  border-radius: 0.25rem;
-  background-color: white;
-  color: #4b5563; /* Gray text */
-  cursor: pointer;
-}
-
-.pagination-btn:hover {
-  background-color: #f3f4f6; /* Hover background */
-}
-
-.pagination-btn.active {
-  background-color: #cea384; /* Active background color */
-  color: white;
-  border-color: transparent;
-}
-
-.pagination-btn.disabled {
-  background-color: #e5e7eb; /* Disabled background */
-  color: #9ca3af; /* Disabled text */
-  cursor: not-allowed;
-}

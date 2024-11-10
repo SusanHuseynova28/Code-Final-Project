@@ -4,10 +4,40 @@ const FilterCard = require('../models/filtercardModels');
 exports.getPaginatedFilterCards = async (req, res) => {
   const page = Math.max(1, parseInt(req.query.page) || 1);
   const limit = Math.max(1, parseInt(req.query.limit) || 12);
+  const sortOption = req.query.sort || 'default';
   const skip = (page - 1) * limit;
 
+ 
+  let sortCriteria;
+  switch (sortOption) {
+    case 'bestSelling':
+      sortCriteria = { sales: -1 }; 
+      break;
+    case 'alphabetically':
+      sortCriteria = { name: 1 }; 
+      break;
+    case 'priceHighToLow':
+      sortCriteria = { price: -1 }; 
+      break;
+    case 'priceLowToHigh':
+      sortCriteria = { price: 1 }; 
+      break;
+    case 'dateOldToNew':
+      sortCriteria = { createdAt: 1 }; 
+      break;
+    case 'dateNewToOld':
+      sortCriteria = { createdAt: -1 }; 
+      break;
+    default:
+      sortCriteria = {};
+  }
+
   try {
-    const filterCards = await FilterCard.find().skip(skip).limit(limit);
+    const filterCards = await FilterCard.find()
+      .sort(sortCriteria)
+      .skip(skip)
+      .limit(limit);
+
     const totalItems = await FilterCard.countDocuments();
     const totalPages = Math.ceil(totalItems / limit);
 
