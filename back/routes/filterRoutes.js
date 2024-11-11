@@ -6,11 +6,11 @@ const {
   createFilterCard,
   updateFilterCard,
   deleteFilterCard,
-
+  getFilteredCards
 } = require('../controllers/filtercardController');
 
 const router = express.Router();
-
+router.get("/filtercards", getFilteredCards);
 router.get('/filtercards', getPaginatedFilterCards);
 router.get('/filtercards/:id', getFilterCardById); 
 router.post('/filtercards', createFilterCard);
