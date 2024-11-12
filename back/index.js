@@ -12,8 +12,6 @@ const wishlistRoutes = require("./routes/wishlistRoutes");
 const filterRoutes = require("./routes/filterRoutes");
 
 
-
-
 if (!process.env.JWT_SECRET) {
   console.error('FATAL ERROR: JWT_SECRET is not defined.');
   process.exit(1);
@@ -21,15 +19,12 @@ if (!process.env.JWT_SECRET) {
 
 const app = express();
 
-
 app.use(express.json());
 app.use(cors({ origin: '*', credentials: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
-
 connection();
-
 
 app.use('/api/auth', authRoutes);
 app.use('/api', productRoutes);

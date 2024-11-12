@@ -29,7 +29,7 @@ exports.getPaginatedFilterCards = async (req, res) => {
       sortCriteria = { createdAt: -1 }; 
       break;
     default:
-      sortCriteria = {}; // Default sıralama (əlavə sıralama tətbiq edilmir)
+      sortCriteria = {}; 
   }
 
   try {
@@ -111,45 +111,41 @@ exports.deleteFilterCard = async (req, res) => {
 
 
 
-// controllers/filterCardsController.js
 
 
 exports.getFilteredCards = async (req, res) => {
   try {
     const { category, price, size, color, tags, page = 1, limit = 12, sort = "default" } = req.query;
 
+ 
     let filterCriteria = {};
 
-    // Category filter
+
     if (category) filterCriteria.category = category;
 
-    // Price filter - assuming price is sent as a range (e.g., "10 - 20")
     if (price) {
       const [minPrice, maxPrice] = price.split(' - ').map((p) => parseInt(p, 10));
       filterCriteria.price = { $gte: minPrice, $lte: maxPrice };
     }
 
-    // Size filter - assuming size is a string or array in the database
     if (size) {
       filterCriteria.size = size;
     }
 
-    // Color filter - assuming color is a field or an array in the database
     if (color) {
       filterCriteria.color = color;
     }
 
-    // Tags filter - assuming tags is an array in the database
     if (tags) {
       const tagsArray = Array.isArray(tags) ? tags : tags.split(',');
       filterCriteria.tags = { $in: tagsArray };
     }
 
-    // Sorting criteria
+   
     let sortCriteria = {};
     switch (sort) {
       case "bestSelling":
-        sortCriteria = { sales: -1 }; // Assuming 'sales' field exists
+        sortCriteria = { sales: -1 }; 
         break;
       case "alphabetically":
         sortCriteria = { name: 1 };
@@ -170,14 +166,19 @@ exports.getFilteredCards = async (req, res) => {
         sortCriteria = {};
     }
 
+   
     const skip = (page - 1) * limit;
+    
+
     const cards = await FilterCard.find(filterCriteria)
       .sort(sortCriteria)
       .skip(skip)
       .limit(parseInt(limit));
 
+  
     const totalCards = await FilterCard.countDocuments(filterCriteria);
     const totalPages = Math.ceil(totalCards / limit);
+
 
     res.status(200).json({ filterCards: cards, totalPages });
   } catch (error) {
