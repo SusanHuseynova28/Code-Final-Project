@@ -3,12 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { BiGridAlt } from "react-icons/bi";
 import { LiaSearchSolid } from "react-icons/lia";
-import {
-  FiShoppingBag,
-  FiSearch,
-  FiHeart,
-  FiChevronDown,
-} from "react-icons/fi";
+import { FiShoppingBag,  FiHeart, FiChevronDown } from "react-icons/fi";
 
 interface Product {
   _id: string;
@@ -28,9 +23,7 @@ const FilterComponent: React.FC = () => {
   const [totalPages, setTotalPages] = useState<number>(3);
   const [sortOption, setSortOption] = useState<string>("Default sorting");
   const [itemsPerRow, setItemsPerRow] = useState<number>(4);
-  const [page, setPage] = useState<number>(
-    parseInt(searchParams.get("page") || "1", 10)
-  );
+  const [page, setPage] = useState<number>(parseInt(searchParams.get("page") || "1", 10));
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedPrice, setSelectedPrice] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
@@ -51,10 +44,7 @@ const FilterComponent: React.FC = () => {
     selectedTag,
   ]);
 
-  const fetchProductsForNewPage = async (
-    page: number,
-    sort: string = "default"
-  ) => {
+  const fetchProductsForNewPage = async (page: number, sort: string = "default") => {
     setLoading(true);
     try {
       const queryParams = new URLSearchParams({
@@ -68,9 +58,7 @@ const FilterComponent: React.FC = () => {
         ...(selectedTag && { tags: selectedTag }),
       }).toString();
 
-      const response = await fetch(
-        `http://localhost:3001/api/filtercards?${queryParams}`
-      );
+      const response = await fetch(`http://localhost:3001/api/filtercards?${queryParams}`);
       const data = await response.json();
       setProducts(data.filterCards || []);
       setTotalPages(data.totalPages || 1);
@@ -131,13 +119,12 @@ const FilterComponent: React.FC = () => {
   const handleItemsPerRowChange = (count: number) => {
     setItemsPerRow(count);
   };
-
   return (
     <div className="container mx-auto py-8 px-12 relative mt-10">
       <div className="flex justify-between items-center mb-4 px-4">
         <button
           onClick={handleFilterToggle}
-          className="flex items-center px-6 py-2 hover:text-white hover:border-customBackground hover:bg-customBackground gap-2 border-black border-2 text-gray-600 transition"
+          className="flex items-center  px-6 py-2 hover:text-white hover:border-customBackground hover:bg-customBackground gap-2 border-black border-2 text-gray-600 transition"
         >
           <div>
             <svg
@@ -353,66 +340,69 @@ const FilterComponent: React.FC = () => {
             <p className="text-center">Loading...</p>
           ) : (
             <div
-              className={`grid gap-2 ${
-                itemsPerRow === 2
-                  ? "grid-cols-2"
-                  : itemsPerRow === 3
-                  ? "grid-cols-3"
-                  : itemsPerRow === 4
-                  ? "grid-cols-4"
-                  : "grid-cols-5"
-              }`}
-            >
-              {products.length > 0 ? (
-                products.map((product, index) => {
-                  if (page === 2 && [3, 6, 7].includes(index)) {
-                    return null;
-                  }
-                  return (
-                    <div
-                      key={product._id}
-                      className="relative text-center mt-6 group"
-                    >
+            className={`grid ${
+              itemsPerRow === 2
+                ? "grid-cols-2"
+                : itemsPerRow === 3
+                ? "grid-cols-3"
+                : itemsPerRow === 4
+                ? "grid-cols-4"
+                : "grid-cols-5"
+            } gap-6`}
+          >
+            {products.length > 0 ? (
+              products.map((product, index) => {
+                if (page === 2 && [3, 6, 7].includes(index)) {
+                  return null;
+                }
+                return (
+                  <div
+                    key={product._id}
+                    className={`relative mt-6 group transition-all duration-200 ease-in-out ${
+                      filterOpen ? " " : ""
+                    }`}
+                    style={{
+                      width: "100%",
+                      padding: filterOpen ? "10px" : "0",
+                    }}
+                  >
+                    <div className="border h-[420px]  overflow-hidden"> 
                       <div className="relative">
                         {product.isOnSale && (
-                          <div className="absolute top-3 left-20 bg-custombutton text-white text-xs  px-2 py-1">
+                          <div className="absolute top-3 left-16 bg-custombutton text-white text-xs px-2 py-1">
                             SALE
                           </div>
                         )}
                         <img
                           src={product.images[0]}
                           alt={product.name}
-                          className="max-w-[500px] h-80 pl-4 object-cover mb-4 transition duration-300 ease-in-out"
-                          onMouseEnter={(e) =>
-                            (e.currentTarget.src = product.hoverImage)
-                          }
-                          onMouseLeave={(e) =>
-                            (e.currentTarget.src = product.images[0])
-                          }
+                          className="w-full h-80 object-cover mb-0 transition duration-300 ease-in-out" 
+                          onMouseEnter={(e) => (e.currentTarget.src = product.hoverImage)}
+                          onMouseLeave={(e) => (e.currentTarget.src = product.images[0])}
                         />
-                        <div className="absolute bottom-10 left-1/2  transform -translate-x-1/2 flex space-x-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
-                          <button className="w-12 h-12 text-lg rounded-full bg-white shadow-md flex items-center justify-center">
+                        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out">
+                          <button className="w-12 h-12 text-lg hover:bg-customBackground hover:text-white rounded-full bg-white shadow-md flex items-center justify-center">
                             <FiShoppingBag />
                           </button>
-                          <button className="w-12 h-12  rounded-full bg-white shadow-md flex items-center justify-center">
-                          <LiaSearchSolid/>
+                          <button className="w-12 h-12 hover:bg-customBackground hover:text-white rounded-full bg-white shadow-md flex items-center justify-center">
+                            <LiaSearchSolid />
                           </button>
-                          <button className="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center">
+                          <button className="w-12 h-12 hover:bg-customBackground hover:text-white rounded-full bg-white shadow-md flex items-center justify-center">
                             <FiHeart />
                           </button>
                         </div>
                       </div>
-                      <div className=" p-4">
-                        <h2 className="text-lg font-semibold mb-1">
+                      <div className="p-4 border-t border-gray-300"> 
+                        <h2 className="text-md font-semibold text-center mb-1 hover:text-customBackground">
                           {product.name}
                         </h2>
-                        <div className="text-gray-600">
+                        <div className="text-black font-semibold text-center">
                           {product.salePrice ? (
                             <div>
                               <span className="text-custombutton font-semibold">
                                 ${product.salePrice.toFixed(2)}
                               </span>{" "}
-                              <span className="line-through">
+                              <span className="line-through text-hovercolor3 pl-3">
                                 ${product.price.toFixed(2)}
                               </span>
                             </div>
@@ -422,12 +412,15 @@ const FilterComponent: React.FC = () => {
                         </div>
                       </div>
                     </div>
-                  );
-                })
-              ) : (
-                <p className="text-center mt-10 text-2xl  text-red-500">No products found</p>
-              )}
-            </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p className="text-center mt-10 text-2xl text-red-500">No products found</p>
+            )}
+          </div>
+          
+          
           )}
 
           <div className="flex justify-center mt-16 items-center space-x-2">
