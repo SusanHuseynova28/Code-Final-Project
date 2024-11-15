@@ -121,7 +121,7 @@ const FilterComponent: React.FC = () => {
   };
   return (
     <div className="container mx-auto py-8 px-12 relative mt-10">
-      <div className="flex justify-between items-center mb-4 px-4">
+      <div className="flex justify-between items-center mb-4 ">
         <button
           onClick={handleFilterToggle}
           className="flex items-center  px-6 py-2 hover:text-white hover:border-customBackground hover:bg-customBackground gap-2 border-black border-2 text-gray-600 transition"

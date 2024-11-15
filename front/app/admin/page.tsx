@@ -5,6 +5,7 @@ import Header from "../_featured/header";
 import Footer from "../_featured/footer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FAQAdminPanel from "../_components/FAQAdminPanel";
 
 interface Product {
   _id?: string;
@@ -347,6 +348,7 @@ export default function AdminPanel() {
         )}
         
       </div>
+      <FAQAdminPanel/>
       <Footer />
       <ToastContainer
         position="top-center"

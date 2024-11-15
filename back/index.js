@@ -10,6 +10,7 @@ const latestRoutes = require('./routes/latestRoutes');
 const articleRoutes = require('./routes/articleRoutes');
 const wishlistRoutes = require("./routes/wishlistRoutes");
 const filterRoutes = require("./routes/filterRoutes");
+const faqRoutes = require('./routes/faqRoutes');
 
 
 if (!process.env.JWT_SECRET) {
@@ -33,6 +34,7 @@ app.use('/api/latest', latestRoutes);
 app.use('/articles', articleRoutes);
 app.use("/api/wishlist", wishlistRoutes);
 app.use("/api", filterRoutes);
+app.use('/api', faqRoutes);
 
 
 app.use((err, req, res, next) => {
