@@ -53,19 +53,18 @@ const updateFAQ = async (req, res) => {
 
 
 const deleteFAQ = async (req, res) => {
-    const { id } = req.params; 
-    try {
+  const { id } = req.params; 
+  try {
    
-      const deletedFAQ = await FAQ.findByIdAndUpdate(
-        id,
-        { answer: "FAQ currently not available" },
-        { new: true } 
-      );
-      if (!deletedFAQ) return res.status(404).json({ message: "FAQ not found" });
-      res.status(200).json({ message: "FAQ answer updated to unavailable" });
-    } catch (error) {
-      res.status(500).json({ message: "Error deleting FAQ" });
-    }
-  };
+    const deletedFAQ = await FAQ.findByIdAndDelete(id);
+
+   
+    if (!deletedFAQ) return res.status(404).json({ message: "FAQ not found" });
+
+    res.status(200).json({ message: "FAQ successfully deleted" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting FAQ" });
+  }
+};
 
 module.exports = { getAllFAQs, getFAQById, addFAQ, updateFAQ, deleteFAQ };

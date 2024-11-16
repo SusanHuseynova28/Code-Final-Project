@@ -1,11 +1,17 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { AiFillEdit, AiFillDelete, AiOutlinePlus, AiFillEye } from "react-icons/ai";
+import {
+  AiFillEdit,
+  AiFillDelete,
+  AiOutlinePlus,
+  AiFillEye,
+} from "react-icons/ai";
 import Header from "../_featured/header";
 import Footer from "../_featured/footer";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import FAQAdminPanel from "../_components/FAQAdminPanel";
+import { FaEyeSlash } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
 
 interface Product {
   _id?: string;
@@ -22,8 +28,53 @@ export default function AdminPanel() {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<"create" | "edit" | "view" | "delete" | null>(null);
+  const [modalType, setModalType] = useState<
+    "create" | "edit" | "view" | "delete" | null
+  >(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loginModalOpen, setLoginModalOpen] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const loggedInEmail = localStorage.getItem("loggedInEmail");
+    if (loggedInEmail) {
+      setLoginModalOpen(true);
+      fetchProducts();
+    } else {
+      setLoginModalOpen(true); 
+    }
+  }, []);
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      setError("Both email and password are required.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3001/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setError(errorData.message || "Login failed");
+        return;
+      }
+
+      localStorage.setItem("loggedInEmail", email);
+      setLoginModalOpen(false); 
+      fetchProducts();
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("An error occurred. Please try again.");
+    }
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -47,7 +98,10 @@ export default function AdminPanel() {
     }
   };
 
-  const openModal = (type: "create" | "edit" | "view" | "delete", product: Product | null = null) => {
+  const openModal = (
+    type: "create" | "edit" | "view" | "delete",
+    product: Product | null = null
+  ) => {
     setSelectedProduct(
       product || {
         name: "",
@@ -68,14 +122,19 @@ export default function AdminPanel() {
     setSelectedProduct(null);
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: "images" | "hoverImage") => {
+  const handleFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    type: "images" | "hoverImage"
+  ) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       const fileURL = URL.createObjectURL(file);
 
       setSelectedProduct((prev) => {
         if (!prev) return prev;
-        return type === "images" ? { ...prev, images: [fileURL] } : { ...prev, hoverImage: fileURL };
+        return type === "images"
+          ? { ...prev, images: [fileURL] }
+          : { ...prev, hoverImage: fileURL };
       });
     }
   };
@@ -83,13 +142,16 @@ export default function AdminPanel() {
   const handleDelete = async () => {
     if (selectedProduct?._id) {
       try {
-        await fetch(`http://localhost:3001/api/products/${selectedProduct._id}`, { method: "DELETE" });
+        await fetch(
+          `http://localhost:3001/api/products/${selectedProduct._id}`,
+          { method: "DELETE" }
+        );
         fetchProducts();
         closeModal();
-        toast.success("Product deleted successfully");
+    
       } catch (error) {
         console.error("Error deleting product:", error);
-        toast.error("Failed to delete product");
+    
       }
     }
   };
@@ -110,16 +172,72 @@ export default function AdminPanel() {
       });
       fetchProducts();
       closeModal();
-      toast.success(`Product ${modalType === "edit" ? "updated" : "created"} successfully`);
+      
     } catch (error) {
-      console.error(`Error ${modalType === "edit" ? "updating" : "creating"} product:`, error);
-      toast.error(`Failed to ${modalType === "edit" ? "update" : "create"} product`);
+      console.error(
+        `Error ${modalType === "edit" ? "updating" : "creating"} product:`,
+        error
+      );
+     
     }
   };
 
   return (
     <>
       <Header />
+      {loginModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
+          <div className="bg-white p-8 shadow-lg w-[500px] h-[600px] relative flex flex-col items-center">
+            <AiOutlineClose
+              className="absolute top-2 right-2 text-xl text-black cursor-pointer"
+              onClick={() => setLoginModalOpen(false)}
+            />
+            <img
+              src="https://mikadu-store-demo.myshopify.com/cdn/shop/files/logo_black_fe0a005c-0be5-4fa7-92a6-da3bf8b55186.png?v=1652231536"
+              alt="Logo"
+              className="w-[150px] mx-auto mt-4"
+            />
+            <div className="border-b-2 mt-4 w-[77%] mx-auto"></div>
+            <p className="text-center text-lg mt-4 text-black">
+              Great to have you back!
+            </p>
+            <div className="flex flex-col gap-4 justify-center items-center mt-4">
+              <input
+                type="email"
+                placeholder="Email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-[350px] border p-3 focus:outline-none"
+              />
+              <div className="relative w-[350px]">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="border w-full p-3 pr-10 focus:outline-none"
+                />
+                <div
+                  className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </div>
+              </div>
+              {error && (
+                <p className="text-red-500 text-center mt-2">{error}</p>
+              )}
+              <button
+                onClick={handleLogin}
+                className="w-[350px] bg-black text-white p-4 mt-4 text-center"
+              >
+                LOG IN
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="container mx-auto py-10 px-4">
         <h1 className="text-3xl text-center mb-8">Admin Panel</h1>
         <div className="flex justify-between">
@@ -155,25 +273,50 @@ export default function AdminPanel() {
             {filteredProducts.map((product, index) => (
               <tr key={product._id}>
                 <td className="py-2 px-4 border-b text-center">{index + 1}</td>
-                <td className="py-2 px-4 border-b text-center">{product.name}</td>
                 <td className="py-2 px-4 border-b text-center">
-                  <img src={product.images[0]} alt={product.name} className="w-10 h-10 mx-auto" />
+                  {product.name}
                 </td>
                 <td className="py-2 px-4 border-b text-center">
-                  <img src={product.hoverImage} alt={`${product.name} hover`} className="w-10 h-10 mx-auto" />
+                  <img
+                    src={product.images[0]}
+                    alt={product.name}
+                    className="w-10 h-10 mx-auto"
+                  />
                 </td>
-                <td className="py-2 px-4 border-b text-center">${product.price.toFixed(2)}</td>
-                <td className="py-2 px-4 border-b text-center">{product.isOnSale ? "✔" : "✖"}</td>
-                <td className="py-2 px-4 border-b text-center">{product.category}</td>
+                <td className="py-2 px-4 border-b text-center">
+                  <img
+                    src={product.hoverImage}
+                    alt={`${product.name} hover`}
+                    className="w-10 h-10 mx-auto"
+                  />
+                </td>
+                <td className="py-2 px-4 border-b text-center">
+                  ${product.price.toFixed(2)}
+                </td>
+                <td className="py-2 px-4 border-b text-center">
+                  {product.isOnSale ? "✔" : "✖"}
+                </td>
+                <td className="py-2 px-4 border-b text-center">
+                  {product.category}
+                </td>
                 <td className="py-2 px-4 border-b text-center">
                   <div className="flex justify-center gap-2">
-                    <button onClick={() => openModal("view", product)} className="text-gray-500">
+                    <button
+                      onClick={() => openModal("view", product)}
+                      className="text-gray-500"
+                    >
                       <AiFillEye />
                     </button>
-                    <button onClick={() => openModal("edit", product)} className="text-customBackground">
+                    <button
+                      onClick={() => openModal("edit", product)}
+                      className="text-customBackground"
+                    >
                       <AiFillEdit />
                     </button>
-                    <button onClick={() => openModal("delete", product)} className="text-red-500">
+                    <button
+                      onClick={() => openModal("delete", product)}
+                      className="text-red-500"
+                    >
                       <AiFillDelete />
                     </button>
                   </div>
@@ -346,20 +489,10 @@ export default function AdminPanel() {
             </div>
           </div>
         )}
-        
       </div>
-      <FAQAdminPanel/>
+      <FAQAdminPanel />
       <Footer />
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar
-        newestOnTop
-        closeOnClick
-        pauseOnHover
-        draggable
-        pauseOnFocusLoss
-      />
+      
     </>
   );
 }
