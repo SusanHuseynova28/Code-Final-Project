@@ -101,7 +101,6 @@ export default function BagCategories() {
           ))}
         </Swiper>
 
-
         <div className="custom-swiper-button-next hidden group-hover:flex absolute top-1/2 right-20 transform -translate-y-1/2 w-6 h-6  hover:bg-customBackground bg-white flex items-center justify-center cursor-pointer shadow-lg transition duration-300  z-10">
           <span className="text-black text-lg hover:text-white">&gt;</span>
         </div>

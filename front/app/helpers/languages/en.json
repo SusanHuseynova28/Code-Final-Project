@@ -1,0 +1,13 @@
+{
+  "HOME": "HOME",
+  "SHOP": "SHOP",
+  "FEATURED": "FEATURED",
+  "BLOG": "BLOG",
+  "PAGES": "PAGES",
+  "springCollection": {
+    "title": "Spring Collection",
+    "descriptionLine1": "In a world of hyper-convenience and overconsumption we want to",
+    "descriptionLine2": "strip away complexity from your everyday.",
+    "button": "Shop Now"
+  }
+}

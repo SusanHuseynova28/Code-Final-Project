@@ -13,7 +13,8 @@ import { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-
+import { useTranslation } from "react-i18next";
+import i18n from "../../helpers/i18n";
 import CartSidebar from "@/app/_components/CartSidebar";
 import { useCart } from "@/app/_components/CartContext";
 
@@ -36,6 +37,8 @@ export default function Header() {
   const [error, setError] = useState("");
   const [wishlist, setWishlist] = useState<Product[]>([]);
   const { toggleCart, cartCount } = useCart();
+
+  const { t } = useTranslation();
 
   const router = useRouter();
 
@@ -203,17 +206,26 @@ export default function Header() {
             </div>
             {isLanguageOpen && (
               <div className="absolute left-14 mt-2 w-10 z-50 bg-white border text-center p-2 shadow-lg transition-all duration-500 ease-in-out origin-top">
-                <ul className="space-y-1">
-                  <li>
-                    <button className="text-xs font-semibold">EN</button>
-                  </li>
-                  <li>
-                    <button className="text-xs font-semibold">RU</button>
-                  </li>
-                  <li>
-                    <button className="text-xs font-semibold">AZ</button>
-                  </li>
-                </ul>
+                <div className="relative">
+                  <button
+                    onClick={() => i18n.changeLanguage("en")}
+                    className="text-xs font-semibold"
+                  >
+                    EN
+                  </button>
+                  <button
+                    onClick={() => i18n.changeLanguage("ru")}
+                    className="text-xs font-semibold"
+                  >
+                    RU
+                  </button>
+                  <button
+                    onClick={() => i18n.changeLanguage("az")}
+                    className="text-xs font-semibold"
+                  >
+                    AZ
+                  </button>
+                </div>
               </div>
             )}
           </div>
@@ -250,9 +262,9 @@ export default function Header() {
             <div className="flex">
               <Link
                 href="/"
-                className=" font-semibold hover:text-customBackground"
+                className="font-semibold hover:text-customBackground"
               >
-                HOME
+                {t("HOME")}
               </Link>
               <div className="mt-2 text-xs pl-1">
                 <GoChevronDown />
@@ -319,9 +331,9 @@ export default function Header() {
             <div className="flex relative z-50">
               <Link
                 href="/shop"
-                className="hover:text-customBackground text-black font-semibold"
+                className="font-semibold hover:text-customBackground"
               >
-                SHOP
+                {t("SHOP")}
               </Link>
               <div className="mt-2 text-xs pl-1">
                 <GoChevronDown />
@@ -370,9 +382,9 @@ export default function Header() {
                         </li>
                       </Link>
                       <Link href="/order">
-                      <li className="hover:text-customBackground mt-2">
-                        Heading Style 2
-                      </li>
+                        <li className="hover:text-customBackground mt-2">
+                          Heading Style 2
+                        </li>
                       </Link>
                       <li className="hover:text-customBackground">
                         Heading Style 3
@@ -520,9 +532,9 @@ export default function Header() {
             <div className="flex items-center cursor-pointer">
               <Link
                 href="/featured"
-                className="hover:text-customBackground font-semibold"
+                className="font-semibold hover:text-customBackground"
               >
-                FEATURED
+                {t("FEATURED")}
               </Link>
               <div className="mt-1 text-xs pl-1">
                 <GoChevronDown />
@@ -641,7 +653,7 @@ export default function Header() {
                 href="/blog"
                 className="font-semibold hover:text-customBackground"
               >
-                BLOG
+                {t("BLOG")}
               </Link>
               <div className="mt-1 text-xs pl-1">
                 <GoChevronDown />
@@ -793,8 +805,11 @@ export default function Header() {
 
           <div className="relative pages-hover">
             <div className="flex items-center cursor-pointer">
-              <Link href="/pages" className="hover:text-gray-900 font-semibold">
-                PAGES
+              <Link
+                href="/pages"
+                className="font-semibold hover:text-customBackground"
+              >
+                {t("PAGES")}
               </Link>
               <div className="mt-1 text-xs pl-1">
                 <GoChevronDown />
@@ -905,7 +920,7 @@ export default function Header() {
 
             {isLoginModalOpen && (
               <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
-                <div className="bg-white p-8 shadow-lg w-[500px] h-[600px] relative ">
+                <div className="bg-white p-8 shadow-lg w-[500px] h-[600px] relative">
                   <AiOutlineClose
                     className="absolute -top-7 -right-1 text-2xl text-white hover:text-customBackground cursor-pointer transition-transform duration-1000 ease-in-out hover:rotate-[360deg]"
                     onClick={closeModal}
@@ -920,13 +935,14 @@ export default function Header() {
                   <p className="text-center text-lg mt-4 text-black">
                     Great to have you back!
                   </p>
-                  <div className="flex flex-col gap-4 justify-center items-center ">
+
+                  <div className="flex flex-col gap-4 justify-center items-center">
                     <input
                       type="email"
                       placeholder="Email address"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-[350px] border  p-3  mt-4 focus:outline-none "
+                      className="w-[350px] border p-3 mt-4 focus:outline-none"
                     />
 
                     <div className="relative">
@@ -935,7 +951,7 @@ export default function Header() {
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className=" border  w-[350px] p-3 pr-10 focus:outline-none "
+                        className="border w-[350px] p-3 pr-10 focus:outline-none"
                       />
                       <div
                         className="absolute top-1/2 right-3 transform -translate-y-1/2 cursor-pointer"
@@ -951,19 +967,39 @@ export default function Header() {
                       {error}
                     </p>
                   )}
+
                   <p className="pl-11 mt-4 text-customtextopacity text-sm hover:text-customBackground">
                     Forget your password?
                   </p>
+
                   <div className="flex flex-col justify-center items-center">
                     <button
-                      onClick={handleLogin}
-                      className="w-[350px] mx-auto bg-black text-white p-4 font-semibold hover:bg-customBackground  mt-6"
+                      onClick={() => {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        const passwordRegex = /^(?=.*[A-Z]).{6,}$/;
+
+                        if (!emailRegex.test(email)) {
+                          setError("Please enter a valid email address.");
+                          return;
+                        }
+
+                        if (!passwordRegex.test(password)) {
+                          setError(
+                            "Password must be at least 6 characters long and contain at least one uppercase letter."
+                          );
+                          return;
+                        }
+
+                        setError("");
+                        handleLogin();
+                      }}
+                      className="w-[350px] mx-auto bg-black text-white p-4 font-semibold hover:bg-customBackground mt-6"
                     >
                       LOG IN
                     </button>
 
                     <div className="flex flex-col border w-[350px] p-3 mt-8 bg-buttonhovercolor">
-                      <p className="text-center text-sm ">
+                      <p className="text-center text-sm">
                         Don't have an account?{" "}
                         <span
                           onClick={openRegisterModal}
@@ -1020,7 +1056,25 @@ export default function Header() {
                     )}
 
                     <button
-                      onClick={handleRegister}
+                      onClick={() => {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        const passwordRegex = /^(?=.*[A-Z]).{6,}$/;
+
+                        if (!emailRegex.test(email)) {
+                          setError("Please enter a valid email address.");
+                          return;
+                        }
+
+                        if (!passwordRegex.test(password)) {
+                          setError(
+                            "Password must be at least 6 characters long and contain at least one uppercase letter."
+                          );
+                          return;
+                        }
+
+                        setError("");
+                        handleRegister();
+                      }}
                       className="w-[350px] bg-black text-white text-lg p-4 hover:bg-customBackground transition-all duration-300 mt-4"
                     >
                       REGISTER
@@ -1061,7 +1115,7 @@ export default function Header() {
           <button
             onClick={(e) => {
               e.preventDefault();
-              toggleCart(); 
+              toggleCart();
             }}
             className="relative hover:text-gray-900"
           >

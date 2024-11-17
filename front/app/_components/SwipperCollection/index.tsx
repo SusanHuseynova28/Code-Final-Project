@@ -1,15 +1,17 @@
-"use client"; // Next.js server-side rendering üçün
-
+"use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import Link from "next/link";
 import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
+import { useTranslation } from "react-i18next";
+import i18n from "../../helpers/i18n";
 
 export default function FullScreenSwiper() {
   const firstSlideRef = useRef<HTMLDivElement>(null);
   const secondSlideRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   const handleSlideChange = (swiper: any) => {
     if (swiper.activeIndex === 0 && firstSlideRef.current) {
@@ -36,7 +38,6 @@ export default function FullScreenSwiper() {
         className="w-full h-full"
         onSlideChange={handleSlideChange}
       >
-     
         <SwiperSlide>
           <div className="relative w-full h-full">
             <img
@@ -45,32 +46,37 @@ export default function FullScreenSwiper() {
               className="w-full h-[40vh] md:h-full object-cover"
             />
             <div className="absolute inset-0 flex items-start md:items-center justify-center md:justify-start px-8 md:px-44">
-              <div
-                ref={firstSlideRef}
-                className="text-content animate-toss-up mt-4 md:mt-20"
-              >
+              <div className="text-content animate-toss-up mt-4 md:mt-20">
                 <h1 className="text-3xl md:text-6xl font-semibold text-gray-800">
-                  Spring Collection
+                  {t("springCollection.title", "Spring Collection")}
                 </h1>
+
                 <div className="mt-4 md:mt-10 w-[250px] md:w-[700px]">
                   <p className="text-sm md:text-base text-gray-500">
-                    In a world of hyper-convenience and overconsumption we want
-                    to
+                    {t(
+                      "springCollection.descriptionLine1",
+                      "In a world of hyper-convenience and overconsumption we want to"
+                    )}
                   </p>
                   <p className="text-texthovercolor mt-1 md:mt-2 pl-2 md:pl-24">
-                    strip away complexity from your everyday.
+                    {t(
+                      "springCollection.descriptionLine2",
+                      "strip away complexity from your everyday."
+                    )}
                   </p>
                 </div>
+
                 <div className="mt-6 md:mt-16 pl-2 md:pl-44">
                   <button className="bg-[#cea384] text-white px-5 md:px-6 py-2 text-sm md:text-lg">
-                    <Link href="/drowerfilter">Shop Now</Link>
+                    <Link href="/drowerfilter">
+                      {t("springCollection.button", "Shop Now")}
+                    </Link>
                   </button>
                 </div>
               </div>
             </div>
           </div>
         </SwiperSlide>
-
 
         <SwiperSlide>
           <div className="relative w-full h-full">
