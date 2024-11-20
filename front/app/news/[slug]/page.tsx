@@ -30,7 +30,7 @@ export default function BlogDetail() {
     const fetchArticle = async () => {
       try {
         const response = await fetch(`http://localhost:3001/articles/${slug}`);
-        if (!response.ok) throw new Error("Failed to fetch article");
+        if (!response.ok) throw new Error("Failed to fetch article:");
         const data: Article = await response.json();
         setArticle(data);
       } catch (error) {

@@ -11,7 +11,7 @@ export function middleware(req: NextRequest) {
   }
 
   
-  const blockedPaths = ['/listview', '/drowerfilter', '/about', '/shop', '/contact', '/faq'];
+  const blockedPaths = ['/listview','/about', '/shop', '/contact', '/faq'];
 
   if (blockedPaths.includes(url.pathname) && !req.headers.get('referer')) {
 

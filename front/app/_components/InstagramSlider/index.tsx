@@ -24,7 +24,7 @@ export default function InstagramSlider() {
       <Swiper
         modules={[Navigation, Autoplay]}
         spaceBetween={0}
-        slidesPerView={1} // Mobil görünüş üçün 1 şəkil
+        slidesPerView={1} 
         navigation={{
           nextEl: ".instagram-swiper-button-next",
           prevEl: ".instagram-swiper-button-prev",
@@ -35,13 +35,13 @@ export default function InstagramSlider() {
         }}
         breakpoints={{
           640: {
-            slidesPerView: 2, // 640px-dən yuxarı 2 şəkil
+            slidesPerView: 2, 
           },
           768: {
-            slidesPerView: 3, // 768px-dən yuxarı 3 şəkil
+            slidesPerView: 3, 
           },
           1024: {
-            slidesPerView: 5, // 1024px-dən yuxarı 5 şəkil
+            slidesPerView: 5, 
           },
         }}
         className="instagram-swiper w-full h-auto"

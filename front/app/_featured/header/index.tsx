@@ -976,17 +976,9 @@ export default function Header() {
                     <button
                       onClick={() => {
                         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                        const passwordRegex = /^(?=.*[A-Z]).{6,}$/;
 
                         if (!emailRegex.test(email)) {
                           setError("Please enter a valid email address.");
-                          return;
-                        }
-
-                        if (!passwordRegex.test(password)) {
-                          setError(
-                            "Password must be at least 6 characters long and contain at least one uppercase letter."
-                          );
                           return;
                         }
 
@@ -1052,7 +1044,9 @@ export default function Header() {
                     </div>
 
                     {error && (
-                      <div className="text-red-500 text-sm mb-4">{error}</div>
+                      <div className="w-[350px] text-center text-red-500 text-sm mb-4">
+                        {error}
+                      </div>
                     )}
 
                     <button

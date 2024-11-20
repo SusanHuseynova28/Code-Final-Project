@@ -6,7 +6,7 @@ import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useTranslation } from "react-i18next";
-import i18n from "../../helpers/i18n";
+
 
 export default function FullScreenSwiper() {
   const firstSlideRef = useRef<HTMLDivElement>(null);
