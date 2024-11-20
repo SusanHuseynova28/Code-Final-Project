@@ -37,7 +37,7 @@ export default function UpdateProfile() {
       router.push("/account");
     } catch (error) {
       console.error("Error updating profile:", error);
-      alert("An error occurred while updating the profile.");
+      alert("An error occurred while updating the profile");
     }
   };
 
